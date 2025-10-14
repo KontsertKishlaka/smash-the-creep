@@ -58,3 +58,4 @@ class_name PlayerData
   <br>
   <span><i>slash-the-creep — базовая спецификация персонажа</i></span>
 </div>
+r
