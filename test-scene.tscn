@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b02txd1j33lkh"]
+
+[ext_resource type="PackedScene" uid="uid://b0fmuiy0g1ld5" path="res://test-place/source/high_quality_alien_pl_1009231931_texture.fbx" id="1_0411k"]
+[ext_resource type="Material" uid="uid://b7ng6qgpr21kh" path="res://test-texture.tres" id="2_wn8ut"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wn8ut"]
+
+[sub_resource type="Sky" id="Sky_8amj3"]
+sky_material = SubResource("ProceduralSkyMaterial_wn8ut")
+
+[sub_resource type="Environment" id="Environment_c5pbs"]
+background_mode = 2
+sky = SubResource("Sky_8amj3")
+tonemap_mode = 2
+
+[node name="Spatial" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c5pbs")
+
+[node name="high_quality_alien_pl_1009231931_texture" parent="." instance=ExtResource("1_0411k")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 4.665612, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.19752046, 0, 0.98029876, 0, 1, 0, -0.98029876, 0, -0.19752046, 9.288202, 5.5442457, 5.10985)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.092901, 1.1536345, 1.5073853)
+size = Vector3(6.1896973, 2.4853516, 6.0144043)
+material = ExtResource("2_wn8ut")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15983796, 0.70892334, 2.3850517)
+operation = 2
+size = Vector3(2.5128174, 2.302124, 2.2626953)
+material = ExtResource("2_wn8ut")
