@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b02txd1j33lkh"]
+[gd_scene load_steps=7 format=3 uid="uid://b02txd1j33lkh"]
 
 [ext_resource type="PackedScene" uid="uid://b0fmuiy0g1ld5" path="res://test-place/source/high_quality_alien_pl_1009231931_texture.fbx" id="1_0411k"]
 [ext_resource type="Material" uid="uid://b7ng6qgpr21kh" path="res://test-texture.tres" id="2_wn8ut"]
+[ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://test-place/enemies/slime.tscn" id="3_8amj3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wn8ut"]
 
@@ -37,3 +38,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15983796, 0.70892334, 2.38
 operation = 2
 size = Vector3(2.5128174, 2.302124, 2.2626953)
 material = ExtResource("2_wn8ut")
+
+[node name="Slime" parent="." instance=ExtResource("3_8amj3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4178671, 2.416973, 1.3778777)

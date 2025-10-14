@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt3jnpmq6oflw"]
+
+[ext_resource type="PackedScene" uid="uid://onycae621kpf" path="res://test-place/enemies/models/slime/scene.gltf" id="1_ich0b"]
+
+[node name="Slime" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="MeshInstance3D" instance=ExtResource("1_ich0b")]
+
+[node name="HealthSystem" type="Node" parent="."]
+
+[node name="AttackSystem" type="Node" parent="."]
+
+[node name="VisionArea" type="Node" parent="."]
