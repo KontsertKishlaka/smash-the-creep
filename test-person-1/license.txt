@@ -1,0 +1,11 @@
+Model Information:
+* title:	Soulvester - Dandys World
+* source:	https://sketchfab.com/3d-models/soulvester-dandys-world-a037480e74c6441ebe05e0e6ad6d3250
+* author:	prettycute (https://sketchfab.com/prettycute)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Soulvester - Dandys World" (https://sketchfab.com/3d-models/soulvester-dandys-world-a037480e74c6441ebe05e0e6ad6d3250) by prettycute (https://sketchfab.com/prettycute) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
