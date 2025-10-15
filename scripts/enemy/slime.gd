@@ -14,6 +14,8 @@ class_name Slime
 
 @export var patrol_jump_chance: float = 0.03
 
+@onready var health_system: HealthSystem = $HealthSystem
+
 var jump_timer: float = 0.0
 var patrol_target: Vector3
 var state: String = "patrol"
@@ -21,6 +23,13 @@ var state: String = "patrol"
 func _ready():
 	_set_new_patrol_target()
 	randomize()
+	
+	# Подписка на сигнал смерти
+	health_system.connect("died", Callable(self, "_on_death"))
+	
+func _on_death():
+	print("Слайм умер!")
+	queue_free()  # можно добавить анимацию перед этим
 
 
 func _physics_process(delta: float):
