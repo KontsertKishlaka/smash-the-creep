@@ -10,4 +10,4 @@ func physics_update(delta):
 	state_machine.player.move_and_slide()
 	
 	if state_machine.player.is_on_floor():
-		state_machine.change_state("Idle")
+		state_machine.change_state("idle")

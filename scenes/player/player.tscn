@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7jmmf0t47vaw" path="res://scripts/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://boefe0dqoajot" path="res://assets/textures/player/player.glb" id="2_gmlin"]
-[ext_resource type="Script" uid="uid://cx1a1yulq6nx3" path="res://scripts/player/player-state-machine.gd" id="3_gmlin"]
+[ext_resource type="Script" path="res://scripts/player/player-state-machine.gd" id="3_gmlin"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_d881s"]
 height = 2.805664
