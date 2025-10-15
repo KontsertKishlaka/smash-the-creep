@@ -1,6 +1,6 @@
 extends CharacterBody3D
 class_name Player
-
+#бог мертв нишя
 @export var mouse_sensitivity: float = 0.002
 @export var max_degree: float = 45
 @export var speed: float = 2
