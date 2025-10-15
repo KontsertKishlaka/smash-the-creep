@@ -121,7 +121,6 @@ func execute_attack(): # Логика дальней атаки (плевок я
 pass
 ```
 
-Slasher RPG — 
 ---
 
 <div align="center">
