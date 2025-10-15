@@ -49,5 +49,6 @@ material = ExtResource("2_56fvd")
 [node name="Player" parent="." instance=ExtResource("3_rog3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99248785, 2.513343, 1.7578042)
 
-[node name="Slime" parent="." instance=ExtResource("4_u3nbo")]
+[node name="Slime" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_u3nbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3112319, 2.5267968, -0.6967677)
+player = NodePath("../Player")
