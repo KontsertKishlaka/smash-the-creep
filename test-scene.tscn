@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b02txd1j33lkh"]
+[gd_scene load_steps=9 format=3 uid="uid://b02txd1j33lkh"]
 
 [ext_resource type="PackedScene" uid="uid://b0fmuiy0g1ld5" path="res://test-place/source/high_quality_alien_pl_1009231931_texture.fbx" id="1_0411k"]
 [ext_resource type="Material" uid="uid://b7ng6qgpr21kh" path="res://test-texture.tres" id="2_wn8ut"]
-[ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://test-place/enemies/slime.tscn" id="3_8amj3"]
-[ext_resource type="Script" path="res://player.gd" id="3_c5pbs"]
-[ext_resource type="PackedScene" uid="uid://0075y4xjx6jh" path="res://test-person-1/scene.gltf" id="4_cp2na"]
+[ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="3_8amj3"]
+[ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="3_c5pbs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wn8ut"]
 
@@ -18,9 +17,6 @@ tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_02nmi"]
 size = Vector3(35.61023, 1, 46.78174)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_d881s"]
-height = 2.805664
 
 [node name="Spatial" type="Node3D"]
 
@@ -50,19 +46,8 @@ operation = 2
 size = Vector3(3.1458435, 1.8587341, 4.2177734)
 material = ExtResource("2_wn8ut")
 
-[node name="player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1240076, 2.1987665, 2.1237383)
-script = ExtResource("3_c5pbs")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09632754, 0.40954375, 0)
-shape = SubResource("CylinderShape3D_d881s")
-
-[node name="player_texture" parent="player/CollisionShape3D" instance=ExtResource("4_cp2na")]
-transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, 0, -1.4046304, 0)
-
-[node name="Camera3D" type="Camera3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11123502, 1.036032, -0.42217875)
+[node name="Player" parent="." instance=ExtResource("3_c5pbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99248785, 2.513343, 1.7578042)
 
 [node name="Slime" parent="." instance=ExtResource("3_8amj3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3112319, 2.5267968, -0.6967677)

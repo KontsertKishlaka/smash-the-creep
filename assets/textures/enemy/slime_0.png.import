@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://58dmeoqcn8xk"
-path.s3tc="res://.godot/imported/Slime_baseColor.png-f4ca5b44ed6b2506999acbfd3c13affc.s3tc.ctex"
+uid="uid://db4x3fiwvncvf"
+path.s3tc="res://.godot/imported/slime_0.png-8d82db497dcb2e05c214a2a7c21e9fa5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "b0d25fedf7c310a9909bb1bacbd69924"
+}
 
 [deps]
 
-source_file="res://test-place/enemies/models/slime/textures/Slime_baseColor.png"
-dest_files=["res://.godot/imported/Slime_baseColor.png-f4ca5b44ed6b2506999acbfd3c13affc.s3tc.ctex"]
+source_file="res://assets/textures/enemy/slime_0.png"
+dest_files=["res://.godot/imported/slime_0.png-8d82db497dcb2e05c214a2a7c21e9fa5.s3tc.ctex"]
 
 [params]
 

@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0com2j6h1aq3"
-path.s3tc="res://.godot/imported/SoulvesterTEXTURE_baseColor.png-20f8948afe702365918bd062450f9bda.s3tc.ctex"
+uid="uid://b2nk2ydo51lra"
+path.s3tc="res://.godot/imported/player_0.png-e37f00a57abf9256875fe30ec4050b68.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "2cb360a126b5d6d0242b830e3c17e728"
+}
 
 [deps]
 
-source_file="res://test-person-1/textures/SoulvesterTEXTURE_baseColor.png"
-dest_files=["res://.godot/imported/SoulvesterTEXTURE_baseColor.png-20f8948afe702365918bd062450f9bda.s3tc.ctex"]
+source_file="res://assets/textures/player/player_0.png"
+dest_files=["res://.godot/imported/player_0.png-e37f00a57abf9256875fe30ec4050b68.s3tc.ctex"]
 
 [params]
 

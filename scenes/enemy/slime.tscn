@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bt3jnpmq6oflw"]
 
-[ext_resource type="PackedScene" uid="uid://onycae621kpf" path="res://test-place/enemies/models/slime/scene.gltf" id="1_ich0b"]
+[ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/textures/enemy/slime.glb" id="1_ves4f"]
 
 [node name="Slime" type="CharacterBody3D"]
 
@@ -8,10 +8,12 @@
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
-[node name="Sketchfab_Scene" parent="MeshInstance3D" instance=ExtResource("1_ich0b")]
-
 [node name="HealthSystem" type="Node" parent="."]
 
 [node name="AttackSystem" type="Node" parent="."]
 
 [node name="VisionArea" type="Node" parent="."]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Model" parent="Pivot" instance=ExtResource("1_ves4f")]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvhxbhtembogm"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://boefe0dqoajot" path="res://assets/textures/player/player.glb" id="2_gmlin"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_d881s"]
+height = 2.805664
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_dovo2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39731407, 0)
+shape = SubResource("CylinderShape3D_d881s")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("2_gmlin")]
+transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, 0, -0.9940835, 0)
