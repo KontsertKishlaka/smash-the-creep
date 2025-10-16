@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://g3oggeq5xbun"]
+
+[ext_resource type="Script" uid="uid://gtfksshd8yl0" path="res://scripts/misc/destructible.gd" id="1_6ik3p"]
+[ext_resource type="PackedScene" uid="uid://bhm6b264nexsl" path="res://assets/textures/env/props/wood-box/wood-box.glb" id="1_hs8b2"]
+[ext_resource type="PackedScene" uid="uid://w80vffp2pg5k" path="res://assets/vfx/wood-chips.tscn" id="2_5pk44"]
+[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/nya.mp3" id="3_21bvh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hs8b2"]
+size = Vector3(0.85, 0.85, 0.85)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ik3p"]
+size = Vector3(0.85, 0.85, 0.85)
+
+[node name="WoodBox" type="RigidBody3D"]
+script = ExtResource("1_6ik3p")
+break_effect = ExtResource("2_5pk44")
+break_sound = ExtResource("3_21bvh")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_hs8b2")
+
+[node name="Model" parent="." instance=ExtResource("1_hs8b2")]
+transform = Transform3D(0.004, 0, 0, 0, 0.004, 0, 0, 0, 0.004, 0, 0, 0)
+
+[node name="HitBox" type="Area3D" parent="."]
+
+[node name="HitBoxCollision" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_6ik3p")

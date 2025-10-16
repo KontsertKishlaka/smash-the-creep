@@ -9,6 +9,11 @@ class_name Player
 
 @onready var camera: Camera3D = $Camera
 
+
+# TEST
+@export var target: Destructible
+
+
 const GRAVITY = 9.8
 
 func _ready():

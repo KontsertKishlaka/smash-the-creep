@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://w80vffp2pg5k"]
+
+[ext_resource type="Script" uid="uid://batse4ojshqyg" path="res://assets/vfx/wood-chips.gd" id="1_acbh7"]
+[ext_resource type="Texture2D" uid="uid://b3yhowly2kdvc" path="res://assets/vfx/wood-chips.jpg" id="1_rvir0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_acbh7"]
+lifetime_randomness = 0.1
+particle_flag_damping_as_friction = true
+emission_shape = 2
+emission_sphere_radius = 0.8
+direction = Vector3(0, 0.35, 0)
+spread = 14.5
+initial_velocity_min = 3.0
+initial_velocity_max = 8.0
+angular_velocity_min = -5.000016
+angular_velocity_max = 109.999985
+damping_min = 4.0
+damping_max = 4.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvir0"]
+albedo_color = Color(0.74978, 0.74978, 0.74977994, 1)
+albedo_texture = ExtResource("1_rvir0")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_acbh7"]
+material = SubResource("StandardMaterial3D_rvir0")
+radius = 0.1
+height = 0.2
+radial_segments = 4
+rings = 2
+
+[node name="VFXWoodChips" type="Node3D"]
+script = ExtResource("1_acbh7")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 30
+amount_ratio = 0.4635
+lifetime = 1.08
+one_shot = true
+speed_scale = 1.35
+explosiveness = 1.0
+randomness = 0.08
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_acbh7")
+draw_pass_1 = SubResource("SphereMesh_acbh7")
