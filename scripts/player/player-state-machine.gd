@@ -7,7 +7,13 @@ var current_state: State
 var states: Dictionary = {}
 
 func _ready() -> void:
+	print("Player assigned: ", player)
+	if not player:
+		printerr("Ошибка: Переменная 'player' не привязана к экземпляру Player!")
+		return
+	
 	states["idle"] = preload("res://scripts/player/player-states/idlestate.gd").new()
+	states["walk"] = preload("res://scripts/player/player-states/walkstate.gd").new()
 	states["run"] = preload("res://scripts/player/player-states/runstate.gd").new()
 	states["jump"] = preload("res://scripts/player/player-states/jumpstate.gd").new()
 	states["attack"] = preload("res://scripts/player/player-states/attackstate.gd").new()
@@ -35,9 +41,11 @@ func change_state(new_state_name: String):
 		printerr("Ошибка: Состояние '" + new_state_name + "' не найдено в словаре states!")
 
 func _physics_process(delta):
-	if current_state != null:
+	#Отладка связей узлов
+	if current_state != null and player:
 		current_state.physics_update(delta)
 
 func _process(delta):
-	if current_state != null:
+	#Отладка связей узлов
+	if current_state != null and player:
 		current_state.update(delta)
