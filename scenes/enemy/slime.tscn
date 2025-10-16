@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt3jnpmq6oflw"]
+[gd_scene load_steps=10 format=3 uid="uid://bt3jnpmq6oflw"]
 
 [ext_resource type="Script" uid="uid://c8w8bow1gvipf" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
 [ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/textures/enemy/slime.glb" id="1_ves4f"]
 [ext_resource type="Script" uid="uid://bvcd8h1kcaui6" path="res://scripts/enemy/health_system.gd" id="2_wd25t"]
+[ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/enemy_state_machine.gd" id="4_eh4rw"]
+[ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/states/patrol_state.gd" id="5_a3p1x"]
+[ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/states/chase_state.gd" id="6_45xnl"]
+[ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/states/attack_state.gd" id="7_68vad"]
+[ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/states/death_state.gd" id="8_p3i1o"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ves4f"]
 height = 0.73195803
@@ -26,3 +31,19 @@ script = ExtResource("2_wd25t")
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Model" parent="Pivot" instance=ExtResource("1_ves4f")]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_eh4rw")
+initial_state = NodePath("PatrolState")
+
+[node name="PatrolState" type="Node" parent="StateMachine"]
+script = ExtResource("5_a3p1x")
+
+[node name="ChaseState" type="Node" parent="StateMachine"]
+script = ExtResource("6_45xnl")
+
+[node name="AttackState" type="Node" parent="StateMachine"]
+script = ExtResource("7_68vad")
+
+[node name="DeathState" type="Node" parent="StateMachine"]
+script = ExtResource("8_p3i1o")
