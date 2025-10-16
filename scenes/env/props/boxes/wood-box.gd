@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 @export var health: int = 3
+
 signal broken(box: Node)
 
 func _ready():
@@ -23,6 +24,6 @@ func _on_box_broken(box):
 	queue_free()
 
 func _spawn_fragments():
-	var debris = preload("res://effects/wood_fragments.tscn").instantiate()
+	var debris = preload("uid://w80vffp2pg5k").instantiate()
 	debris.global_transform = global_transform
 	get_tree().current_scene.add_child(debris)
