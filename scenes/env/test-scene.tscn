@@ -21,7 +21,7 @@ tonemap_mode = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_02nmi"]
 size = Vector3(35.61023, 1, 46.78174)
 
-[sub_resource type="Resource" id="Resource_rog3n"]
+[sub_resource type="Resource" id="Resource_l1h3v"]
 script = ExtResource("4_rog3n")
 metadata/_custom_type_script = "uid://b7hcib1fo1d54"
 
@@ -59,7 +59,7 @@ material = ExtResource("2_56fvd")
 
 [node name="Player" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_rog3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99248785, 2.513343, 1.7578042)
-player_data = SubResource("Resource_rog3n")
+player_data = SubResource("Resource_l1h3v")
 player_config = SubResource("Resource_xoeue")
 target = NodePath("../WoodBox")
 
