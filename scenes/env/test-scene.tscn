@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b02txd1j33lkh"]
+[gd_scene load_steps=10 format=3 uid="uid://b02txd1j33lkh"]
 
 [ext_resource type="PackedScene" uid="uid://b0fmuiy0g1ld5" path="res://test-place/source/high_quality_alien_pl_1009231931_texture.fbx" id="1_lojft"]
 [ext_resource type="Material" uid="uid://b7ng6qgpr21kh" path="res://assets/textures/env/test-texture.tres" id="2_56fvd"]
 [ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="3_rog3n"]
 [ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="4_u3nbo"]
+[ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/props/boxes/wood-box.tscn" id="5_56fvd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wn8ut"]
 
@@ -46,9 +47,13 @@ operation = 2
 size = Vector3(3.1458435, 1.8587341, 4.2177734)
 material = ExtResource("2_56fvd")
 
-[node name="Player" parent="." instance=ExtResource("3_rog3n")]
+[node name="Player" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_rog3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99248785, 2.513343, 1.7578042)
+target = NodePath("../WoodBox")
 
 [node name="Slime" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_u3nbo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3112319, 2.5267968, -0.6967677)
 player = NodePath("../Player")
+
+[node name="WoodBox" parent="." instance=ExtResource("5_56fvd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.343646, 2.4219103, -0.60627866)

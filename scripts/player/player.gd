@@ -9,6 +9,11 @@ class_name Player
 
 @onready var camera: Camera3D = $Camera
 
+
+# TEST
+@export var target: Destructible
+
+
 const GRAVITY = 9.8
 
 var y_velocity: float = 0
@@ -28,8 +33,7 @@ func _input(event):
 
 
 func _physics_process(delta: float):
-	
-	print("Is on floor: ", is_on_floor())
+	#print("Is on floor: ", is_on_floor())
 	
 	if is_on_floor():
 		if Input.is_action_pressed("jump"):
@@ -43,6 +47,12 @@ func _physics_process(delta: float):
 
 	var input_dir = Vector3.ZERO
 
+	# TEST
+	if Input.is_action_just_pressed("attack"):
+		if target and target.has_method("take_hit"):
+			target.take_hit(1)
+
+
 	if Input.is_action_pressed("move_forwards"):
 		input_dir.z -= 1
 	if Input.is_action_pressed("move_backwards"):
@@ -52,10 +62,8 @@ func _physics_process(delta: float):
 	if Input.is_action_pressed("move_left"):
 		input_dir.x -= 1
 
-
 	if input_dir.length() > 0:
 		input_dir = input_dir.normalized()
-
    
 	var direction = (transform.basis * input_dir).normalized()
 	velocity.x = direction.x * speed
