@@ -56,5 +56,5 @@ class_name PlayerData
 <div align="center">
   <span>© 2025 <a href="https://github.com/KontsertKishlaka" targer="_blank">KontsertKishlaka</a></span>
   <br>
-  <span><i>slash-the-creep — базовая спецификация персонажа</i></span>
+  <span><i>slash-the-creep - базовая спецификация персонажа</i></span>
 </div>
