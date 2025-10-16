@@ -12,11 +12,11 @@ func _ready() -> void:
 		printerr("Ошибка: Переменная 'player' не привязана к экземпляру Player!")
 		return
 	
-	states["idle"] = preload("res://scripts/player/player-states/idlestate.gd").new()
-	states["walk"] = preload("res://scripts/player/player-states/walkstate.gd").new()
-	states["run"] = preload("res://scripts/player/player-states/runstate.gd").new()
-	states["jump"] = preload("res://scripts/player/player-states/jumpstate.gd").new()
-	states["attack"] = preload("res://scripts/player/player-states/attackstate.gd").new()
+	states["idle"] = preload("uid://c3v2vtgy4wphe").new()
+	states["walk"] = preload("uid://dnq45g2phutc").new()
+	states["run"] = preload("uid://bxrash0rrq54s").new()
+	states["jump"] = preload("uid://bbh2xsts8um7a").new()
+	states["attack"] = preload("uid://wa0w8pek53kf").new()
 	
 	if states.has(initial_state):
 		change_state(initial_state)
