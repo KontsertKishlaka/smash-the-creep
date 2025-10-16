@@ -56,4 +56,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3112319, 2.5267968, -0.696
 player = NodePath("../Player")
 
 [node name="WoodBox" parent="." instance=ExtResource("5_56fvd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.343646, 2.4219103, -0.60627866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3837125, 2.4219103, -0.42705703)

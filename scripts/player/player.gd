@@ -27,3 +27,9 @@ func _input(event):
 			var current_rotation_x = camera.rotation_degrees.x
 			var target_rotation_x = clamp(current_rotation_x - event.relative.y * mouse_sensitivity * 100, -max_degree, max_degree)
 			camera.rotation_degrees.x = target_rotation_x
+
+#func _physics_process(_delta: float) -> void:
+	## TEST
+	#if Input.is_action_just_pressed("attack"):
+		#if target and target.has_method("take_hit"):
+			#target.take_hit(1)

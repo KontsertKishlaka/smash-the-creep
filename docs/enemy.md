@@ -126,5 +126,5 @@ pass
 <div align="center">
   <span>© 2025 <a href="https://github.com/KontsertKishlaka" targer="_blank">KontsertKishlaka</a></span>
   <br>
-  <span><i>slash-the-creep — базовая спецификация врага</i></span>
+  <span><i>slash-the-creep - спецификация врага</i></span>
 </div>
