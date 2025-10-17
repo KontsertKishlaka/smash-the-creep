@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/media/cover-placeholder.png" width="720" alt="Slash the Creep Cover"/>
+  <img src="docs/media/cover-placeholder.png" width="720" alt="Smash the Creep Cover"/>
   <br>
   <h1>🗡️ Smash the Creep</h1>
   <h3><i>3D Action Roguelike на Godot 4.5</i></h3>
@@ -125,4 +125,4 @@ graph LR
 
 ---
 
-<div align="center"> <sub>© 2025 <a href="https://github.com/KontsertKishlaka">KontsertKishlaka</a> - Slash the Creep</sub><br/> <sup><i>“Made with 💙 and Godotshina 4.5”</i></sup> </div>
+<div align="center"> <sub>© 2025 <a href="https://github.com/KontsertKishlaka">KontsertKishlaka</a> - Smash the Creep</sub><br/> <sup><i>“Made with 💙 and Godotshina 4.5”</i></sup> </div>
