@@ -76,12 +76,13 @@ graph LR
   Root --> Scenes[😜 scenes]
   Root --> Scripts[🎮 scripts]
   Root --> Docs[📚 docs]
-  Docs --> B[🥕 backlog]
-  Docs --> P[📁 prompts]
+  Docs --> B[👻 backlog]
+  Docs --> P[🤖 prompts]
   Docs --> M[mechs-and-systems.md]
   Docs --> G[setup-guide.md]
+  Docs --> CS[commit-guide.md]
   Asset --> AU[🛎️ audio]
-  Asset --> T[😜 textures]
+  Asset --> T[🎨 textures]
   Asset --> VFX[💥 vfx]
 ```
 
@@ -125,7 +126,7 @@ graph LR
 ---
 
 <div align="center">
-  <sub>© 2025 <a href="https://github.com/KontsertKishlaka">KontsertKishlaka</a> - Smash the Creep</sub>
+  <sub>© 2025 <a href="https://github.com/KontsertKishlaka" target="_blank" >KontsertKishlaka</a> - Smash the Creep</sub>
   <br>
   <sup><i>“Made with Love and Godotshina 4.5”</i></sup>
 </div>
