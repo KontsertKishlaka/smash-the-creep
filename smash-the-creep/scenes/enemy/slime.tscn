@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://bt3jnpmq6oflw"]
+
+[ext_resource type="Script" uid="uid://c8w8bow1gvipf" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
+[ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/textures/enemy/slime.glb" id="1_ves4f"]
+[ext_resource type="Script" uid="uid://dibibf6k74k8r" path="res://scripts/enemy/enemy-data.gd" id="2_a3p1x"]
+[ext_resource type="Script" uid="uid://bvcd8h1kcaui6" path="res://scripts/enemy/health-system.gd" id="2_wd25t"]
+[ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/enemy-state-machine.gd" id="4_eh4rw"]
+[ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/states/patrol-state.gd" id="5_a3p1x"]
+[ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/states/chase-state.gd" id="6_45xnl"]
+[ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/states/attack-state.gd" id="7_68vad"]
+[ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/states/death-state.gd" id="8_p3i1o"]
+
+[sub_resource type="Resource" id="Resource_45xnl"]
+script = ExtResource("2_a3p1x")
+metadata/_custom_type_script = "uid://dibibf6k74k8r"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ves4f"]
+height = 0.73195803
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a3p1x"]
+radius = 0.36431885
+height = 0.7427368
+
+[node name="Slime" type="CharacterBody3D"]
+script = ExtResource("1_4wfld")
+data = SubResource("Resource_45xnl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36861286, 0)
+shape = SubResource("CylinderShape3D_ves4f")
+
+[node name="AttackArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(-0.99994475, 0.010506645, 0, -0.010506645, -0.99994475, 0, 0, 0, 1, -0.0010451732, 0.37103355, 0.4171278)
+shape = SubResource("CapsuleShape3D_a3p1x")
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("2_wd25t")
+
+[node name="AttackSystem" type="Node" parent="."]
+
+[node name="VisionArea" type="Node" parent="."]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Model" parent="Pivot" instance=ExtResource("1_ves4f")]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_eh4rw")
+
+[node name="PatrolState" type="Node" parent="StateMachine"]
+script = ExtResource("5_a3p1x")
+
+[node name="ChaseState" type="Node" parent="StateMachine"]
+script = ExtResource("6_45xnl")
+
+[node name="AttackState" type="Node" parent="StateMachine"]
+script = ExtResource("7_68vad")
+
+[node name="DeathState" type="Node" parent="StateMachine"]
+script = ExtResource("8_p3i1o")
