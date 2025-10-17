@@ -1,3 +1,21 @@
-# Godot 4+ specific ignores
+# Godot 4
 .godot/
 /android/
+
+# Godot (specific)
+.import/
+.nomedia
+*.tmp
+
+# Linter
+.markdownlint.json
+
+# IDE
+.idea
+.vscode
+
+# Env
+.env
+.venv
+env/
+venv/
