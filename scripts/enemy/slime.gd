@@ -1,48 +1,38 @@
 extends CharacterBody3D
 class_name Slime
 
-# --- Данные врага ---
 @export var data: EnemyData
 @export var player: Player
 
-# --- Узлы ---
 @onready var health_system: HealthSystem = $HealthSystem
-@onready var state_machine: Node = $StateMachine
+@onready var state_machine: EnemyStateMachine = $StateMachine
 
-# --- Внутренние переменные ---
 var jump_timer: float = 0.0
 var patrol_target: Vector3
 
 func _ready():
 	randomize()
-	_set_new_patrol_target()
-	
 	if not data:
 		printerr("Slime: EnemyData не назначен!")
+		return
 
-	# Подписка на сигнал смерти
+	_set_new_patrol_target()
 	health_system.connect("died", Callable(self, "_on_death"))
 
 func _on_death():
-	print("Слайм умер!")
-	# TODO: добавить анимацию смерти
-	queue_free()
+	state_machine.change_state(EnemyStatesEnum.State.DeathState)
 
-func _physics_process(delta: float):
+func _physics_process(delta):
 	if not data:
 		return
 
-	# --- Гравитация ---
 	if not is_on_floor():
 		velocity.y -= data.gravity * delta
 	else:
 		if velocity.y < 0:
 			velocity.y = 0.0
 
-	# --- Движение выполняет StateMachine через velocity ---
 	move_and_slide()
-
-# ----------- Вспомогательные методы для состояний -----------
 
 func _set_new_patrol_target():
 	var random_offset = Vector3(
