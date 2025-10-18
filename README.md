@@ -6,7 +6,7 @@
   <br>
   <br>
 
-![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white) ![Readme](https://img.shields.io/badge/Docs-README-yellow?logo=readme&logoColor=white) ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange?logo=github)<br>![License](https://img.shields.io/badge/License-MIT-ffff00?logo=instacart&logoColor=white) ![Contrib](https://img.shields.io/badge/Contribs-Welcome-brightgreen?logo=github&logoColor=white) ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white)
+![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white) ![Readme](https://img.shields.io/badge/Docs-README-yellow?logo=readme&logoColor=white) ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange?logo=github)<br>![License](https://img.shields.io/badge/License-MIT-ffff00?logo=instacart&logoColor=white) ![Contribution](https://img.shields.io/badge/Contribs-Welcome-brightgreen?logo=github&logoColor=white) ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white)
 
 </div>
 
@@ -102,8 +102,7 @@ Agile Scrum с элементами Kanban
 **Бэклог текущей недели:**
 [MVP: Базовое взаимодействие Игрока, Врага и Сцены](./docs/backlog/01-backlog.md)
 
-Планирование:
-**MoSCoW** (Must / Should / Could / Won’t Have)
+**Планирование:** MoSCoW (Must / Should / Could / Won’t Have)
 
 ---
 
@@ -118,19 +117,18 @@ Agile Scrum с элементами Kanban
 | 🎨 Дженна    | Художник, Дизайн, 3D-моделирование, «Карточная мафия»                                    | [Jenko-zhulenko](https://github.com/Jenko-zhulenko)   |
 | 🌸 Аня       | Дизайн, 3D-дизайн, «Аня»                                                                 | Анонимно, администрации печенья                       |
 
-> Отдельное спасибо **Бастрыкину** за знания, мотивацию и вайб - [ks54.ru](https://www.ks54.ru/)
+> 💬 Отдельное спасибо **Бастрыкину** за знания, мотивацию и вайб - [ks54.ru](https://www.ks54.ru/)
 
 ---
 
 ## 📄 Лицензия
 
-Проект распространяется под лицензией **MIT**.
-См. [LICENSE](./LICENSE)
+Проект распространяется под лицензией [MIT](./LICENSE)
 
 ---
 
 <div align="center">
   <sub>© 2025 <a href="https://github.com/KontsertKishlaka" target="_blank" >KontsertKishlaka</a> - Smash the Creep</sub>
   <br>
-  <sup><i>“Made with Love and Godotshina 4.5”</i></sup>
+  <sup><i>“Made with <b>Love</b> and <b>Godotshina</b>”</i></sup>
 </div>
