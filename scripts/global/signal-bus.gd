@@ -1,4 +1,3 @@
-# signal_bus.gd
 extends Node
 
 # Сигналы для системы предметов
