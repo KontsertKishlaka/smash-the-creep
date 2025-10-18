@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./.media/stc-cover-us.png" alt="Smash the Creep Cover"/>
+  <img src="./.media/stc-cover-us.png" alt="Smash the Creep Cover" title="Смеш-зе-Крипщина"/>
   <h1>😜 Игрок: Базовый вид</h1>
   <h3><i>Smash the Creep</i></h3>
   <q><i>В мире, где слизь не прощает ошибок, герой рождается с мечом - и каплей надежды.</i></q>

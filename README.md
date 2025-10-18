@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="docs/.media/stc-cover-us.png" alt="Smash the Creep Cover"/>
+  <img src="docs/.media/stc-cover-us.png" alt="Smash the Creep Cover" title="Смеш-зе-Крипщина"/>
   <h1>🗡️ Smash the Creep</h1>
   <h3><i>3D Action Roguelike на Godot 4.5</i></h3>
   <q><i>В мире, где слизь не прощает ошибок, герой рождается с мечом - и каплей надежды.</i></q>
   <br>
   <br>
 
-![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white) ![Readme](https://img.shields.io/badge/Docs-README-yellow?logo=readme&logoColor=white) ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange?logo=github)<br>![License](https://img.shields.io/badge/License-MIT-ffff00?logo=instacart&logoColor=white) ![Contribution](https://img.shields.io/badge/Contribs-Welcome-brightgreen?logo=github&logoColor=white) ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white)
+![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Годотщина") ![Readme](https://img.shields.io/badge/Docs-README-yellow?logo=readme&logoColor=white "Этот документ") ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange?logo=github "Статус проекта")<br>![License](https://img.shields.io/badge/License-MIT-ffff00?logo=instacart&logoColor=white "Лицензия MIT") ![Contribution](https://img.shields.io/badge/Contribs-Welcome-brightgreen?logo=github&logoColor=white "Открыто для предложений") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислак")
 
 </div>
 
@@ -110,14 +110,14 @@ Agile Scrum с элементами Kanban
 
 | Участник     | Роль                                                                                     | Ссылка                                                |
 | ------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| 🧀 Влад      | Руководитель проекта, Разработка, Аналитика, Документация, Саунд-дизайн, "Сырная власть" | [MindlessMuse666](https://github.com/MindlessMuse666) |
-| 🔪 Егор      | Разработка, Креатив, «Ответственный за чёлку»                                            | [nineteentearz](https://github.com/nineteentearz)     |
-| 😜 Каракалбе | Разработка, Креатив, «Ответственный за слаймов»                                          | [bukabtw](https://github.com/bukabtw)                 |
-| 🐢 Саша      | Разработка, «Администрация баз данных»                                                   | [FrierenWay](https://github.com/FrierenWay)           |
+| 🧀 Влад      | Руководитель проекта, Разработка, Аналитика, Документация, Саунд-дизайн, "Сырная власть" | [MindlessMuse666](https://github.com/MindlessMuse666 "Сырная власть") |
+| 🔪 Егор      | Разработка, Креатив, «Ответственный за чёлку»                                            | [nineteentearz](https://github.com/nineteentearz "Ответственный за чёлку")     |
+| 😜 Каракалбе | Разработка, Креатив, «Ответственный за слаймов»                                          | [bukabtw](https://github.com/bukabtw "Ответственный за слаймов")                 |
+| 🐢 Саша      | Разработка, «Администрация баз данных»                                                   | [FrierenWay](https://github.com/FrierenWay "Администрация баз данных")           |
 | 🎨 Дженна    | Художник, Дизайн, 3D-моделирование, «Карточная мафия»                                    | [Jenko-zhulenko](https://github.com/Jenko-zhulenko)   |
-| 🌸 Аня       | Дизайн, 3D-дизайн, «Аня»                                                                 | Анонимно, администрации печенья                       |
+| 🌸 Аня       | Дизайн, 3D-дизайн, «Аня»                                                                 | [Анонимно, администрации печенья](./assets/audio/nya.mp3 "Анонимно, администрации печенья")                       |
 
-> 💬 Отдельное спасибо **Бастрыкину** за знания, мотивацию и вайб - [ks54.ru](https://www.ks54.ru/)
+> 💬 Отдельное спасибо **Бастрыкину** за знания, мотивацию и вайб - [ks54.ru](https://www.ks54.ru "Караклассика & Метакаракелн 🧐🎩")
 
 ---
 
