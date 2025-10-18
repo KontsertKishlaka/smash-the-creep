@@ -6,7 +6,7 @@
   <br>
   <br>
 
-![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Годотщина") ![Blender](https://img.shields.io/badge/Model-Blender-orange?logo=blender&logoColor=white "Блендерщина")<br>![Player](https://img.shields.io/badge/Docs-Player-yellow?logo=readme&logoColor=white "Рлауэр") ![Status](https://img.shields.io/badge/Status-In--Progress-ffff00?logo=devbox&logoColor=white "Статус документа") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислак")
+![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Годотщина") ![Blender](https://img.shields.io/badge/Model-Blender-orange?logo=blender&logoColor=white "Блендерщина")<br>![Player](https://img.shields.io/badge/Docs-Player-yellow?logo=readme&logoColor=white "Рлауэр") ![Status](https://img.shields.io/badge/Status-In--Progress-ffff00?logo=devbox&logoColor=white "Статус документа") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислакщина")
 
 </div>
 
@@ -105,23 +105,23 @@ class_name PlayerConfig
 
 ## 😵‍💫 Состояния [Игрока](../scripts/player/player-state-machine.gd "Player: StateMachine")
 
-- [idle](../scripts/player/player-states/idle-state.gd "Состояние: Бездействие")
-- [walk](../scripts/player/player-states/walk-state.gd "Состояние: Ходьба")
-- [run](../scripts/player/player-states/run-state.gd "Состояние: Бег")
-- [jump](../scripts/player/player-states/jump-state.gd "Состояние: Прыжок")
-- [take_damage](../scripts/player/player-states/take-damage-state.gd "Состояние: Получение урона") _(SHOULD HAVE)_
-- [death](../scripts/player/player-states/death-state.gd "Состояние: Смерть") _(SHOULD HAVE)_
+- [idle](../scripts/player/player-states/idle-state.gd "Состояние: бездействие")
+- [walk](../scripts/player/player-states/walk-state.gd "Состояние: ходьба")
+- [run](../scripts/player/player-states/run-state.gd "Состояние: бег")
+- [jump](../scripts/player/player-states/jump-state.gd "Состояние: прыжок")
+- [take_damage](../scripts/player/player-states/take-damage-state.gd "Состояние: получение урона") _(SHOULD HAVE)_
+- [death](../scripts/player/player-states/death-state.gd "Состояние: смерть") _(SHOULD HAVE)_
 
 ---
 
-## 🎨 [Игрок](./design/player/player-design.md "Player: Design") в Blender
+## 🎨 [Игрок](./design/player/player-design.md "Игрок: дизайн") в Blender
 
-Подробнее о 3Д модельке Игрока и анимациях: [Дизайн Игрока](./design/player/player-design.md "Игрок: Дизайн")
+Подробнее о 3Д модельке Игрока и анимациях: [Дизайн Игрока](./design/player/player-design.md "Игрок: дизайн")
 
 ---
 
 <div align="center">
-  <sub>© 2025 <a href="https://github.com/KontsertKishlaka" target="_blank">KontsertKishlaka</a> - Smash the Creep</sub>
+  <sub>© 2025 <a href="https://github.com/KontsertKishlaka" target="_blank" title="Кислакщинащина">KontsertKishlaka</a> - Smash the Creep</sub>
   <br>
   <sup><i>“Базовая спецификация Игрока”</i></sup>
 </div>

@@ -6,7 +6,7 @@
   <br>
   <br>
 
-![Blender](https://img.shields.io/badge/Model-Blender-orange?logo=blender&logoColor=white "Блендерщина") ![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Годотщина")<br>![Игрок: дизайн](https://img.shields.io/badge/Docs-Player-yellow?logo=readme&logoColor=white "Рлауэр Дазнт") ![Status](https://img.shields.io/badge/Status-In--Progress-ffff00?logo=devbox&logoColor=white "Статус документа") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислак")
+![Blender](https://img.shields.io/badge/Model-Blender-orange?logo=blender&logoColor=white "Блендерщина") ![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Годотщина")<br>![Игрок: дизайн](https://img.shields.io/badge/Docs-Player-yellow?logo=readme&logoColor=white "Рлауэр Дазнт") ![Status](https://img.shields.io/badge/Status-In--Progress-ffff00?logo=devbox&logoColor=white "Статус документа") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислакщина")
 
 </div>
 

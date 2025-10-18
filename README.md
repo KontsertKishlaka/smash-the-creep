@@ -6,7 +6,7 @@
   <br>
   <br>
 
-![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Годотщина") ![Readme](https://img.shields.io/badge/Docs-README-yellow?logo=readme&logoColor=white "Этот документ") ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange?logo=github "Статус проекта")<br>![License](https://img.shields.io/badge/License-MIT-ffff00?logo=instacart&logoColor=white "Лицензия MIT") ![Contribution](https://img.shields.io/badge/Contribs-Welcome-brightgreen?logo=github&logoColor=white "Открыто для предложений") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислак")
+![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Додот") ![Readme](https://img.shields.io/badge/Docs-README-yellow?logo=readme&logoColor=white "Этот документ") ![Status](https://img.shields.io/badge/Status-Pre--Alpha-orange?logo=github "Статус проекта")<br>![License](https://img.shields.io/badge/License-MIT-ffff00?logo=instacart&logoColor=white "Лицензия MIT") ![Contribution](https://img.shields.io/badge/Contribs-Welcome-brightgreen?logo=github&logoColor=white "Открыто для предложений") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислакщина")
 
 </div>
 
@@ -90,17 +90,15 @@ graph LR
 
 ## 🚀 Начало работы
 
-Инструкция по установке и первому запуску: [docs/setup-guide.md](./docs/setup-guide.md)
+Инструкция по установке и первому запуску: [Быстрый старт](./docs/setup-guide.md "Быстрый старт")
 
 ---
 
 ## 📅 Бэклог и планирование
 
-**Методология:**
-Agile Scrum с элементами Kanban
+**Методология:** Agile Scrum с элементами Kanban
 
-**Бэклог текущей недели:**
-[MVP: Базовое взаимодействие Игрока, Врага и Сцены](./docs/backlog/01-backlog.md)
+**Бэклог текущей недели:** [Базовое взаимодействие Игрока, Врага и Сцены](./docs/backlog/01-backlog.md "Бэклог: неделя №1")
 
 **Планирование:** MoSCoW (Must / Should / Could / Won’t Have)
 
@@ -110,7 +108,7 @@ Agile Scrum с элементами Kanban
 
 | Участник     | Роль                                                                                     | Ссылка                                                |
 | ------------ | ---------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| 🧀 Влад      | Руководитель проекта, Разработка, Аналитика, Документация, Саунд-дизайн, "Сырная власть" | [MindlessMuse666](https://github.com/MindlessMuse666 "Сырная власть") |
+| 🧀 Влад      | Руководитель проекта, Разработка, Аналитика, Документация, Саунд-дизайн, «Сырная власть» | [MindlessMuse666](https://github.com/MindlessMuse666 "Сырная власть") |
 | 🔪 Егор      | Разработка, Креатив, «Ответственный за чёлку»                                            | [nineteentearz](https://github.com/nineteentearz "Ответственный за чёлку")     |
 | 😜 Каракалбе | Разработка, Креатив, «Ответственный за слаймов»                                          | [bukabtw](https://github.com/bukabtw "Ответственный за слаймов")                 |
 | 🐢 Саша      | Разработка, «Администрация баз данных»                                                   | [FrierenWay](https://github.com/FrierenWay "Администрация баз данных")           |
@@ -123,12 +121,12 @@ Agile Scrum с элементами Kanban
 
 ## 📄 Лицензия
 
-Проект распространяется под лицензией [MIT](./LICENSE)
+Проект распространяется под лицензией [MIT](./LICENSE "Лицензия MIT")
 
 ---
 
 <div align="center">
-  <sub>© 2025 <a href="https://github.com/KontsertKishlaka" target="_blank" >KontsertKishlaka</a> - Smash the Creep</sub>
+  <sub>© 2025 <a href="https://github.com/KontsertKishlaka" target="_blank" title="Кислакщинащина">KontsertKishlaka</a> - Smash the Creep</sub>
   <br>
   <sup><i>“Made with <b>Love</b> and <b>Godotshina</b>”</i></sup>
 </div>
