@@ -80,28 +80,30 @@ func _on_attack_area_body_exited(body):
 		print("Игрок покинул зону атаки: ", body.name)
 		target = null
 
-func _perform_attack():
-	if attack_cooldown_timer > 0.0 or not is_instance_valid(target):
-		return
-
-	if target.has_method("take_damage"):
-		target.take_damage(slime.data.attack_damage)
-		print(slime.name, " нанёс ", slime.data.attack_damage, " урона игроку ", target.name)
-	else:
-		print("Игрок не имеет метода take_damage, пропускаем атаку")
-
 func _update_bounce(_delta):
 	if not is_instance_valid(bounce_target):
 		is_bouncing = false
 		return
 
-	# Отталкивание от цели
 	var away = (slime.global_position - bounce_target.global_position).normalized()
 	slime.velocity.x = away.x * slime.data.attack_jump_velocity * slime.data.attack_knockback_horizontal
 	slime.velocity.z = away.z * slime.data.attack_jump_velocity * slime.data.attack_knockback_horizontal
 	slime.velocity.y = slime.data.attack_jump_velocity * slime.data.attack_knockback_vertical
 
-	# Завершаем отталкивание при приземлении
 	if slime.is_on_floor():
 		is_bouncing = false
 		bounce_target = null
+		
+
+func _perform_attack():
+	if attack_cooldown_timer > 0.0 or not is_instance_valid(target):
+		return
+	if target.has_method("take_damage"):
+		target.take_damage(slime.data.attack_damage, slime)  # Передаем слайма как источник
+		print(slime.name, " нанёс ", slime.data.attack_damage, " урона игроку ", target.name)
+	else:
+		print("Игрок не имеет метода take_damage, пропускаем атаку")
+
+# Метод для получения урона слайма
+func get_attack_damage() -> float:
+		return slime.data.attack_damage
