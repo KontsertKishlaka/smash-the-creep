@@ -1,4 +1,4 @@
-extends "res://scripts/player/state.gd"
+extends State
 
 @export var speed: float = 10
 

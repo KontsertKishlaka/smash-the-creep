@@ -20,6 +20,7 @@ func _on_break():
 		var fx = break_effect.instantiate()
 		fx.global_transform = global_transform
 		get_tree().current_scene.add_child(fx)
+		print(fx.global_transform.origin)
 
 	if break_sound:
 		var audio = AudioStreamPlayer3D.new()
