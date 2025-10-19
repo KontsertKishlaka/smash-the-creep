@@ -17,10 +17,12 @@ func physics_update(delta):
 	var distance = to_player.length()
 	var dir = to_player.normalized()
 
+	# движение в сторону игрока
 	slime.velocity.x = dir.x * slime.data.speed
 	slime.velocity.z = dir.z * slime.data.speed
 	slime._rotate_toward(dir, delta)
 
+	# прыжки в погоне (если можно)
 	if slime.is_on_floor() and slime.jump_timer <= 0.0 and distance < slime.data.jump_distance:
 		slime.velocity.y = slime.data.jump_velocity
 		slime.jump_timer = slime.data.jump_cooldown
@@ -28,10 +30,12 @@ func physics_update(delta):
 	if slime.jump_timer > 0.0:
 		slime.jump_timer -= delta
 
+	# Переход в атаку по дистанции (чтобы AttackState всегда имел target)
 	if distance <= slime.data.attack_range:
 		state_machine.change_state(EnemyStatesEnum.State.AttackState)
 		return
 
+	# Потерял игрока — возврат к патрулю
 	if distance > slime.data.detection_range:
 		lost_player_timer += delta
 		if lost_player_timer >= lost_player_duration:
