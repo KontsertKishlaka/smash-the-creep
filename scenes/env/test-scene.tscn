@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://b02txd1j33lkh"]
+[gd_scene load_steps=12 format=3 uid="uid://b02txd1j33lkh"]
 
 [ext_resource type="PackedScene" uid="uid://b0fmuiy0g1ld5" path="res://test-place/source/high_quality_alien_pl_1009231931_texture.fbx" id="1_lojft"]
 [ext_resource type="Material" uid="uid://b7ng6qgpr21kh" path="res://assets/textures/env/test-texture.tres" id="2_56fvd"]
 [ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="3_rog3n"]
 [ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="4_u3nbo"]
 [ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/props/boxes/wood-box.tscn" id="5_56fvd"]
+[ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/props/chests/wood-chest.tscn" id="6_rog3n"]
+[ext_resource type="Script" uid="uid://dx1j3eo7x3d7y" path="res://scripts/misc/destructible-wood-chest.gd" id="7_u3nbo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wn8ut"]
 
@@ -57,3 +59,7 @@ player = NodePath("../Player")
 
 [node name="WoodBox" parent="." instance=ExtResource("5_56fvd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3837125, 2.4219103, -0.42705703)
+
+[node name="WoodChest" parent="." instance=ExtResource("6_rog3n")]
+transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, -3.3389504, 2.422, 1.331)
+script = ExtResource("7_u3nbo")
