@@ -16,54 +16,15 @@ func enter():
 		velocity.y = jump_speed
 		state_machine.player.velocity = velocity
 		state_machine.player.move_and_slide()
-		#Отладка прыжка
 		print("Jump started, velocity.y: ", state_machine.player.velocity.y)
 
 func physics_update(delta):
-	#Отладка связей узлов
 	if not state_machine or not state_machine.player:
 		return
-	
-	var input_dir = Vector3.ZERO
-
-	if Input.is_action_pressed("move_forwards"):
-		input_dir.z -= 1
-	if Input.is_action_pressed("move_backwards"):
-		input_dir.z += 1
-	if Input.is_action_pressed("move_right"):
-		input_dir.x += 1
-	if Input.is_action_pressed("move_left"):
-		input_dir.x -= 1
-	
-	var velocity = state_machine.player.velocity
-	
-	var desired_velocity = Vector3.ZERO
-	if input_dir.length() > 0:
-		input_dir = input_dir.normalized()
-		var direction = (state_machine.player.transform.basis * input_dir).normalized()
-		desired_velocity = direction * max_air_speed
-	
-	velocity.x = move_toward(velocity.x, desired_velocity.x, air_acceleration * delta)
-	velocity.z = move_toward(velocity.z, desired_velocity.z, air_acceleration * delta)
-	
-	var horizontal_velocity = Vector2(velocity.x, velocity.z)
-	horizontal_velocity *= air_drag
-	velocity.x = horizontal_velocity.x
-	velocity.z = horizontal_velocity.y
-
-#Гравитация
-
-	velocity.y -= state_machine.player.GRAVITY * delta
-
-	state_machine.player.velocity = velocity
-
-	state_machine.player.move_and_slide()
-	
+	# Вызываем _handle_movement с air params
+	state_machine._handle_movement(delta, true, air_drag, air_acceleration, max_air_speed)
+	if Input.is_action_pressed("attack"):
+		state_machine.change_state("attack")
+	# Transition на пол уже в _handle_movement, но для clarity
 	if state_machine.player.is_on_floor():
-		if input_dir.length() > 0:
-			if Input.is_action_pressed("sprint"):
-				state_machine.change_state("run")
-			else:
-				state_machine.change_state("walk")
-		else:
-			state_machine.change_state("idle")
+		state_machine.change_state("idle")  # Или walk/run на основе input (уже в _handle)
