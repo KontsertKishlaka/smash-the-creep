@@ -2,7 +2,7 @@ extends Node
 class_name HealthSystem
 
 # Параметры здоровья
-@export var max_health: int = 850
+@export var max_health: int = 5
 var current_health: int
 
 # Сигналы для оповещения других систем
@@ -28,4 +28,3 @@ func take_damage(amount: int):
 # Метод смерти врага
 func die():
 	emit_signal("died")
-	queue_free()  # удаляем узел/врага
