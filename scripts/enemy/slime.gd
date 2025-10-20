@@ -4,10 +4,11 @@ class_name Slime
 @export var data: EnemyData
 @export var player: Player
 
-@onready var health_system: HealthSystem = $HealthSystem
+@onready var health_component: HealthComponent = $HealthComponent
 @onready var state_machine: EnemyStateMachine = $StateMachine
 @onready var land_sound: AudioStreamPlayer3D = $LandSound
 @onready var jump_sound: AudioStreamPlayer3D = $JumpSound
+@onready var damage_dealer: DamageDealer = $DamageDealer
 
 var jump_timer: float = 0.0
 var patrol_target: Vector3
@@ -29,13 +30,23 @@ func _ready():
 		return
 
 	_set_new_patrol_target()
-	health_system.connect("died", Callable(self, "_on_death"))
+	if health_component:
+		health_component.connect("died", Callable(self, "_on_death"))
+	else:
+		printerr("Slime: HealthComponent not found!")
+
+	if damage_dealer:
+		damage_dealer.collision_mask = 1  # Player layer
+	else:
+		printerr("Slime: DamageDealer not found!")
 
 func _on_death():
 	state_machine.change_state(EnemyStatesEnum.State.DeathState)
 
 # --- Основная физика с воспроизведением звуков ---
 func _physics_process(delta):
+	if not data or not player:  # Проверка на null
+		return
 	if not data:
 		return
 
