@@ -14,6 +14,7 @@ func _ready() -> void:
 		printerr("Ошибка: Переменная 'player' не привязана к экземпляру Player!")
 		return
 
+	# Suka ya ego groknul
 	states["idle"] = preload("res://scripts/player/player-states/idle-state.gd").new()
 	states["walk"] = preload("res://scripts/player/player-states/walk-state.gd").new()
 	states["run"] = preload("res://scripts/player/player-states/run-state.gd").new()

@@ -1,15 +1,15 @@
 [gd_scene load_steps=17 format=3 uid="uid://b02txd1j33lkh"]
 
 [ext_resource type="PackedScene" uid="uid://b0fmuiy0g1ld5" path="res://test-place/source/high_quality_alien_pl_1009231931_texture.fbx" id="1_lojft"]
-[ext_resource type="Material" uid="uid://b7ng6qgpr21kh" path="res://assets/textures/env/test-texture.tres" id="2_56fvd"]
+[ext_resource type="Material" uid="uid://b7ng6qgpr21kh" path="res://assets/textures/env/test-place/test-texture.tres" id="2_56fvd"]
 [ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="3_rog3n"]
 [ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="4_rog3n"]
 [ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="4_u3nbo"]
 [ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/props/boxes/wood-box.tscn" id="5_56fvd"]
 [ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="5_u3nbo"]
 [ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/props/chests/wood-chest.tscn" id="6_rog3n"]
-[ext_resource type="Script" uid="uid://dx1j3eo7x3d7y" path="res://scripts/misc/destructible-wood-chest.gd" id="7_u3nbo"]
-[ext_resource type="PackedScene" uid="uid://dvj5b5skgcjvt" path="res://scenes/Item/item.tscn" id="8_xoeue"]
+[ext_resource type="Script" path="res://scripts/misc/destructible-wood-chest.gd" id="7_u3nbo"]
+[ext_resource type="PackedScene" uid="uid://dvj5b5skgcjvt" path="res://scenes/item/item.tscn" id="8_xoeue"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wn8ut"]
 

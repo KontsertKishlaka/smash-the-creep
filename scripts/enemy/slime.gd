@@ -1,8 +1,12 @@
 extends CharacterBody3D
 class_name Slime
 
+
 @export var data: EnemyData
 @export var player: Player
+
+@export var test_damage_interval: float = 1.0
+@export var test_damage_amount: int = 1
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var state_machine: EnemyStateMachine = $StateMachine
@@ -15,9 +19,6 @@ var patrol_target: Vector3
 var was_on_floor: bool = true
 
 var test_damage_timer: float = 0.0
-@export var test_damage_interval: float = 1.0
-@export var test_damage_amount: int = 1
-
 var is_dead: bool = false
 
 func _set_new_patrol_target():
@@ -89,7 +90,7 @@ func _rotate_toward(direction: Vector3, delta: float):
 		rotation.y = lerp_angle(rotation.y, desired, delta * data.rotation_smoothness)
 
 func take_damage(amount: int, source: Node = null):
-	if not is_instance_valid(health_system) or is_dead:
+	if not is_instance_valid(health_component) or is_dead:
 		return
 
 	var source_name: String = "неизвестно"
@@ -97,9 +98,9 @@ func take_damage(amount: int, source: Node = null):
 		source_name = source.name
 
 	print("%s получил %d урона от %s" % [name, amount, source_name])
-	health_system.take_damage(amount)
+	health_component.take_damage(amount)
 
-	if health_system.current_health <= 0:
+	if health_component.current_health <= 0:
 		await _die_animation()
 
 func _die_animation():

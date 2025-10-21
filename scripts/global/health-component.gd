@@ -3,7 +3,7 @@ class_name HealthComponent
 
 @export_category("Health Settings")
 @export var data: HealthData 
-@export_range(0, 10000000, 1) var initial_health: int = 100  # По умолчанию, можно настроить
+@export_range(0, 10000000, 1) var initial_health: int = 10  # По умолчанию, можно настроить
 @export_enum("Player", "Enemy", "Destructible") var entity_type: String = "Enemy"
 
 @export_group("Effects")
