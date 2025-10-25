@@ -11,7 +11,7 @@ class_name Player
 @onready var state_machine: Node = $StateMachine
 
 # TEST
-@export var target: Destructible
+@export var targets: Array[Destructible]
 
 const GRAVITY = 9.8
 
@@ -32,9 +32,10 @@ func _input(event):
 func _physics_process(_delta: float) -> void:
 	# TEST
 	if Input.is_action_just_pressed("attack"):
-		if target and target.has_method("take_hit"):
-			target.take_hit(1)
-		state_machine.change_state("attack")
+		for target in targets:
+			if target and target.has_method("take_hit"):
+				target.take_hit(1)
+			state_machine.change_state("attack")
 
 func _on_player_damaged(damage: float, source: Node):
 	print("Сигнал player_damaged: Игрок получил ", damage, " урона от ", source.name if source else "неизвестного источника")

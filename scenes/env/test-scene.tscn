@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/props/boxes/wood-box.tscn" id="5_56fvd"]
 [ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="5_u3nbo"]
 [ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/props/chests/wood-chest.tscn" id="6_rog3n"]
-[ext_resource type="Script" uid="uid://dx1j3eo7x3d7y" path="res://scripts/misc/destructible-wood-chest.gd" id="7_u3nbo"]
+[ext_resource type="Script" path="res://scripts/misc/destructible-wood-chest.gd" id="7_u3nbo"]
 [ext_resource type="PackedScene" uid="uid://dvj5b5skgcjvt" path="res://scenes/item/item.tscn" id="8_xoeue"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wn8ut"]
@@ -41,19 +41,6 @@ environment = SubResource("Environment_c5pbs")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3789673, 0, -5.5285645)
 shape = SubResource("BoxShape3D_02nmi")
-
-[node name="high_quality_alien_pl_1009231931_texture" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 4.665612, 0)
-script = null
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 material_override = ExtResource("2_56fvd")
