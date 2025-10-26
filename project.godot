@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://scripts/global/signal-bus.gd"
 Constants="*res://scripts/global/constants.gd"
+SignalBus="*res://scripts/global/signal-bus.gd"
 
 [display]
 
@@ -74,6 +74,10 @@ sprint={
 [layer_names]
 
 3d_physics/layer_1="PLAYER"
-3d_physics/layer_2="ENEMY"
-3d_physics/layer_4="DESTRUCTIBLE"
-3d_physics/layer_8="WORLD"
+3d_physics/layer_2="PLAYER_ATTACK"
+3d_physics/layer_3="ENEMY"
+3d_physics/layer_4="ENEMY_ATTACK"
+3d_physics/layer_5="DESTRUCTIBLE"
+3d_physics/layer_6="WORLD"
+3d_physics/layer_7="TRIGGERS"
+3d_physics/layer_8="ITEMS"

@@ -6,9 +6,13 @@ const DEFAULT_GRAVITY = 15.0
 # Слои коллизий
 enum LAYERS {
 	PLAYER = 1,
-	ENEMY = 2,
-	DESTRUCTIBLE = 4,
-	WORLD = 8
+	PLAYER_ATTACK = 2,
+	ENEMY = 4,
+	ENEMY_ATTACK = 8,
+	DESTRUCTIBLE = 16,
+	WORLD = 32,
+	TRIGGERS = 64,
+	ITEMS = 128
 }
 
 # Группы

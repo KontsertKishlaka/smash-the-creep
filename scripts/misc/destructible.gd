@@ -7,22 +7,30 @@ class_name Destructible
 @export var break_sound: AudioStream
 @export var destroy_on_break: bool = true
 
-@onready var mesh: MeshInstance3D = $PivotMesh/Mesh
+@onready var mesh: MeshInstance3D = $PivotMesh/MeshDestructible
 
 var original_material: StandardMaterial3D
 var is_flashing: bool = false
 
-signal damaged(damage: int, current_health: int, max_health: int)
-signal destroyed(node: Node)
-
 func _ready():
 	health = max_health
+
+	# Подписываемся на сигналы повреждений через SignalBus
+	SignalBus.player_attacked.connect(_on_player_attacked)
+
 	# Сохраняем оригинальный материал для эффекта вспышки
 	if mesh and mesh.get_surface_override_material(0):
 		original_material = mesh.get_surface_override_material(0).duplicate()
 		mesh.set_surface_override_material(0, original_material)
 
-func take_hit(damage: int = 1):
+# Метод для получения урона через SignalBus
+func _on_player_attacked(target: Node, damage: int):
+	# Проверяем, что атака направлена на этот объект
+	if target == self:
+		print("Сигнальное попадание в разрушаемый объект!")
+		_take_hit(damage)
+
+func _take_hit(damage: int = 1):
 	if health <= 0:
 		return
 
@@ -34,8 +42,7 @@ func take_hit(damage: int = 1):
 	# Логируем удар
 	print("Разрушаемый объект получил урон: ", damage, ". Текущее здоровье: ", health, "/", max_health)
 
-	# Отправляем сигналы
-	emit_signal("damaged", damage, health, max_health)
+	# Отправляем сигналы через SignalBus
 	SignalBus.emit_signal("destructible_damaged", self, damage, health, max_health)
 
 	if health <= 0:
@@ -65,23 +72,15 @@ func _on_break():
 	print("Разрушаемый объект уничтожен!")
 
 	# Отправляем сигналы
-	emit_signal("destroyed", self)
 	SignalBus.emit_signal("destructible_destroyed", self)
 
-	# Эффект разрушения
+	# Эффект разрушения через SignalBus → EffectManager
 	if break_effect:
-		var fx = break_effect.instantiate()
-		fx.global_transform = global_transform
-		get_tree().current_scene.add_child(fx)
+		SignalBus.emit_signal("spawn_effect", break_effect, global_position, rotation)
 
-	# Звук разрушения
+	# Звук разрушения через SignalBus → EffectManager
 	if break_sound:
-		var audio = AudioStreamPlayer3D.new()
-		audio.stream = break_sound
-		audio.global_position = global_position
-		get_tree().current_scene.add_child(audio)
-		audio.play()
-		audio.finished.connect(audio.queue_free)
+		SignalBus.emit_signal("play_sound", break_sound, global_position, 0.0)
 
 	if destroy_on_break:
 		queue_free()

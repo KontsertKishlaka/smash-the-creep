@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=4 uid="uid://g3oggeq5xbun"]
 
-[ext_resource type="Script" uid="uid://gtfksshd8yl0" path="res://scripts/misc/destructible.gd" id="1_6ik3p"]
-[ext_resource type="PackedScene" uid="uid://w80vffp2pg5k" path="res://assets/vfx/wood-chips.tscn" id="2_5pk44"]
-[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/nya.mp3" id="3_21bvh"]
-[ext_resource type="Texture2D" uid="uid://ddnhh0u8nxp40" path="res://assets/textures/env/props/wood-box/wood-box_0.jpg" id="4_juemp"]
-[ext_resource type="Texture2D" uid="uid://sagxvf3ffb2s" path="res://assets/textures/env/props/wood-box/wood-box_1.png" id="5_0ejiw"]
-[ext_resource type="Texture2D" uid="uid://bea627rhoe6pw" path="res://assets/textures/env/props/wood-box/wood-box_2.png" id="6_vdxa5"]
+[ext_resource type="Script" uid="uid://gtfksshd8yl0" path="res://scripts/misc/destructible.gd" id="1_eswdi"]
+[ext_resource type="PackedScene" uid="uid://w80vffp2pg5k" path="res://assets/vfx/wood-chips.tscn" id="2_7hirc"]
+[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/nya.mp3" id="3_86mwp"]
+[ext_resource type="Texture2D" uid="uid://ddnhh0u8nxp40" path="res://assets/textures/env/props/wood-box/wood-box_0.jpg" id="4_a7sbj"]
+[ext_resource type="Texture2D" uid="uid://sagxvf3ffb2s" path="res://assets/textures/env/props/wood-box/wood-box_1.png" id="5_7sf3x"]
+[ext_resource type="Texture2D" uid="uid://bea627rhoe6pw" path="res://assets/textures/env/props/wood-box/wood-box_2.png" id="6_ww08l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hs8b2"]
 size = Vector3(0.85, 0.85, 0.85)
@@ -13,16 +13,16 @@ size = Vector3(0.85, 0.85, 0.85)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6tea"]
 resource_name = "DefaultMaterial"
 cull_mode = 2
-albedo_texture = ExtResource("4_juemp")
+albedo_texture = ExtResource("4_a7sbj")
 metallic = 1.0
-metallic_texture = ExtResource("5_0ejiw")
+metallic_texture = ExtResource("5_7sf3x")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("5_0ejiw")
+roughness_texture = ExtResource("5_7sf3x")
 roughness_texture_channel = 1
 normal_enabled = true
-normal_texture = ExtResource("6_vdxa5")
+normal_texture = ExtResource("6_ww08l")
 ao_enabled = true
-ao_texture = ExtResource("5_0ejiw")
+ao_texture = ExtResource("5_7sf3x")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_kcra2"]
 _surfaces = [{
@@ -62,11 +62,11 @@ shadow_mesh = SubResource("ArrayMesh_kcra2")
 size = Vector3(0.85, 0.85, 0.85)
 
 [node name="Crate" type="RigidBody3D" groups=["DESTRUCTIBLE"]]
-collision_layer = 8
-collision_mask = 139
-script = ExtResource("1_6ik3p")
-break_effect = ExtResource("2_5pk44")
-break_sound = ExtResource("3_21bvh")
+collision_layer = 16
+collision_mask = 51
+script = ExtResource("1_eswdi")
+break_effect = ExtResource("2_7hirc")
+break_sound = ExtResource("3_86mwp")
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0.5, 0)
@@ -74,16 +74,16 @@ shape = SubResource("BoxShape3D_hs8b2")
 
 [node name="PivotMesh" type="Node3D" parent="."]
 
-[node name="Mesh" type="MeshInstance3D" parent="PivotMesh"]
+[node name="MeshDestructible" type="MeshInstance3D" parent="PivotMesh"]
 transform = Transform3D(100, 0, 0, 0, -4.371139e-06, 100, 0, -100, -4.371139e-06, 0, 0, 0)
 mesh = SubResource("ArrayMesh_df5t7")
 skeleton = NodePath("")
 
 [node name="Hurtbox" type="Area3D" parent="."]
-collision_layer = 8
-monitoring = false
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionHurtbox" type="CollisionShape3D" parent="Hurtbox"]
 transform = Transform3D(1.35, 0, 0, 0, 1.35, 0, 0, 0, 1.35, 0, 0.55, 0)
 shape = SubResource("BoxShape3D_6ik3p")
-debug_color = Color(0.8202427, 0.39645177, 0.20200697, 0.41960785)
+debug_color = Color(0.20392157, 0.6392157, 0, 0.41960785)

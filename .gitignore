@@ -17,5 +17,3 @@
 # Env
 .env
 .venv
-env/
-venv/

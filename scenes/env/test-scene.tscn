@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="3_rog3n"]
 [ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="4_rog3n"]
 [ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="4_u3nbo"]
-[ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/props/boxes/wood-box.tscn" id="5_56fvd"]
+[ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/prop/crate/crate.tscn" id="5_56fvd"]
 [ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="5_u3nbo"]
-[ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/props/chests/wood-chest.tscn" id="6_rog3n"]
+[ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/prop/chest/chest.tscn" id="6_rog3n"]
 [ext_resource type="Script" path="res://scripts/misc/destructible-wood-chest.gd" id="7_u3nbo"]
 [ext_resource type="PackedScene" uid="uid://dvj5b5skgcjvt" path="res://scenes/item/item.tscn" id="8_xoeue"]
 

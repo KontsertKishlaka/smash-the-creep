@@ -16,11 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/slimejump.mp3" id="13_fcs02"]
 [ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/nya.mp3" id="14_myrg7"]
 
-[sub_resource type="Resource" id="Resource_qek5x"]
+[sub_resource type="Resource" id="Resource_fcs02"]
 script = ExtResource("4_75vfm")
 metadata/_custom_type_script = "uid://b7hcib1fo1d54"
 
-[sub_resource type="Resource" id="Resource_5gtgg"]
+[sub_resource type="Resource" id="Resource_myrg7"]
 script = ExtResource("3_0owmy")
 metadata/_custom_type_script = "uid://cmmu85uwvhmqh"
 
@@ -46,47 +46,6 @@ size = Vector3(0.1, 0.68, 0.1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p47bc"]
 points = PackedVector3Array(0.049999997, 0.3291428, 0.049999997, -0.049999997, -0.31085715, -0.049999997, -0.049999997, -0.31085715, 0.047142863, 0.049999997, -0.3291428, 0.049999997, 0.047142863, -0.31085715, -0.049999997, -0.049999997, 0.31085715, -0.049999997, -0.049999997, 0.31085715, 0.047142863, 0.047142863, 0.31085715, -0.049999997)
-
-[sub_resource type="Animation" id="Animation_qek5x"]
-resource_name = "idle"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/PivotArm:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/PivotArm/Mesh:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0.38, -0.22904134, -0.435), Vector3(0.38, -0.24546456, -0.435)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera/PivotArm/Mesh:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(-1.0297443, 0, 0), Vector3(-1.0518525, -0.25190598, 0.2947971)]
-}
 
 [sub_resource type="Animation" id="Animation_5gtgg"]
 length = 0.001
@@ -207,6 +166,47 @@ tracks/2/keys = {
 "values": [Vector3(-0.89011794, 2.560398, 0.46251225), Vector3(-1.0594149, 0, 0.6457718)]
 }
 
+[sub_resource type="Animation" id="Animation_qek5x"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/PivotArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/PivotArm/Mesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.38, -0.22904134, -0.435), Vector3(0.38, -0.24546456, -0.435)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/PivotArm/Mesh:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-1.0297443, 0, 0), Vector3(-1.0518525, -0.25190598, 0.2947971)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_je7p5"]
 _data = {
 &"RESET": SubResource("Animation_5gtgg"),
@@ -216,25 +216,29 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 138
+collision_mask = 32
 script = ExtResource("1_dovo2")
-player_data = SubResource("Resource_qek5x")
-player_config = SubResource("Resource_5gtgg")
+player_data = SubResource("Resource_fcs02")
+player_config = SubResource("Resource_myrg7")
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_gmlin")
 
-[node name="PivotModel" type="Node3D" parent="."]
+[node name="PivotMesh" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Model" type="MeshInstance3D" parent="PivotModel"]
+[node name="MeshPlayer" type="MeshInstance3D" parent="PivotMesh"]
 mesh = SubResource("CapsuleMesh_p47bc")
 
-[node name="Hurtbox" type="Area3D" parent="PivotModel/Model"]
+[node name="Hurtbox" type="Area3D" parent="PivotMesh/MeshPlayer"]
+transform = Transform3D(1.165, 0, 0, 0, 1.165, 0, 0, 0, 1.165, 0, 0, 0)
+collision_mask = 4
+monitoring = false
 
-[node name="CollisionHurtbox" type="CollisionShape3D" parent="PivotModel/Model/Hurtbox"]
+[node name="CollisionHurtbox" type="CollisionShape3D" parent="PivotMesh/MeshPlayer/Hurtbox"]
 shape = SubResource("ConvexPolygonShape3D_fcs02")
+debug_color = Color(0.20570523, 0.6403396, 0, 0.41960785)
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.5)
@@ -247,12 +251,16 @@ mesh = SubResource("BoxMesh_0owmy")
 skeleton = NodePath("../../../..")
 
 [node name="Hitbox" type="Area3D" parent="Camera/PivotArm/Mesh"]
-transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 0, 0, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+collision_layer = 2
+collision_mask = 20
 monitoring = false
+monitorable = false
 
 [node name="CollisionHitbox" type="CollisionShape3D" parent="Camera/PivotArm/Mesh/Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_p47bc")
+debug_color = Color(1, 0.19215687, 0.15294118, 0.8)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player", "initial_state")]
 script = ExtResource("3_gmlin")
