@@ -145,7 +145,7 @@ func _die_splat_fall():
 	while not landed:
 		var delta = get_process_delta_time()
 		fall_velocity.y -= gravity * delta
-		
+
 		velocity = fall_velocity
 		move_and_slide()
 		fall_velocity = velocity

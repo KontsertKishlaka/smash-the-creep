@@ -2,7 +2,7 @@ extends Node
 class_name HealthComponent
 
 @export_category("Health Settings")
-@export var data: HealthData 
+@export var data: HealthData
 @export_range(0, 10000000, 1) var initial_health: int = 10  # По умолчанию, можно настроить
 @export_enum("Player", "Enemy", "Destructible") var entity_type: String = "Enemy"
 

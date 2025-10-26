@@ -15,11 +15,11 @@ func _ready() -> void:
 		return
 
 	# Suka ya ego groknul
-	states["idle"] = preload("res://scripts/player/player-states/idle-state.gd").new()
-	states["walk"] = preload("res://scripts/player/player-states/walk-state.gd").new()
-	states["run"] = preload("res://scripts/player/player-states/run-state.gd").new()
-	states["jump"] = preload("res://scripts/player/player-states/jump-state.gd").new()
-	states["attack"] = preload("res://scripts/player/player-states/attack-state.gd").new()
+	states["idle"] = preload("res://scripts/player/state/idle-state.gd").new()
+	states["walk"] = preload("res://scripts/player/state/walk-state.gd").new()
+	states["run"] = preload("res://scripts/player/state/run-state.gd").new()
+	states["jump"] = preload("res://scripts/player/state/jump-state.gd").new()
+	states["attack"] = preload("res://scripts/player/state/attack-state.gd").new()
 
 	for state_name in states:
 		if not states[state_name]:
@@ -105,7 +105,7 @@ func _handle_movement(delta, is_on_floor: bool = false, air_drag: float = 1.0, a
 
 	if not is_on_floor:
 		velocity.y -= player.GRAVITY * delta
-	
+
 	if Input.is_action_just_pressed("jump") and is_on_floor:
 		change_state("jump")
 		velocity.y = player_data.jump_velocity if player_data else 10.0

@@ -1,9 +1,9 @@
 extends CharacterBody3D
 class_name Player
 
-@export_category("Player Params")  
+@export_category("Player Params")
 @export var player_data: PlayerData
-@export_category("Player Config")  
+@export_category("Player Config")
 @export var player_config: PlayerConfig
 
 @onready var camera: Camera3D = $Camera
