@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c8w8bow1gvipf" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
 [ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/textures/enemy/slime.glb" id="1_ves4f"]
 [ext_resource type="Script" uid="uid://dibibf6k74k8r" path="res://scripts/enemy/enemy-data.gd" id="2_a3p1x"]
-[ext_resource type="Script" uid="uid://c8bhfrcdxl1we" path="res://scripts/global/damage-dealer.gd" id="3_p3i1o"]
+[ext_resource type="Script" path="res://scripts/global/damage-dealer.gd" id="3_p3i1o"]
 [ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/enemy-state-machine.gd" id="4_eh4rw"]
 [ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/states/patrol-state.gd" id="5_a3p1x"]
 [ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/states/chase-state.gd" id="6_45xnl"]

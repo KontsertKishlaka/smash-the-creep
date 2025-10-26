@@ -5,7 +5,7 @@ class_name PlayerStateMachine
 @export var player_data: PlayerData
 @export var initial_state: String = "idle"
 
-var current_state: State
+var current_state: PlayerState
 var states: Dictionary = {}
 
 func _ready() -> void:

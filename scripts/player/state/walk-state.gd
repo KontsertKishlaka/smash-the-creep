@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 
 @export var speed: float = 5  # Можно убрать, если используем player_data.speed
 

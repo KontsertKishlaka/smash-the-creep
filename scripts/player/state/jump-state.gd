@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 
 @export var jump_speed = 7
 @export var air_drag: float = 0.98
