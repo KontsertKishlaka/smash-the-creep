@@ -38,6 +38,9 @@ func change_state(new_state: PlayerState) -> void:
 	current_state.enter()
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+
 	if current_state:
 		current_state.process(delta)
 

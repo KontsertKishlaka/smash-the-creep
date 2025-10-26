@@ -8,8 +8,8 @@ var lost_player_duration: float = 1.5
 
 func enter():
 	lost_player_timer = 0.0
-	if slime and slime.damage_dealer:
-		slime.damage_dealer.activate()
+	#if slime and slime.damage_dealer:
+		#slime.damage_dealer.activate()
 
 func physics_update(delta):
 	if not slime.data or not slime.player:
@@ -34,8 +34,8 @@ func physics_update(delta):
 
 	# Переход в атаку по дистанции
 	if distance > slime.data.attack_range:
-		if slime and slime.damage_dealer:
-			slime.damage_dealer.deactivate()
+		#if slime and slime.damage_dealer:
+			#slime.damage_dealer.deactivate()
 		state_machine.change_state(EnemyStatesEnum.State.ChaseState)
 		return
 
@@ -43,12 +43,12 @@ func physics_update(delta):
 	if distance > slime.data.detection_range:
 		lost_player_timer += delta
 		if lost_player_timer >= lost_player_duration:
-			if slime and slime.damage_dealer:
-				slime.damage_dealer.deactivate()
+			#if slime and slime.damage_dealer:
+				#slime.damage_dealer.deactivate()
 			state_machine.change_state(EnemyStatesEnum.State.PatrolState)
 	else:
 		lost_player_timer = 0.0
 
-func exit():
-	if slime and slime.damage_dealer:
-		slime.damage_dealer.deactivate()
+#func exit():
+	#if slime and slime.damage_dealer:
+		#slime.damage_dealer.deactivate()

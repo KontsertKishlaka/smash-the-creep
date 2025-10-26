@@ -39,7 +39,7 @@ func get_camera_relative_direction(local_direction: Vector3) -> Vector3:
 	# Преобразуем локальное направление в глобальное относительно камеры
 	var camera_transform = camera.global_transform
 	direction += camera_transform.basis.z * local_direction.z  # Вперед/назад
-	direction += camera_transform.basis.x * local_direction.x   # Влево/вправо
+	direction += camera_transform.basis.x * local_direction.x  # Влево/вправо
 
 	direction.y = 0
 	return direction.normalized()
