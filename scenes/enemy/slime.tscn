@@ -1,17 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://bt3jnpmq6oflw"]
+[gd_scene load_steps=15 format=3 uid="uid://bt3jnpmq6oflw"]
 
 [ext_resource type="Script" uid="uid://c8w8bow1gvipf" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
 [ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/textures/enemy/slime.glb" id="1_ves4f"]
 [ext_resource type="Script" uid="uid://dibibf6k74k8r" path="res://scripts/enemy/enemy-data.gd" id="2_a3p1x"]
-[ext_resource type="Script" path="res://scripts/global/damage-dealer.gd" id="3_p3i1o"]
-[ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/enemy-state-machine.gd" id="4_eh4rw"]
-[ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/states/patrol-state.gd" id="5_a3p1x"]
-[ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/states/chase-state.gd" id="6_45xnl"]
-[ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/states/attack-state.gd" id="7_68vad"]
-[ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/states/death-state.gd" id="8_p3i1o"]
-[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/slimejump.mp3" id="10_68vad"]
-[ext_resource type="Script" uid="uid://bnantsq1gogjc" path="res://scripts/global/health-component.gd" id="10_d1e6w"]
-[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/slimeonfloor.mp3" id="11_p3i1o"]
+[ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/state/enemy-state-machine.gd" id="4_eh4rw"]
+[ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/state/patrol-state.gd" id="5_a3p1x"]
+[ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/state/chase-state.gd" id="6_45xnl"]
+[ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/state/attack-state.gd" id="7_68vad"]
+[ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/state/death-state.gd" id="8_p3i1o"]
+[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/enemy/slimejump.mp3" id="10_68vad"]
+[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/enemy/slimeonfloor.mp3" id="11_p3i1o"]
 
 [sub_resource type="Resource" id="Resource_45xnl"]
 script = ExtResource("2_a3p1x")
@@ -20,27 +18,47 @@ metadata/_custom_type_script = "uid://dibibf6k74k8r"
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a3p1x"]
 height = 0.74554443
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_45xnl"]
+height = 0.74554443
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_a3p1x"]
 radius = 0.4
 
 [node name="Slime" type="CharacterBody3D" groups=["ENEMY"]]
+collision_layer = 4
+collision_mask = 181
 script = ExtResource("1_4wfld")
 data = SubResource("Resource_45xnl")
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37142646, 0.00047779083)
 shape = SubResource("CylinderShape3D_a3p1x")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
-[node name="DamageDealer" type="Area3D" parent="."]
+[node name="PivotMesh" type="Node3D" parent="."]
+
+[node name="MeshSlime" parent="PivotMesh" instance=ExtResource("1_ves4f")]
+
+[node name="Hurtbox" type="Area3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionHurtbox" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37142646, 0.00047779083)
+shape = SubResource("CylinderShape3D_45xnl")
+debug_color = Color(0.20392157, 0.6392157, 0, 0.41960785)
+
+[node name="Hitbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40164375, 0.2897935)
-script = ExtResource("3_p3i1o")
+collision_layer = 8
+monitoring = false
+monitorable = false
 
-[node name="CollisionAttack" type="CollisionShape3D" parent="DamageDealer"]
+[node name="CollisionHitbox" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("SphereShape3D_a3p1x")
-
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="Slime" parent="Pivot" instance=ExtResource("1_ves4f")]
+debug_color = Color(1, 0.28627452, 0.23137255, 0.6509804)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_eh4rw")
@@ -56,15 +74,6 @@ script = ExtResource("7_68vad")
 
 [node name="DeathState" type="Node" parent="StateMachine"]
 script = ExtResource("8_p3i1o")
-
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("10_d1e6w")
-
-[node name="HitArea" type="Area3D" parent="HealthComponent"]
-
-[node name="HitBox" type="CollisionShape3D" parent="HealthComponent/HitArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37142646, 0.00047779083)
-shape = SubResource("CylinderShape3D_a3p1x")
 
 [node name="LandSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_68vad")

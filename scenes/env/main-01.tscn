@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://c2s37xlhae343"]
+
+[ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="1_sq22g"]
+[ext_resource type="MeshLibrary" uid="uid://brig8kmeu8c5b" path="res://tileset/dungeon-01/tileset-lib.tres" id="2_61qmr"]
+[ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/prop/crate/crate.tscn" id="6_csbld"]
+[ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="6_gl8n5"]
+[ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="7_1f65w"]
+[ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="7_4s7hv"]
+[ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/prop/chest/chest.tscn" id="7_wf423"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ok77"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_cvjdr"]
+sky_material = SubResource("ProceduralSkyMaterial_5ok77")
+
+[sub_resource type="Environment" id="Environment_jgyrw"]
+background_mode = 2
+sky = SubResource("Sky_cvjdr")
+ambient_light_color = Color(1, 0.9490196, 0.8, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.16
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(1, 0.9490196, 0.8, 1)
+fog_light_energy = 0.02
+fog_density = 0.05
+
+[sub_resource type="Resource" id="Resource_pag55"]
+script = ExtResource("6_gl8n5")
+metadata/_custom_type_script = "uid://b7hcib1fo1d54"
+
+[sub_resource type="Resource" id="Resource_ormr0"]
+script = ExtResource("7_1f65w")
+metadata/_custom_type_script = "uid://cmmu85uwvhmqh"
+
+[node name="World" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jgyrw")
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh_library = ExtResource("2_61qmr")
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+collision_layer = 32
+collision_mask = 31
+data = {
+"cells": PackedInt32Array(0, 65535, 2, 0, 0, 2, 65535, 0, 2, 65535, 65535, 2, 65534, 65534, 1441793, 65534, 1, 1, 1, 65534, 655361, 1, 1, 1048577, 2, 0, 1048577, 2, 65535, 655361, 0, 2, 1048577, 65535, 2, 1, 65533, 0, 1, 65533, 65535, 1441793, 65535, 65533, 1441792, 65535, 65532, 1441792, 65535, 65531, 1441792, 65535, 65530, 1441792, 65535, 65529, 1441792, 0, 65533, 1048576, 0, 65532, 1048576, 0, 65531, 1048576, 0, 65530, 1048576, 0, 65529, 1048576, 0, 65528, 1048576, 0, 65527, 1048576, 0, 65526, 1048576, 65535, 65528, 1441792, 65535, 65527, 1441792, 65535, 65526, 1441792, 65535, 65525, 1441793, 0, 65525, 655361, 0, 65534, 655363, 65535, 65534, 1441795, 65534, 65535, 1441795, 65534, 0, 3, 65535, 1, 3, 0, 1, 1048579, 1, 0, 1048579, 1, 65535, 655363, 1, 65533, 3)
+}
+
+[node name="Player" parent="." instance=ExtResource("1_sq22g")]
+player_data = SubResource("Resource_pag55")
+player_config = SubResource("Resource_ormr0")
+
+[node name="Light" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4509137, 0.12827182)
+light_color = Color(1, 0.9490196, 0.8, 1)
+spot_range = 15.973487
+
+[node name="WoodChest" parent="." instance=ExtResource("7_wf423")]
+transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 5, 0, 0)
+visible = false
+
+[node name="Crate" parent="." instance=ExtResource("6_csbld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.665208, 0, 0)
+
+[node name="Crate2" parent="." instance=ExtResource("6_csbld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.665208, 1.479783, 0)
+
+[node name="Crate3" parent="." instance=ExtResource("6_csbld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312912, 2.7665553, 5.197644)
+
+[node name="Slime" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_4s7hv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3581713, -18.080145)
+player = NodePath("../Player")

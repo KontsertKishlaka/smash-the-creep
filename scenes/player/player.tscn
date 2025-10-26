@@ -12,8 +12,8 @@
 [ext_resource type="Script" uid="uid://bbh2xsts8um7a" path="res://scripts/player/state/jump-state.gd" id="9_gx1jg"]
 [ext_resource type="Script" uid="uid://wa0w8pek53kf" path="res://scripts/player/state/attack-state.gd" id="10_ugbui"]
 [ext_resource type="Script" uid="uid://m0frnklrmlk8" path="res://scripts/player/state/fall-state.gd" id="11_fcs02"]
-[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/slimeonfloor.mp3" id="12_ugbui"]
-[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/slimejump.mp3" id="13_fcs02"]
+[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/enemy/slimeonfloor.mp3" id="12_ugbui"]
+[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/enemy/slimejump.mp3" id="13_fcs02"]
 [ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/nya.mp3" id="14_myrg7"]
 
 [sub_resource type="Resource" id="Resource_fcs02"]
@@ -224,6 +224,7 @@ player_config = SubResource("Resource_myrg7")
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_gmlin")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="PivotMesh" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -233,12 +234,12 @@ mesh = SubResource("CapsuleMesh_p47bc")
 
 [node name="Hurtbox" type="Area3D" parent="PivotMesh/MeshPlayer"]
 transform = Transform3D(1.165, 0, 0, 0, 1.165, 0, 0, 0, 1.165, 0, 0, 0)
-collision_mask = 4
+collision_mask = 8
 monitoring = false
 
 [node name="CollisionHurtbox" type="CollisionShape3D" parent="PivotMesh/MeshPlayer/Hurtbox"]
 shape = SubResource("ConvexPolygonShape3D_fcs02")
-debug_color = Color(0.20570523, 0.6403396, 0, 0.41960785)
+debug_color = Color(0.20392157, 0.6392157, 0, 0.41960785)
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.5)
@@ -260,7 +261,7 @@ monitorable = false
 [node name="CollisionHitbox" type="CollisionShape3D" parent="Camera/PivotArm/Mesh/Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_p47bc")
-debug_color = Color(1, 0.19215687, 0.15294118, 0.8)
+debug_color = Color(1, 0.28627452, 0.23137255, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player", "initial_state")]
 script = ExtResource("3_gmlin")

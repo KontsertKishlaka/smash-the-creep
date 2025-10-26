@@ -1,18 +1,15 @@
 extends CharacterBody3D
 class_name Slime
 
-
 @export var data: EnemyData
 @export var player: Player
 
 @export var test_damage_interval: float = 1.0
 @export var test_damage_amount: int = 1
 
-@onready var health_component: HealthComponent = $HealthComponent
 @onready var state_machine: EnemyStateMachine = $StateMachine
 @onready var land_sound: AudioStreamPlayer3D = $LandSound
 @onready var jump_sound: AudioStreamPlayer3D = $JumpSound
-@onready var damage_dealer: DamageDealer = $DamageDealer
 
 var jump_timer: float = 0.0
 var patrol_target: Vector3
@@ -36,15 +33,6 @@ func _ready():
 		return
 
 	_set_new_patrol_target()
-	if health_component:
-		health_component.connect("died", Callable(self, "_on_death"))
-	else:
-		printerr("Slime: HealthComponent not found!")
-
-	if damage_dealer:
-		damage_dealer.collision_mask = 1  # Player layer
-	else:
-		printerr("Slime: DamageDealer not found!")
 
 func _physics_process(delta):
 	if not data or not player:  # Проверка на null
@@ -90,7 +78,7 @@ func _rotate_toward(direction: Vector3, delta: float):
 		rotation.y = lerp_angle(rotation.y, desired, delta * data.rotation_smoothness)
 
 func take_damage(amount: int, source: Node = null):
-	if not is_instance_valid(health_component) or is_dead:
+	if is_dead:
 		return
 
 	var source_name: String = "неизвестно"
@@ -98,10 +86,6 @@ func take_damage(amount: int, source: Node = null):
 		source_name = source.name
 
 	print("%s получил %d урона от %s" % [name, amount, source_name])
-	health_component.take_damage(amount)
-
-	if health_component.current_health <= 0:
-		await _die_animation()
 
 func _die_animation():
 	is_dead = true
