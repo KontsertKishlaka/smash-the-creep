@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="smash-the-creep"
-run/main_scene="uid://b02txd1j33lkh"
+run/main_scene="uid://c2s37xlhae343"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

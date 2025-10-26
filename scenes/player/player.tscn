@@ -1,14 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvhxbhtembogm"]
+[gd_scene load_steps=18 format=3 uid="uid://bvhxbhtembogm"]
 
 [ext_resource type="Script" uid="uid://7jmmf0t47vaw" path="res://scripts/player/player.gd" id="1_dovo2"]
-[ext_resource type="PackedScene" uid="uid://boefe0dqoajot" path="res://assets/textures/player/player.glb" id="2_gmlin"]
-[ext_resource type="Script" uid="uid://cx1a1yulq6nx3" path="res://scripts/player/player-state-machine.gd" id="3_gmlin"]
+[ext_resource type="Texture2D" uid="uid://6en7nbqgguu5" path="res://assets/textures/env/main/env-texture.jpg" id="2_75vfm"]
+[ext_resource type="Script" uid="uid://cx1a1yulq6nx3" path="res://scripts/player/state/player-state-machine.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="4_75vfm"]
 [ext_resource type="Script" uid="uid://bnantsq1gogjc" path="res://scripts/global/health-component.gd" id="4_lvxji"]
-[ext_resource type="Script" uid="uid://c8bhfrcdxl1we" path="res://scripts/global/damage-dealer.gd" id="5_p47bc"]
+[ext_resource type="Script" path="res://scripts/global/damage-dealer.gd" id="5_p47bc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gmlin"]
-height = 2.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0owmy"]
+albedo_color = Color(0.45233065, 0.3540971, 0.9986847, 1)
+albedo_texture = ExtResource("2_75vfm")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_p47bc"]
+material = SubResource("StandardMaterial3D_0owmy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75vfm"]
+albedo_color = Color(0.45233065, 0.3540971, 0.9986847, 1)
+albedo_texture = ExtResource("2_75vfm")
+
+[sub_resource type="BoxMesh" id="BoxMesh_0owmy"]
+material = SubResource("StandardMaterial3D_75vfm")
+size = Vector3(0.1, 0.68, 0.1)
 
 [sub_resource type="Resource" id="Resource_0owmy"]
 script = ExtResource("4_75vfm")
@@ -16,21 +30,157 @@ metadata/_custom_type_script = "uid://b7hcib1fo1d54"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lvxji"]
 
+[sub_resource type="Animation" id="Animation_qek5x"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/PivotArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/PivotArm/MeshArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.38, -0.22904134, -0.435), Vector3(0.38, -0.24546456, -0.435)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/PivotArm/MeshArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-1.0297443, 0, 0), Vector3(-1.0518525, -0.25190598, 0.2947971)]
+}
+
+[sub_resource type="Animation" id="Animation_5gtgg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/PivotArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/PivotArm/MeshArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.38, -0.22904134, -0.435)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/PivotArm/MeshArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.0297443, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/PivotArm/MeshArm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.38, -0.22904134, -0.435)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/PivotArm/MeshArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.0297443, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/PivotArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.33161256, 1.1728612, 0.10471976)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_je7p5"]
+_data = {
+&"RESET": SubResource("Animation_5gtgg"),
+&"attack": SubResource("Animation_h17s1"),
+&"idle": SubResource("Animation_qek5x")
+}
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_dovo2")
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4043106, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 shape = SubResource("CylinderShape3D_gmlin")
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="PivotModel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Character" parent="Pivot" instance=ExtResource("2_gmlin")]
-transform = Transform3D(-0.45, 0, -3.934025e-08, 0, 0.45, 0, 3.934025e-08, 0, -0.45, 0, -0.9940835, 0)
+[node name="Model" type="MeshInstance3D" parent="PivotModel"]
+mesh = SubResource("CapsuleMesh_p47bc")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0640414, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5640414, -0.5)
+
+[node name="PivotArm" type="Node3D" parent="Camera"]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0)
+
+[node name="MeshArm" type="MeshInstance3D" parent="Camera/PivotArm"]
+transform = Transform3D(1, 0, 0, 0, 0.5150381, 0.8571673, 0, -0.8571673, 0.5150381, 0.38, -0.22904134, -0.435)
+mesh = SubResource("BoxMesh_0owmy")
+skeleton = NodePath("../../../..")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_gmlin")
@@ -41,14 +191,24 @@ player_data = SubResource("Resource_0owmy")
 script = ExtResource("4_lvxji")
 
 [node name="HitArea" type="Area3D" parent="HealthComponent"]
+visible = false
 
 [node name="HitBox" type="CollisionShape3D" parent="HealthComponent/HitArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4043106, 0)
+visible = false
 shape = SubResource("CylinderShape3D_gmlin")
 
 [node name="DamageDealer" type="Area3D" parent="."]
+visible = false
 script = ExtResource("5_p47bc")
 
 [node name="AttackBox" type="CollisionShape3D" parent="DamageDealer"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.4, 0)
+visible = false
 shape = SubResource("SphereShape3D_lvxji")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_je7p5")
+}
+autoplay = "idle"
