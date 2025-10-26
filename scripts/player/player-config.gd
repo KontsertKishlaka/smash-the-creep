@@ -2,9 +2,9 @@ extends Resource
 class_name PlayerConfig
 
 @export_category("Camera Configuration")
-@export_range(0.001, 0.01, 0.001) var mouse_sensitivity: float = 0.002
+@export_range(0.001, 0.02, 0.001) var mouse_sensitivity: float = 0.008
 @export_range(1.0, 89.0, 1.0) var max_camera_tilt: float = 75.0
-@export var max_degree: float = 45
+@export_range(1.0, 89.0, 1.0) var max_degree: float = 75.0
 @export var invert_y_axis: bool = false
 
 @export_category("Input Configuration")

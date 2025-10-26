@@ -28,8 +28,10 @@ func physics_process(delta: float) -> void:
 		state_machine.change_state(state_machine.get_node("AttackState"))
 		return
 
-	# Плавное движение
-	var target_velocity = input_dir * player.player_data.walk_speed
+	# Движение относительно камеры
+	var camera_relative_dir = player.get_camera_relative_direction(input_dir)
+	var target_velocity = camera_relative_dir * player.player_data.walk_speed
+
 	var current_velocity = Vector2(player.velocity.x, player.velocity.z)
 	var new_velocity = current_velocity.lerp(Vector2(target_velocity.x, target_velocity.z), 10 * delta)
 
@@ -39,9 +41,6 @@ func physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	player.move_and_slide()
 
+# TODO: Будущая механика стамины
 func _has_stamina() -> bool:
-	# В будущем можно добавить систему стамины
 	return true
-
-func _apply_gravity(delta: float):
-	player.velocity.y -= player.GRAVITY * delta

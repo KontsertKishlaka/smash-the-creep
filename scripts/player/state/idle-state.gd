@@ -13,7 +13,7 @@ func physics_process(_delta: float) -> void:
 		else:
 			state_machine.change_state(state_machine.get_node("WalkState"))
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and player.is_on_floor():
 		state_machine.change_state(state_machine.get_node("JumpState"))
 
 	if Input.is_action_just_pressed("attack"):

@@ -1,8 +1,6 @@
 extends PlayerState
 class_name RunState
 
-var stamina_drain_timer: float = 0.0
-
 func enter() -> void:
 	animation_player.play("idle")  # Когда будет анимация "run", поменять на строку `animation_player.play("run")`
 	#animation_player.play("run")
@@ -30,14 +28,10 @@ func physics_process(delta: float) -> void:
 		state_machine.change_state(state_machine.get_node("AttackState"))
 		return
 
-	# Дренаж стамины
-	stamina_drain_timer += delta
-	if stamina_drain_timer >= 1.0:
-		# SignalBus.emit_signal("stamina_changed", -player.player_data.stamina_drain_per_second)
-		stamina_drain_timer = 0.0
+	# Движение относительно камеры
+	var camera_relative_dir = player.get_camera_relative_direction(input_dir)
+	var target_velocity = camera_relative_dir * player.player_data.run_speed
 
-	# Более резкое движение для бега
-	var target_velocity = input_dir * player.player_data.run_speed
 	var current_velocity = Vector2(player.velocity.x, player.velocity.z)
 	var new_velocity = current_velocity.lerp(Vector2(target_velocity.x, target_velocity.z), 15 * delta)
 
@@ -47,9 +41,6 @@ func physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	player.move_and_slide()
 
+# TODO: Будущая механика стамины
 func _has_stamina() -> bool:
-	# Заглушка для будущей системы стамины
 	return true
-
-func _apply_gravity(delta: float):
-	player.velocity.y -= player.GRAVITY * delta

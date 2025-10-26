@@ -237,7 +237,7 @@ mesh = SubResource("CapsuleMesh_p47bc")
 shape = SubResource("ConvexPolygonShape3D_fcs02")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5640414, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.5)
 
 [node name="PivotArm" type="Node3D" parent="Camera"]
 

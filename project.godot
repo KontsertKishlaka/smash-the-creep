@@ -30,8 +30,8 @@ window/stretch/mode="viewport"
 
 [global_group]
 
-enemy=""
-destructible=""
+DESTRUCTIBLE=""
+ENEMY=""
 
 [input]
 

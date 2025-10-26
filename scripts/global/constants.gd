@@ -1,5 +1,8 @@
 extends Node
 
+# Физические константы
+const DEFAULT_GRAVITY = 15.0
+
 # Слои коллизий
 enum LAYERS {
 	PLAYER = 1,
@@ -9,5 +12,5 @@ enum LAYERS {
 }
 
 # Группы
-const GROUP_ENEMIES = "enemy"
-const GROUP_DESTRUCTIBLES = "destructible"
+const GROUP_ENEMIES = "ENEMY"
+const GROUP_DESTRUCTIBLES = "DESTRUCTIBLE"

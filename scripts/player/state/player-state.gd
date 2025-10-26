@@ -28,4 +28,8 @@ func get_movement_input() -> Vector3:
 	var input_dir = Vector3.ZERO
 	input_dir.x = Input.get_axis("move_left", "move_right")
 	input_dir.z = Input.get_axis("move_forwards", "move_backwards")
-	return input_dir.normalized() if input_dir.length() > 0 else Vector3.ZERO
+	return input_dir
+
+func _apply_gravity(delta: float):
+	if not player.is_on_floor():
+		player.velocity.y -= Constants.DEFAULT_GRAVITY * delta

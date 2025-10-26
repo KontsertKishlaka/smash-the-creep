@@ -23,7 +23,7 @@ height = 0.74554443
 [sub_resource type="SphereShape3D" id="SphereShape3D_a3p1x"]
 radius = 0.4
 
-[node name="Slime" type="CharacterBody3D"]
+[node name="Slime" type="CharacterBody3D" groups=["ENEMY"]]
 script = ExtResource("1_4wfld")
 data = SubResource("Resource_45xnl")
 

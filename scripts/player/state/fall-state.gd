@@ -7,10 +7,11 @@ func enter() -> void:
 
 func physics_process(delta: float) -> void:
 	var input_dir = get_movement_input()
+	var camera_relative_dir = player.get_camera_relative_direction(input_dir)
 
-	# Воздушный контроль при падении (меньше чем в прыжке)
+	# Воздушный контроль при падении
 	var air_control_factor = player.player_data.air_control * 0.7
-	var target_velocity = input_dir * player.player_data.walk_speed * air_control_factor
+	var target_velocity = camera_relative_dir * player.player_data.walk_speed * air_control_factor
 	var current_velocity = Vector2(player.velocity.x, player.velocity.z)
 	var new_velocity = current_velocity.lerp(Vector2(target_velocity.x, target_velocity.z), 3 * delta)
 
@@ -20,6 +21,7 @@ func physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	player.move_and_slide()
 
+	# Проверка атаки в воздухе
 	if Input.is_action_just_pressed("attack"):
 		state_machine.change_state(state_machine.get_node("AttackState"))
 		return
@@ -38,6 +40,3 @@ func _transition_to_ground_state():
 			state_machine.change_state(state_machine.get_node("WalkState"))
 	else:
 		state_machine.change_state(state_machine.get_node("IdleState"))
-
-func _apply_gravity(delta: float):
-	player.velocity.y -= player.GRAVITY * delta
