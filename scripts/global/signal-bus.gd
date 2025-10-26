@@ -1,5 +1,7 @@
 extends Node
 
+@warning_ignore_start("unused_signal")
+
 #Сигналы игрока
 signal player_damaged(damage, source)
 

@@ -15,7 +15,7 @@ func take_hit(damage: int = 1):
 
 func _on_break():
 	emit_signal("destroyed", self)
-	
+
 	if break_effect:
 		var fx = break_effect.instantiate()
 		fx.global_transform = global_transform

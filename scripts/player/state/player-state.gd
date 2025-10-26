@@ -1,18 +1,31 @@
-extends RefCounted
+extends Node
 class_name PlayerState
 
-var state_machine
-var player
-var player_data
+# Автоматически инжектятся StateMachine
+var state_machine: PlayerStateMachine
+var player: Player
+var animation_player: AnimationPlayer
+var audio_component: AudioComponent
 
-func enter():
+# Виртуальные методы
+func enter() -> void:
 	pass
 
-func exit():
+func exit() -> void:
 	pass
 
-func update(_delta):
+func process(_delta: float) -> void:
 	pass
 
-func physics_update(_delta):
+func physics_process(_delta: float) -> void:
 	pass
+
+func handle_input(_event: InputEvent) -> void:
+	pass
+
+# Вспомогательные методы
+func get_movement_input() -> Vector3:
+	var input_dir = Vector3.ZERO
+	input_dir.x = Input.get_axis("move_left", "move_right")
+	input_dir.z = Input.get_axis("move_forwards", "move_backwards")
+	return input_dir.normalized() if input_dir.length() > 0 else Vector3.ZERO

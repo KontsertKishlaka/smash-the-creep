@@ -1,5 +1,5 @@
 extends EnemyState
-class_name AttackState
+class_name EnemyAttackState
 
 @export var state_enum: int = EnemyStatesEnum.State.AttackState
 

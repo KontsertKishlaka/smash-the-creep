@@ -1,10 +1,28 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvhxbhtembogm"]
+[gd_scene load_steps=30 format=3 uid="uid://bvhxbhtembogm"]
 
 [ext_resource type="Script" uid="uid://7jmmf0t47vaw" path="res://scripts/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://6en7nbqgguu5" path="res://assets/textures/env/main/env-texture.jpg" id="2_75vfm"]
+[ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="3_0owmy"]
 [ext_resource type="Script" uid="uid://cx1a1yulq6nx3" path="res://scripts/player/state/player-state-machine.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="4_75vfm"]
 [ext_resource type="Script" uid="uid://c3v2vtgy4wphe" path="res://scripts/player/state/idle-state.gd" id="5_0owmy"]
+[ext_resource type="Script" uid="uid://b7txg0aln2e0i" path="res://scripts/player/audio/audio-component.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://dnq45g2phutc" path="res://scripts/player/state/walk-state.gd" id="7_je7p5"]
+[ext_resource type="Script" uid="uid://bxrash0rrq54s" path="res://scripts/player/state/run-state.gd" id="8_fm80t"]
+[ext_resource type="Script" uid="uid://bbh2xsts8um7a" path="res://scripts/player/state/jump-state.gd" id="9_gx1jg"]
+[ext_resource type="Script" uid="uid://wa0w8pek53kf" path="res://scripts/player/state/attack-state.gd" id="10_ugbui"]
+[ext_resource type="Script" uid="uid://m0frnklrmlk8" path="res://scripts/player/state/fall-state.gd" id="11_fcs02"]
+[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/slimeonfloor.mp3" id="12_ugbui"]
+[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/slimejump.mp3" id="13_fcs02"]
+[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/nya.mp3" id="14_myrg7"]
+
+[sub_resource type="Resource" id="Resource_qek5x"]
+script = ExtResource("4_75vfm")
+metadata/_custom_type_script = "uid://b7hcib1fo1d54"
+
+[sub_resource type="Resource" id="Resource_5gtgg"]
+script = ExtResource("3_0owmy")
+metadata/_custom_type_script = "uid://cmmu85uwvhmqh"
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gmlin"]
 
@@ -14,6 +32,9 @@ albedo_texture = ExtResource("2_75vfm")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_p47bc"]
 material = SubResource("StandardMaterial3D_0owmy")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fcs02"]
+points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4760704, 0.49888408, 0.16971254, 0.5591441, 0.46417162, 0.23105091, -0.8035912, 0.32045516, 0.40741014, 0.651043, -0.24352328, -0.4827893, 0.59484255, 0.082213186, -0.3628679, -0.68231165, 0.2896967, 0.46904355, -0.65452886, -0.06627126, -0.12744367, 0.8427015, -0.33810276, -0.39343542, -0.6839421, -0.24471663, 0.43825462, 0.62330925, 0.20084947, 0.0841477, 0.977454, 0.11479468, -0.06820232, -0.9764576, -0.12927033, 0.20054972, -0.56312895, -0.4514544, -0.18552664, 0.59545326, -0.4534751, -0.27336287, 0.59226835, 0.40775412, -0.0069364863, -0.47682306, 0.49966025, 0.37582088, -0.5886136, 0.31695515, 0.111579016, 0.5630594, -0.48117727, -0.41725034, 0.5278656, -0.27049688, -0.48454633, -0.59697217, -0.06650971, -0.27974695, 0.90856135, 0.05333608, -0.25019687, -0.8807117, 0.20531891, 0.263647, -0.90277094, -0.1273943, 0.29336792, 0.8715263, -0.15719566, 0.3734115, -0.5263189, -0.32824618, 0.4996626, 0.47664148, -0.0068885577, 0.053105574, 0.8750009, 0.32470253, -0.15454252, -0.5908538, 0.4658794, -0.09727988, -0.7823577, -0.39818847, -0.3876489, -0.49817133, 0.31564978, -0.30067965, -0.58799505, -0.38890144)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75vfm"]
 albedo_color = Color(0.45233065, 0.3540971, 0.9986847, 1)
@@ -25,10 +46,6 @@ size = Vector3(0.1, 0.68, 0.1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p47bc"]
 points = PackedVector3Array(0.049999997, 0.3291428, 0.049999997, -0.049999997, -0.31085715, -0.049999997, -0.049999997, -0.31085715, 0.047142863, 0.049999997, -0.3291428, 0.049999997, 0.047142863, -0.31085715, -0.049999997, -0.049999997, 0.31085715, -0.049999997, -0.049999997, 0.31085715, 0.047142863, 0.047142863, 0.31085715, -0.049999997)
-
-[sub_resource type="Resource" id="Resource_0owmy"]
-script = ExtResource("4_75vfm")
-metadata/_custom_type_script = "uid://b7hcib1fo1d54"
 
 [sub_resource type="Animation" id="Animation_qek5x"]
 resource_name = "idle"
@@ -49,7 +66,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/PivotArm/MeshArm:position")
+tracks/1/path = NodePath("Camera/PivotArm/Mesh:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -61,7 +78,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Camera/PivotArm/MeshArm:rotation")
+tracks/2/path = NodePath("Camera/PivotArm/Mesh:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -88,7 +105,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/PivotArm/MeshArm:position")
+tracks/1/path = NodePath("Camera/PivotArm/Mesh:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -100,7 +117,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Camera/PivotArm/MeshArm:rotation")
+tracks/2/path = NodePath("Camera/PivotArm/Mesh:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -111,12 +128,12 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_h17s1"]
-resource_name = "attack"
+resource_name = "attack_1"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/PivotArm/MeshArm:position")
+tracks/0/path = NodePath("Camera/PivotArm/Mesh:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -128,7 +145,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/PivotArm/MeshArm:rotation")
+tracks/1/path = NodePath("Camera/PivotArm/Mesh:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -144,25 +161,68 @@ tracks/2/path = NodePath("Camera/PivotArm:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(-0.008333334, 0.2916667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.89011794, 2.560398, 0.46251225)]
+}
+
+[sub_resource type="Animation" id="Animation_fcs02"]
+resource_name = "attack_2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/PivotArm/Mesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.38, -0.22904134, -0.435)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/PivotArm/Mesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 0,
+"values": [Vector3(-4.171337, 0, 3.1415927)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/PivotArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.33161256, 1.1728612, 0.10471976)]
+"values": [Vector3(-0.89011794, 2.560398, 0.46251225), Vector3(-1.0594149, 0, 0.6457718)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_je7p5"]
 _data = {
 &"RESET": SubResource("Animation_5gtgg"),
-&"attack": SubResource("Animation_h17s1"),
+&"attack_1": SubResource("Animation_h17s1"),
+&"attack_2": SubResource("Animation_fcs02"),
 &"idle": SubResource("Animation_qek5x")
 }
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 138
 script = ExtResource("1_dovo2")
+player_data = SubResource("Resource_qek5x")
+player_config = SubResource("Resource_5gtgg")
 
 [node name="CollisionBody" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
 shape = SubResource("CylinderShape3D_gmlin")
 
 [node name="PivotModel" type="Node3D" parent="."]
@@ -171,51 +231,67 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Model" type="MeshInstance3D" parent="PivotModel"]
 mesh = SubResource("CapsuleMesh_p47bc")
 
-[node name="Area3D" type="Area3D" parent="PivotModel/Model"]
+[node name="Hurtbox" type="Area3D" parent="PivotModel/Model"]
+
+[node name="CollisionHurtbox" type="CollisionShape3D" parent="PivotModel/Model/Hurtbox"]
+shape = SubResource("ConvexPolygonShape3D_fcs02")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5640414, -0.5)
 
 [node name="PivotArm" type="Node3D" parent="Camera"]
-transform = Transform3D(0.9999998, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0)
 
-[node name="MeshArm" type="MeshInstance3D" parent="Camera/PivotArm"]
+[node name="Mesh" type="MeshInstance3D" parent="Camera/PivotArm"]
 transform = Transform3D(1, 0, 0, 0, 0.5150381, 0.8571673, 0, -0.8571673, 0.5150381, 0.38, -0.22904134, -0.435)
 mesh = SubResource("BoxMesh_0owmy")
 skeleton = NodePath("../../../..")
 
-[node name="Hitbox" type="Area3D" parent="Camera/PivotArm/MeshArm"]
+[node name="Hitbox" type="Area3D" parent="Camera/PivotArm/Mesh"]
 transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 0, 0, 0)
 monitoring = false
 
-[node name="CollisionHitbox" type="CollisionShape3D" parent="Camera/PivotArm/MeshArm/Hitbox"]
+[node name="CollisionHitbox" type="CollisionShape3D" parent="Camera/PivotArm/Mesh/Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_p47bc")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player", "initial_state")]
 script = ExtResource("3_gmlin")
 player = NodePath("..")
-player_data = SubResource("Resource_0owmy")
-initial_state = null
+initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource("5_0owmy")
 
 [node name="WalkState" type="Node" parent="StateMachine"]
+script = ExtResource("7_je7p5")
 
 [node name="RunState" type="Node" parent="StateMachine"]
+script = ExtResource("8_fm80t")
 
 [node name="JumpState" type="Node" parent="StateMachine"]
+script = ExtResource("9_gx1jg")
 
 [node name="AttackState" type="Node" parent="StateMachine"]
+script = ExtResource("10_ugbui")
 
-[node name="AudioComponent" type="Node" parent="."]
+[node name="FallState" type="Node" parent="StateMachine"]
+script = ExtResource("11_fcs02")
+
+[node name="AudioComponent" type="Node" parent="." node_paths=PackedStringArray("footsteps_audio", "jump_audio", "attack_audio")]
+script = ExtResource("5_p47bc")
+footsteps_audio = NodePath("FootstepsAudio")
+jump_audio = NodePath("JumpAudio")
+attack_audio = NodePath("AttackAudio")
+footstep_sounds = Array[AudioStream]([ExtResource("12_ugbui")])
 
 [node name="FootstepsAudio" type="AudioStreamPlayer3D" parent="AudioComponent"]
+stream = ExtResource("12_ugbui")
 
 [node name="JumpAudio" type="AudioStreamPlayer3D" parent="AudioComponent"]
+stream = ExtResource("13_fcs02")
 
 [node name="AttackAudio" type="AudioStreamPlayer3D" parent="AudioComponent"]
+stream = ExtResource("14_myrg7")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
