@@ -74,13 +74,13 @@ func _on_break():
 	# Отправляем сигналы
 	SignalBus.emit_signal("destructible_destroyed", self)
 
-	# Эффект разрушения через SignalBus → EffectManager
+	# Эффект разрушения через SignalBus → AudioManager
 	if break_effect:
 		SignalBus.emit_signal("spawn_effect", break_effect, global_position, rotation)
 
-	# Звук разрушения через SignalBus → EffectManager
+	# Звук разрушения через SignalBus → AudioManager
 	if break_sound:
-		SignalBus.emit_signal("play_sound", break_sound, global_position, 0.0)
+		SignalBus.play_sound_3d.emit(break_sound, global_position)
 
 	if destroy_on_break:
 		queue_free()

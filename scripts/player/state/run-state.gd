@@ -1,13 +1,23 @@
 extends PlayerState
 class_name RunState
 
+# Таймер для звуков шагов (более частый чем при ходьбе)
+var footstep_timer: Timer
+var is_moving: bool = false
+
 func enter() -> void:
 	animation_player.play("idle")  # Когда будет анимация "run", поменять на строку `animation_player.play("run")`
 	#animation_player.play("run")
-	audio_component.start_moving()
+
+	# Инициализируем таймер шагов если еще не создан
+	_setup_footstep_timer()
+	is_moving = true
+	footstep_timer.start()
 
 func exit() -> void:
-	audio_component.stop_moving()
+	is_moving = false
+	if footstep_timer:
+		footstep_timer.stop()
 
 func physics_process(delta: float) -> void:
 	var input_dir = get_movement_input()
@@ -40,6 +50,18 @@ func physics_process(delta: float) -> void:
 
 	_apply_gravity(delta)
 	player.move_and_slide()
+
+func _setup_footstep_timer() -> void:
+	if footstep_timer == null:
+		footstep_timer = Timer.new()
+		footstep_timer.wait_time = 0.3  # Более частый интервал для бега
+		footstep_timer.one_shot = false
+		footstep_timer.timeout.connect(_on_footstep)
+		add_child(footstep_timer)
+
+func _on_footstep() -> void:
+	if is_moving and player.is_on_floor():
+		audio_component.play_footstep()
 
 # TODO: Будущая механика стамины
 func _has_stamina() -> bool:

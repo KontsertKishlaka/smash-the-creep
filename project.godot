@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Constants="*res://scripts/global/constants.gd"
 SignalBus="*res://scripts/global/signal-bus.gd"
+AudioManager="*res://scripts/system/audio/audio-manager.gd"
 
 [display]
 

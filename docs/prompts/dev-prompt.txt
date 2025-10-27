@@ -6,7 +6,7 @@
 - Жанр: 3D-Слэшер с элементами RPG и Рогалика
 - Движок: Godot 4.5 (GDScript)
 - Стадия: Начальная разработка (Неделя 1 по бэклогу)
-- Архитектура: State Machine, SignalBus, Resource-based данные, Singleton (Player, SignalBus) 
+- Архитектура: State Machine, SignalBus, Resource-based данные, Singleton (Player, SignalBus, Constants) 
 
 **Ключевые принципы, которых мы придерживаемся:**
 - Чистая архитектура с паттернами (Состояния, Стратегия, Наблюдатель, Синглтон)

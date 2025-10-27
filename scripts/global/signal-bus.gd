@@ -24,3 +24,8 @@ signal play_sound(sound: AudioStream, position: Vector3)
 
 # Сигналы для других систем
 signal game_over()
+
+# Сигналы аудио
+signal play_sound_3d(sound: AudioStream, position: Vector3, volume_db: float, bus: StringName)
+signal play_music(music: AudioStream, fade_in_time: float, volume_db: float)
+signal stop_music(fade_out_time: float)

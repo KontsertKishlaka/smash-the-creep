@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bvhxbhtembogm"]
+[gd_scene load_steps=36 format=3 uid="uid://bvhxbhtembogm"]
 
 [ext_resource type="Script" uid="uid://7jmmf0t47vaw" path="res://scripts/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://6en7nbqgguu5" path="res://assets/textures/env/main/env-texture.jpg" id="2_75vfm"]
@@ -6,15 +6,21 @@
 [ext_resource type="Script" uid="uid://cx1a1yulq6nx3" path="res://scripts/player/state/player-state-machine.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="4_75vfm"]
 [ext_resource type="Script" uid="uid://c3v2vtgy4wphe" path="res://scripts/player/state/idle-state.gd" id="5_0owmy"]
-[ext_resource type="Script" uid="uid://b7txg0aln2e0i" path="res://scripts/player/audio/audio-component.gd" id="5_p47bc"]
 [ext_resource type="Script" uid="uid://dnq45g2phutc" path="res://scripts/player/state/walk-state.gd" id="7_je7p5"]
 [ext_resource type="Script" uid="uid://bxrash0rrq54s" path="res://scripts/player/state/run-state.gd" id="8_fm80t"]
 [ext_resource type="Script" uid="uid://bbh2xsts8um7a" path="res://scripts/player/state/jump-state.gd" id="9_gx1jg"]
 [ext_resource type="Script" uid="uid://wa0w8pek53kf" path="res://scripts/player/state/attack-state.gd" id="10_ugbui"]
 [ext_resource type="Script" uid="uid://m0frnklrmlk8" path="res://scripts/player/state/fall-state.gd" id="11_fcs02"]
-[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/enemy/slimeonfloor.mp3" id="12_ugbui"]
-[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/enemy/slimejump.mp3" id="13_fcs02"]
-[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/nya.mp3" id="14_myrg7"]
+[ext_resource type="Script" uid="uid://dndjk27vdnp75" path="res://scripts/system/audio/audio-component.gd" id="12_fcs02"]
+[ext_resource type="AudioStream" uid="uid://fla3r2aeom86" path="res://assets/audio/player/footstep/footstep_1_sound.mp3" id="13_lgqa7"]
+[ext_resource type="AudioStream" uid="uid://d0ba5p7y2xetr" path="res://assets/audio/player/footstep/footstep_2_sound.mp3" id="14_8ydkj"]
+[ext_resource type="AudioStream" uid="uid://deybgwfrfkfq3" path="res://assets/audio/player/footstep/footstep_3_sound.mp3" id="15_3j4b4"]
+[ext_resource type="AudioStream" uid="uid://yumhpxc3bap" path="res://assets/audio/player/footstep/footstep_4_sound.mp3" id="16_yj68g"]
+[ext_resource type="AudioStream" uid="uid://cxivgqygt1n8r" path="res://assets/audio/player/footstep/footstep_5_sound.mp3" id="17_ioxgp"]
+[ext_resource type="AudioStream" uid="uid://e4l0vxq6b1wf" path="res://assets/audio/player/attack/arm_attack_1_sound.mp3" id="18_3j4b4"]
+[ext_resource type="AudioStream" uid="uid://b0oo48yfxeum8" path="res://assets/audio/player/jump/jump_sound.mp3" id="18_cnsyf"]
+[ext_resource type="AudioStream" uid="uid://camc1g4yc02na" path="res://assets/audio/player/land/land_sound.mp3" id="19_007i1"]
+[ext_resource type="AudioStream" uid="uid://bsba2q2u5yagw" path="res://assets/audio/player/attack/arm_attack_2_sound.mp3" id="19_yj68g"]
 
 [sub_resource type="Resource" id="Resource_fcs02"]
 script = ExtResource("4_75vfm")
@@ -286,21 +292,12 @@ script = ExtResource("10_ugbui")
 [node name="FallState" type="Node" parent="StateMachine"]
 script = ExtResource("11_fcs02")
 
-[node name="AudioComponent" type="Node" parent="." node_paths=PackedStringArray("footsteps_audio", "jump_audio", "attack_audio")]
-script = ExtResource("5_p47bc")
-footsteps_audio = NodePath("FootstepsAudio")
-jump_audio = NodePath("JumpAudio")
-attack_audio = NodePath("AttackAudio")
-footstep_sounds = Array[AudioStream]([ExtResource("12_ugbui")])
-
-[node name="FootstepsAudio" type="AudioStreamPlayer3D" parent="AudioComponent"]
-stream = ExtResource("12_ugbui")
-
-[node name="JumpAudio" type="AudioStreamPlayer3D" parent="AudioComponent"]
-stream = ExtResource("13_fcs02")
-
-[node name="AttackAudio" type="AudioStreamPlayer3D" parent="AudioComponent"]
-stream = ExtResource("14_myrg7")
+[node name="AudioComponent" type="Node3D" parent="."]
+script = ExtResource("12_fcs02")
+footstep_sounds = Array[AudioStream]([ExtResource("13_lgqa7"), ExtResource("14_8ydkj"), ExtResource("15_3j4b4"), ExtResource("16_yj68g"), ExtResource("17_ioxgp")])
+attack_sounds = Array[AudioStream]([ExtResource("18_3j4b4"), ExtResource("19_yj68g")])
+jump_sound = ExtResource("18_cnsyf")
+land_sound = ExtResource("19_007i1")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
