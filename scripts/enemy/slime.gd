@@ -11,12 +11,20 @@ class_name Slime
 @onready var land_sound: AudioStreamPlayer3D = $LandSound
 @onready var jump_sound: AudioStreamPlayer3D = $JumpSound
 
+@export var jump_stretch_factor: float = 1.3
+@export var land_squash_factor: float = 0.8
+@export var squash_lerp_speed: float = 0.15
+@export var stretch_lerp_speed: float = 0.15
+
 var jump_timer: float = 0.0
 var patrol_target: Vector3
 var was_on_floor: bool = true
-
 var test_damage_timer: float = 0.0
 var is_dead: bool = false
+
+var original_scale: Vector3
+var jumping: bool = false
+var just_landed: bool = false
 
 func _set_new_patrol_target():
 	var random_offset = Vector3(
@@ -33,11 +41,10 @@ func _ready():
 		return
 
 	_set_new_patrol_target()
+	original_scale = scale
 
 func _physics_process(delta):
-	if not data or not player:  # Проверка на null
-		return
-	if not data:
+	if not data or not player:
 		return
 
 	test_damage_timer += delta
@@ -49,9 +56,13 @@ func _physics_process(delta):
 
 	if not is_on_floor():
 		velocity.y -= data.gravity * delta
+		if not jumping:
+			jumping = true
 	else:
-		if velocity.y < 0:
-			velocity.y = 0.0
+		if jumping:
+			just_landed = true
+		jumping = false
+		velocity.y = max(velocity.y, 0)
 
 	var horiz_speed = Vector2(velocity.x, velocity.z).length()
 	var max_allowed = max(data.speed * 6.0, data.speed)
@@ -62,14 +73,34 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	var just_landed = not was_on_floor_before and is_on_floor()
-	if just_landed:
+	var just_landed_event = not was_on_floor_before and is_on_floor()
+	if just_landed_event:
 		_play_land_sound()
-	var just_jumped = was_on_floor_before and not is_on_floor() and velocity.y > 0.1
-	if just_jumped:
+	var just_jumped_event = was_on_floor_before and not is_on_floor() and velocity.y > 0.1
+	if just_jumped_event:
 		_play_jump_sound()
 
 	was_on_floor = is_on_floor()
+
+	if jumping:
+		var target_scale = Vector3(
+			original_scale.x * 0.9,
+			original_scale.y * jump_stretch_factor,
+			original_scale.z * 0.9
+		)
+		scale = scale.lerp(target_scale, stretch_lerp_speed)
+	elif just_landed:
+		var target_scale = Vector3(
+			original_scale.x * 1.2,
+			original_scale.y * land_squash_factor,
+			original_scale.z * 1.2
+		)
+		scale = scale.lerp(target_scale, squash_lerp_speed)
+		if (scale - original_scale).length() < 0.01:
+			just_landed = false
+			scale = original_scale
+	else:
+		scale = scale.lerp(original_scale, squash_lerp_speed)
 
 func _rotate_toward(direction: Vector3, delta: float):
 	if direction.length() > 0.01:
@@ -90,7 +121,6 @@ func take_damage(amount: int, source: Node = null):
 func _die_animation():
 	is_dead = true
 	state_machine.change_state(EnemyStatesEnum.State.DeathState)
-
 	collision_layer = 0
 	collision_mask = 1
 
@@ -105,7 +135,6 @@ func _die_animation():
 
 	queue_free()
 
-# 1. Сжался и такой типа "неееееееееет("
 func _die_compress_and_fade():
 	var duration = 1.0
 	var timer = 0.0
@@ -120,7 +149,6 @@ func _die_compress_and_fade():
 		rotation.y = start_rotation_y + sin(t * PI * 3) * deg_to_rad(15)
 		await get_tree().process_frame
 
-# 2. Растекашка c:
 func _die_splat_fall():
 	var fall_velocity = Vector3.ZERO
 	var gravity = data.gravity
@@ -149,7 +177,6 @@ func _die_splat_fall():
 
 			await get_tree().create_timer(0.5).timeout
 
-# 3. Лопающийся пузырек :p
 func _die_bubble_up():
 	var start_pos = global_position
 	var start_scale = scale
