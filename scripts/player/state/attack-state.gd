@@ -108,7 +108,7 @@ func _on_attack_hit(area: Area3D):
 	var is_destructible = (hit_layer & Constants.LAYERS.DESTRUCTIBLE) != 0
 
 	if is_enemy or is_destructible:
-		print("✓ Попадание по цели: ", target.name)
+		print("\n✅ Попадание по цели: ", target.name)
 
 		# Отправляем сигнал атаки
 		SignalBus.emit_signal("player_attacked", target, player.player_data.base_attack_damage)
@@ -119,7 +119,7 @@ func _on_attack_hit(area: Area3D):
 		elif target and target.has_method("_take_hit"):
 			target._take_hit(player.player_data.base_attack_damage)
 	else:
-		print("✗ Объект не является врагом или разрушаемым объектом")
+		print("\n❌ Объект не является врагом или разрушаемым объектом")
 
 func _transition_from_attack():
 	if not player.is_on_floor():

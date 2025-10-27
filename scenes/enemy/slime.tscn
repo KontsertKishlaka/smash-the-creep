@@ -8,8 +8,8 @@
 [ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/state/chase-state.gd" id="6_45xnl"]
 [ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/state/attack-state.gd" id="7_68vad"]
 [ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/state/death-state.gd" id="8_p3i1o"]
-[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/enemy/slimejump.mp3" id="10_68vad"]
-[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/enemy/slimeonfloor.mp3" id="11_p3i1o"]
+[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/sfx/enemy/slimejump.mp3" id="10_68vad"]
+[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/sfx/enemy/slimeonfloor.mp3" id="11_p3i1o"]
 
 [sub_resource type="Resource" id="Resource_45xnl"]
 script = ExtResource("2_a3p1x")
