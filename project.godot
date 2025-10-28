@@ -85,5 +85,5 @@ quit={
 3d_physics/layer_4="ENEMY_ATTACK"
 3d_physics/layer_5="DESTRUCTIBLE"
 3d_physics/layer_6="WORLD"
-3d_physics/layer_7="TRIGGERS"
-3d_physics/layer_8="ITEMS"
+3d_physics/layer_7="TRIGGER"
+3d_physics/layer_8="ITEM"

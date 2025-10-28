@@ -11,8 +11,8 @@ enum LAYERS {
 	ENEMY_ATTACK = 8,
 	DESTRUCTIBLE = 16,
 	WORLD = 32,
-	TRIGGERS = 64,
-	ITEMS = 128
+	TRIGGER = 64,
+	ITEM = 128
 }
 
 # Группы
