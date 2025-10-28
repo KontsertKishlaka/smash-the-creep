@@ -143,5 +143,5 @@ func _on_toggle_music(enabled: bool) -> void:
 func _on_set_music_volume(volume_db: float) -> void:
 	set_music_volume(volume_db)
 
-func _on_scene_music_changed(scene_name: String, music: AudioStream) -> void:
+func _on_scene_music_changed(_scene_name: String, music: AudioStream) -> void:
 	_on_play_music(music, 2.0)  # Плавный переход 2 секунды

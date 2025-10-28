@@ -73,7 +73,6 @@ spot_range = 15.973487
 
 [node name="WoodChest" parent="." instance=ExtResource("7_wf423")]
 transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 5, 0, 0)
-visible = false
 
 [node name="Crate" parent="." instance=ExtResource("6_csbld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.665208, 0, 0)
