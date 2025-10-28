@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2s37xlhae343"]
+[gd_scene load_steps=16 format=3 uid="uid://c2s37xlhae343"]
 
 [ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="1_sq22g"]
 [ext_resource type="MeshLibrary" uid="uid://brig8kmeu8c5b" path="res://tileset/dungeon-01/tileset-lib.tres" id="2_61qmr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="7_1f65w"]
 [ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="7_4s7hv"]
 [ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/prop/chest/chest.tscn" id="7_wf423"]
+[ext_resource type="Script" uid="uid://wijhswendwie" path="res://scripts/global/effect-manager.gd" id="10_yhpd2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ok77"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -57,6 +58,9 @@ data = {
 [node name="MusicController" parent="." instance=ExtResource("2_u1n4w")]
 scene_music = ExtResource("3_yhpd2")
 auto_play = false
+
+[node name="EffectManager" type="Node" parent="."]
+script = ExtResource("10_yhpd2")
 
 [node name="Player" parent="." instance=ExtResource("1_sq22g")]
 player_data = SubResource("Resource_pag55")

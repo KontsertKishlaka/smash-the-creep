@@ -1,7 +1,7 @@
 extends Node
 class_name EffectManager
 
-@onready var world: Node3D = get_tree().current_scene
+@onready var world: Node = get_tree().current_scene
 
 func _ready():
 	# Подписываемся на сигналы эффектов
