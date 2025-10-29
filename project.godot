@@ -29,6 +29,29 @@ window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://assets/audio/": "red",
+"res://assets/material/": "green",
+"res://assets/texture/": "yellow",
+"res://assets/vfx/": "purple",
+"res://docs/": "blue",
+"res://scenes/": "teal",
+"res://scenes/enemy/": "blue",
+"res://scenes/item/": "orange",
+"res://scenes/player/": "red",
+"res://scenes/system/": "purple",
+"res://scripts/": "yellow",
+"res://scripts/enemy/": "blue",
+"res://scripts/global/": "green",
+"res://scripts/misc/": "pink",
+"res://scripts/player/": "red",
+"res://scripts/system/": "purple",
+"res://tileset/": "purple"
+}
+
 [global_group]
 
 DESTRUCTIBLE=""

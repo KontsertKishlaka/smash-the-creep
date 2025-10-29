@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="1_sq22g"]
 [ext_resource type="MeshLibrary" uid="uid://brig8kmeu8c5b" path="res://tileset/dungeon-01/tileset-lib.tres" id="2_61qmr"]
-[ext_resource type="PackedScene" uid="uid://d25vf06mwdqk3" path="res://scenes/systems/audio/music-controller.tscn" id="2_u1n4w"]
+[ext_resource type="PackedScene" uid="uid://d25vf06mwdqk3" path="res://scenes/system/audio/music-controller.tscn" id="2_u1n4w"]
 [ext_resource type="AudioStream" uid="uid://cqbmt4d2dabtj" path="res://assets/audio/soundtrack/anar_mc_-_zaryazhaesh.mp3" id="3_yhpd2"]
 [ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/prop/crate/crate.tscn" id="6_csbld"]
 [ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="6_gl8n5"]
