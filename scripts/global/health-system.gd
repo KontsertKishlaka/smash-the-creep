@@ -31,6 +31,9 @@ func take_damage(amount: int, source: Node = null) -> void:
 	
 	if _owner is Enemy:
 		SignalBus.enemy_damaged.emit(_owner, amount, source)
+	elif _owner is Player:
+		SignalBus.player_damaged.emit(amount, source)  # Ваш сигнал ожидает (damage, source)
+		
 	SignalBus.health_changed.emit(_owner, _current_health, _max_health)
 
 	_start_invincibility(0.5)
@@ -58,6 +61,9 @@ func _die(killer: Node = null) -> void:
 	
 	if _owner is Enemy:
 		SignalBus.enemy_died.emit(_owner)
+	elif _owner is Player:
+		# Для игрока используем game_over сигнал
+		SignalBus.game_over.emit()
 	
 	if _owner.has_method("_on_death"):
 		_owner._on_death(killer)

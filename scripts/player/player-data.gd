@@ -12,6 +12,9 @@ class_name PlayerData
 @export_range(1, 100, 1) var base_attack_damage: int = 1
 @export_range(.1, 3.0, .1) var attack_cooldown: float = .5
 
+@export_category("Health Parameters")
+@export_range(1, 500, 1) var max_health: int = 100
+
 @export_category("Stamina Parameters")
 @export_range(1.0, 200.0, 5.0) var max_stamina: float = 100.0
 @export_range(1.0, 50.0, 1.0) var stamina_drain_per_second: float = 20.0

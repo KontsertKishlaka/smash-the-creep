@@ -194,7 +194,7 @@ func _perform_attack():
 		target.take_damage(slime.data.attack_damage, slime)
 		print("AttackState: попал по игроку! Урон: %d" % slime.data.attack_damage)
 		
-		SignalBus.enemy_attacked_player.emit(slime, target, slime.data.attack_damage)
+		SignalBus.player_damaged.emit(slime.data.attack_damage, slime)
 	else:
 		print("AttackState: игрок вне зоны поражения")
 

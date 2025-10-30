@@ -27,7 +27,7 @@ class_name EnemyData
 # --- Атака ---
 @export_category("Attack Settings")
 @export var attack_range: float = 2.0
-@export var attack_damage: int = 6
+@export var attack_damage: int = 5
 @export var attack_jump_velocity: float = 5.0
 @export var attack_cooldown: float = 2.0 
 @export var attack_knockback_horizontal: float = 1.0
