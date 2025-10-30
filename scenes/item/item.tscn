@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvj5b5skgcjvt"]
+
+[ext_resource type="Script" uid="uid://b77bxqxgxm8pu" path="res://scripts/misc/item/item-component.gd" id="1_vu0ti"]
+[ext_resource type="Script" uid="uid://dcrufcbhblgyq" path="res://scripts/misc/item/item-data.gd" id="2_imnf0"]
+[ext_resource type="PackedScene" uid="uid://kj0ob40lolxs" path="res://assets/textures/item/weapon/melee/sword/low_poly_medieval_sword.glb" id="3_pg5me"]
+
+[sub_resource type="Resource" id="Resource_bhcfu"]
+script = ExtResource("2_imnf0")
+metadata/_custom_type_script = "uid://dcrufcbhblgyq"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bhcfu"]
+radius = 0.23828125
+height = 1.7675781
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dl6eq"]
+radius = 0.1640625
+height = 1.3432617
+
+[node name="Item" type="Area3D"]
+script = ExtResource("1_vu0ti")
+item_data = SubResource("Resource_bhcfu")
+
+[node name="CollisionPickUp" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6167888, 0)
+shape = SubResource("CapsuleShape3D_bhcfu")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="Pivot" instance=ExtResource("3_pg5me")]
+transform = Transform3D(0.094336964, -0.03278248, 0.0050843414, 0.032530013, 0.094417736, 0.0052051498, -0.0065068966, -0.0032564402, 0.09973494, 0.17596823, -0.37816578, -0.31623954)
+
+[node name="CollisionHurtBox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8130274, 0)
+shape = SubResource("CapsuleShape3D_dl6eq")

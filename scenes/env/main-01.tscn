@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2s37xlhae343"]
+
+[ext_resource type="PackedScene" uid="uid://bvhxbhtembogm" path="res://scenes/player/player.tscn" id="1_sq22g"]
+[ext_resource type="MeshLibrary" uid="uid://brig8kmeu8c5b" path="res://tileset/dungeon-01/tileset-lib.tres" id="2_61qmr"]
+[ext_resource type="PackedScene" uid="uid://d25vf06mwdqk3" path="res://scenes/system/audio/music-controller.tscn" id="2_u1n4w"]
+[ext_resource type="AudioStream" uid="uid://cqbmt4d2dabtj" path="res://assets/audio/soundtrack/anar_mc_-_zaryazhaesh.mp3" id="3_yhpd2"]
+[ext_resource type="PackedScene" uid="uid://g3oggeq5xbun" path="res://scenes/env/prop/crate/crate.tscn" id="6_csbld"]
+[ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="6_gl8n5"]
+[ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="7_1f65w"]
+[ext_resource type="PackedScene" uid="uid://bt3jnpmq6oflw" path="res://scenes/enemy/slime.tscn" id="7_4s7hv"]
+[ext_resource type="PackedScene" uid="uid://ccfolyyfiqe6m" path="res://scenes/env/prop/chest/chest.tscn" id="7_wf423"]
+[ext_resource type="Script" uid="uid://wijhswendwie" path="res://scripts/global/effect-manager.gd" id="10_yhpd2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ok77"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_cvjdr"]
+sky_material = SubResource("ProceduralSkyMaterial_5ok77")
+
+[sub_resource type="Environment" id="Environment_jgyrw"]
+background_mode = 2
+sky = SubResource("Sky_cvjdr")
+ambient_light_color = Color(1, 0.9490196, 0.8, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.16
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(1, 0.9490196, 0.8, 1)
+fog_light_energy = 0.02
+fog_density = 0.05
+
+[sub_resource type="Resource" id="Resource_pag55"]
+script = ExtResource("6_gl8n5")
+metadata/_custom_type_script = "uid://b7hcib1fo1d54"
+
+[sub_resource type="Resource" id="Resource_ormr0"]
+script = ExtResource("7_1f65w")
+metadata/_custom_type_script = "uid://cmmu85uwvhmqh"
+
+[node name="World" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jgyrw")
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh_library = ExtResource("2_61qmr")
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+collision_layer = 32
+collision_mask = 31
+data = {
+"cells": PackedInt32Array(0, 65535, 2, 0, 0, 2, 65535, 0, 2, 65535, 65535, 2, 65534, 65534, 1441793, 65534, 1, 1, 1, 65534, 655361, 1, 1, 1048577, 2, 0, 1048577, 2, 65535, 655361, 0, 2, 1048577, 65535, 2, 1, 65533, 0, 1, 65533, 65535, 1441793, 65535, 65533, 1441792, 65535, 65532, 1441792, 65535, 65531, 1441792, 65535, 65530, 1441792, 65535, 65529, 1441792, 0, 65533, 1048576, 0, 65532, 1048576, 0, 65531, 1048576, 0, 65530, 1048576, 0, 65529, 1048576, 0, 65528, 1048576, 0, 65527, 1048576, 65535, 65528, 1441792, 65535, 65527, 1441792, 65535, 65526, 1441792, 65535, 65525, 1441793, 0, 65534, 655363, 65535, 65534, 1441795, 65534, 65535, 1441795, 65534, 0, 3, 65535, 1, 3, 0, 1, 1048579, 1, 0, 1048579, 1, 65535, 655363, 0, 65525, 655360, 1, 65525, 655360, 2, 65525, 655360, 3, 65525, 655360, 3, 65526, 0, 2, 65526, 0, 1, 65526, 0, 0, 65526, 1048579, 4, 65526, 3, 4, 65525, 1441795, 4, 65527, 1441792, 4, 65528, 1441792, 4, 65529, 1441792, 5, 65530, 0, 9, 65530, 0, 10, 65529, 1048576, 10, 65523, 1048576, 4, 65524, 1441792, 4, 65523, 1441792, 4, 65522, 1441792, 10, 65522, 1048576, 5, 65521, 655360, 4, 65521, 1441793, 4, 65530, 1, 10, 65530, 1048577, 10, 65521, 655361, 9, 65521, 655360, 7, 65531, 0, 7, 65520, 655360, 8, 65521, 655363, 8, 65520, 655361, 6, 65520, 1441793, 6, 65531, 1, 8, 65531, 1048577, 17, 65521, 1441793, 18, 65521, 655361, 17, 65522, 1441792, 17, 65523, 1441792, 18, 65522, 1048576, 18, 65523, 1048576, 11, 65524, 655360, 12, 65524, 655360, 13, 65524, 655360, 14, 65524, 655360, 15, 65524, 655360, 11, 65527, 0, 12, 65527, 0, 13, 65527, 0, 14, 65527, 0, 15, 65527, 0, 16, 65527, 0, 17, 65527, 0, 18, 65526, 1048576, 18, 65525, 1048576, 18, 65524, 1048576, 18, 65527, 1048577, 17, 65524, 1441795, 16, 65524, 655360, 17, 65525, 655362, 17, 65526, 655362, 16, 65526, 655362, 16, 65525, 655362, 15, 65525, 655362, 15, 65526, 655362, 14, 65526, 655362, 14, 65525, 655362, 13, 65525, 655362, 13, 65526, 655362, 12, 65526, 655362, 12, 65525, 655362, 11, 65525, 655362, 11, 65526, 655362, 10, 65526, 655362, 9, 65526, 655362, 9, 65525, 655362, 10, 65525, 655362, 10, 65527, 1048579, 10, 65524, 655363, 8, 65530, 1048579, 6, 65521, 1441795, 5, 65525, 655362, 5, 65526, 655362, 6, 65525, 655362, 6, 65526, 655362, 7, 65526, 655362, 8, 65526, 655362, 8, 65525, 655362, 7, 65525, 655362, 9, 65524, 655362, 9, 65523, 655362, 9, 65522, 655362, 8, 65522, 655362, 8, 65523, 655362, 8, 65524, 655362, 7, 65524, 655362, 7, 65523, 655362, 7, 65522, 655362, 7, 65521, 655362, 6, 65522, 655362, 6, 65523, 655362, 6, 65524, 655362, 5, 65522, 655362, 5, 65523, 655362, 5, 65524, 655362, 6, 65530, 3, 10, 65528, 1048576, 5, 65527, 2, 5, 65528, 2, 5, 65529, 2, 6, 65529, 2, 6, 65528, 2, 6, 65527, 2, 7, 65527, 2, 7, 65528, 2, 7, 65529, 2, 7, 65530, 2, 8, 65529, 2, 8, 65528, 2, 8, 65527, 2, 9, 65527, 2, 9, 65528, 2, 9, 65529, 2)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="MusicController" parent="." instance=ExtResource("2_u1n4w")]
+scene_music = ExtResource("3_yhpd2")
+auto_play = false
+
+[node name="EffectManager" type="Node" parent="."]
+script = ExtResource("10_yhpd2")
+
+[node name="Player" parent="." instance=ExtResource("1_sq22g")]
+player_data = SubResource("Resource_pag55")
+player_config = SubResource("Resource_ormr0")
+
+[node name="Light" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4509137, 0.12827182)
+light_color = Color(1, 0.9490196, 0.8, 1)
+spot_range = 15.973487
+
+[node name="WoodChest" parent="." instance=ExtResource("7_wf423")]
+transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 5, 0, 0)
+
+[node name="Crate" parent="." instance=ExtResource("6_csbld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.665208, 0, 0)
+
+[node name="Crate2" parent="." instance=ExtResource("6_csbld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.665208, 1.479783, 0)
+
+[node name="Crate3" parent="." instance=ExtResource("6_csbld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312912, 2.7665553, 5.197644)
+
+[node name="Slime" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_4s7hv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3581713, -18.080145)
+player = NodePath("../Player")

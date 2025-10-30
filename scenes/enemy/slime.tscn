@@ -1,0 +1,97 @@
+[gd_scene load_steps=17 format=3 uid="uid://bt3jnpmq6oflw"]
+
+[ext_resource type="Script" uid="uid://c8w8bow1gvipf" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
+[ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/texture/enemy/slime.glb" id="1_ves4f"]
+[ext_resource type="Script" uid="uid://dibibf6k74k8r" path="res://scripts/enemy/enemy-data.gd" id="2_a3p1x"]
+[ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/state/enemy-state-machine.gd" id="4_eh4rw"]
+[ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/state/patrol-state.gd" id="5_a3p1x"]
+[ext_resource type="Script" uid="uid://bcskqgpw8anmk" path="res://scripts/enemy/state/idle-state.gd" id="5_p3i1o"]
+[ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/state/chase-state.gd" id="6_45xnl"]
+[ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/state/attack-state.gd" id="7_68vad"]
+[ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/state/death-state.gd" id="8_p3i1o"]
+[ext_resource type="Script" uid="uid://bainx3h25pukb" path="res://scripts/enemy/state/take-damage-state.gd" id="9_68vad"]
+[ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/sfx/enemy/slimejump.mp3" id="10_68vad"]
+[ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/sfx/enemy/slimeonfloor.mp3" id="11_p3i1o"]
+
+[sub_resource type="Resource" id="Resource_45xnl"]
+script = ExtResource("2_a3p1x")
+metadata/_custom_type_script = "uid://dibibf6k74k8r"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a3p1x"]
+height = 0.74554443
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_45xnl"]
+height = 0.74554443
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a3p1x"]
+radius = 0.4
+
+[node name="Slime" type="CharacterBody3D" groups=["ENEMY"]]
+collision_layer = 4
+collision_mask = 181
+script = ExtResource("1_4wfld")
+data = SubResource("Resource_45xnl")
+
+[node name="CollisionBody" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37142646, 0.00047779083)
+shape = SubResource("CylinderShape3D_a3p1x")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
+
+[node name="PivotMesh" type="Node3D" parent="."]
+
+[node name="MeshSlime" parent="PivotMesh" instance=ExtResource("1_ves4f")]
+
+[node name="Hurtbox" type="Area3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionHurtbox" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37142646, 0.00047779083)
+shape = SubResource("CylinderShape3D_45xnl")
+debug_color = Color(0.20392157, 0.6392157, 0, 0.41960785)
+
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40164375, 0.2897935)
+collision_layer = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionHitbox" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("SphereShape3D_a3p1x")
+debug_color = Color(1, 0.28627452, 0.23137255, 0.6509804)
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_eh4rw")
+initial_state = null
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("5_p3i1o")
+
+[node name="PatrolState" type="Node" parent="StateMachine"]
+script = ExtResource("5_a3p1x")
+
+[node name="ChaseState" type="Node" parent="StateMachine"]
+script = ExtResource("6_45xnl")
+
+[node name="AttackState" type="Node" parent="StateMachine"]
+script = ExtResource("7_68vad")
+
+[node name="TakeDamdgeState" type="Node" parent="StateMachine"]
+script = ExtResource("9_68vad")
+
+[node name="DeathState" type="Node" parent="StateMachine"]
+script = ExtResource("8_p3i1o")
+
+[node name="LandSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_68vad")
+volume_db = -5.0
+max_db = 0.0
+max_distance = 15.0
+
+[node name="JumpSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_p3i1o")
+volume_db = -5.0
+max_db = 0.0
+max_distance = 15.0

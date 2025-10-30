@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccfolyyfiqe6m"]
+
+[ext_resource type="PackedScene" uid="uid://2k6xatydums8" path="res://assets/textures/env/props/wood-chest/source/Treasure.glb" id="1_xcmal"]
+
+[node name="WoodChest" instance=ExtResource("1_xcmal")]
+transform = Transform3D(0.36, 0, 0, 0, 0.36, 0, 0, 0, 0.36, 0, 0, 0)

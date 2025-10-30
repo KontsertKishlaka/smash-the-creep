@@ -11,5 +11,106 @@ config_version=5
 [application]
 
 config/name="smash-the-creep"
+run/main_scene="uid://c2s37xlhae343"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Constants="*res://scripts/global/constants.gd"
+SignalBus="*res://scripts/global/signal-bus.gd"
+AudioManager="*res://scripts/system/audio/audio-manager.gd"
+
+[display]
+
+window/size/viewport_width=854
+window/size/viewport_height=480
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="viewport"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://assets/audio/": "red",
+"res://assets/material/": "green",
+"res://assets/texture/": "yellow",
+"res://assets/texture/enemy/": "blue",
+"res://assets/texture/env/": "teal",
+"res://assets/texture/item/": "orange",
+"res://assets/texture/player/": "red",
+"res://assets/vfx/": "purple",
+"res://docs/": "blue",
+"res://scenes/": "teal",
+"res://scenes/enemy/": "blue",
+"res://scenes/item/": "orange",
+"res://scenes/player/": "red",
+"res://scenes/system/": "purple",
+"res://scripts/": "yellow",
+"res://scripts/enemy/": "blue",
+"res://scripts/global/": "green",
+"res://scripts/misc/": "pink",
+"res://scripts/player/": "red",
+"res://scripts/system/": "purple",
+"res://tileset/": "purple"
+}
+
+[global_group]
+
+DESTRUCTIBLE=""
+ENEMY=""
+
+[input]
+
+move_forwards={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+]
+}
+move_backwards={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+]
+}
+jump={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
+attack={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(361, 16),"global_position":Vector2(370, 64),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+sprint={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+quit={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+
+[layer_names]
+
+3d_physics/layer_1="PLAYER"
+3d_physics/layer_2="PLAYER_ATTACK"
+3d_physics/layer_3="ENEMY"
+3d_physics/layer_4="ENEMY_ATTACK"
+3d_physics/layer_5="DESTRUCTIBLE"
+3d_physics/layer_6="WORLD"
+3d_physics/layer_7="TRIGGER"
+3d_physics/layer_8="ITEM"

@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://w80vffp2pg5k"]
+
+[ext_resource type="Script" uid="uid://batse4ojshqyg" path="res://assets/vfx/wood-chips.gd" id="1_acbh7"]
+[ext_resource type="Texture2D" uid="uid://b3yhowly2kdvc" path="res://assets/vfx/wood-chips.jpg" id="1_rvir0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h7qnh"]
+particle_flag_damping_as_friction = true
+emission_shape = 3
+emission_box_extents = Vector3(0.15, 0.15, 0.15)
+direction = Vector3(0, 0.05, 0)
+spread = 16.991
+initial_velocity_max = 4.0
+linear_accel_min = 0.24999776
+linear_accel_max = 0.49999776
+damping_min = 0.15
+damping_max = 0.3
+scale_min = 0.39999998
+scale_max = 0.79999995
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acbh7"]
+albedo_color = Color(0.6480894, 0.61047244, 0.47243446, 1)
+albedo_texture = ExtResource("1_rvir0")
+
+[sub_resource type="SphereMesh" id="SphereMesh_h7qnh"]
+material = SubResource("StandardMaterial3D_acbh7")
+radius = 0.05
+height = 0.1
+
+[node name="VFXWoodChips" type="Node3D"]
+script = ExtResource("1_acbh7")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+amount = 20
+lifetime = 1.13
+interp_to_end = 1.0
+explosiveness = 1.0
+randomness = 0.04
+process_material = SubResource("ParticleProcessMaterial_h7qnh")
+draw_pass_1 = SubResource("SphereMesh_h7qnh")

@@ -1,60 +1,127 @@
-# Игрок: базовый вид
+<div align="center">
+  <img src="./.media/stc-cover-us.png" alt="Smash the Creep Cover" title="Смеш-зе-Крипщина"/>
+  <h1>😜 Игрок: Базовый вид</h1>
+  <h3><i>Smash the Creep</i></h3>
+  <q><i>В мире, где слизь не прощает ошибок, герой рождается с мечом - и каплей надежды.</i></q>
+  <br>
+  <br>
 
-## 🎯 Структура сцены
+![Godot](https://img.shields.io/badge/Engine-Godot-blue?logo=godot-engine&logoColor=white "Годотщина") ![Blender](https://img.shields.io/badge/Model-Blender-orange?logo=blender&logoColor=white "Блендерщина")<br>![Player](https://img.shields.io/badge/Docs-Player-yellow?logo=readme&logoColor=white "Рлауэр") ![Status](https://img.shields.io/badge/Status-In--Progress-ffff00?logo=devbox&logoColor=white "Статус документа") ![Team](https://img.shields.io/badge/Team-KontsertKishlaka-purple?logo=refinedgithub&logoColor=white "Кислакщина")
+
+</div>
+
+---
+
+## 📹 Структура сцены
 
 ```md
 Player (CharacterBody3D)
-├── CollisionShape3D
-├── MeshInstance3D
+├── CollisionBody (CollisionShape3D)
+├── AttackArea (Area3D)
+│   └── CollisionAttack (CollisionShape3D)
+├── TakeDamageArea (Area3D)
+│   └── CollisionTakeDamage (CollisionShape3D)
 ├── Pivot (Node3D)
-├── Camera3D
+│   └── Model (Node3D / MeshInstance3D)
+├── Camera (Camera3D)
 ├── StateMachine (Node)
 ├── HealthSystem (Node)
 └── InventorySystem (Node)
 ```
 
-## 🧩 Ключевые компоненты
+> _💬 В будущем также будут добавлены:_ > _- `SpotSystem` (система онаружения врагов/предметов/НПС)_ > _- `UISystem` (система отображения UI: характеристики, инвентарь, древо перков)_
 
-| Компонент            | Скрипт                       | Паттерн     | Назначение                                         |
-| -------------------- | ---------------------------- | ----------- | -------------------------------------------------- |
-| **Player**           | `player.gd`                  | Композиция  | Корневой узел, управляет всеми системами           |
-| **State Machine**    | `state_machine.gd` + states/ | Состояния   | Управление поведением (движение, атака, уклонение) |
-| **Health System**    | `health_system.gd`           | -           | Здоровье, урон, смерть, неуязвимость               |
-| **Inventory System** | `inventory_system.gd`        | -           | Предметы, оружие, экипировка                       |
-| **Player Data**      | `player_data.gd`             | Ресурсы     | Данные: здоровье, статы, инвентарь                 |
-| **Signal Bus**       | `signal_bus.gd`              | Наблюдатель | Глобальная связь между системами                   |
+---
 
-## 📊 Данные игрока (PlayerData)
+## 📝 Данные [Игрока](../scripts/player/player-data.gd "Player resources: PlayerData")
+
+**Пример:**
 
 ```gdscript
 extends Resource
 class_name PlayerData
 
+@export_category("Movement")
+@export var speed: float = 10.0
+@export var jump_velocity: float = 7
+
+@export_category("Health")
 @export var max_health: int = 100
 @export var current_health: int = 100
-@export var speed: float = 10.0
-@export var gravity: float = 30.0
+
+@export_category("Inventory")
 @export var inventory: Array[ItemResource] = []
 ```
 
-## 📡 Ключевые сигналы
+<!-- Вместо `@export_category("...")`, возможно, нужно использовать `@export_group("...")` -->
 
-- `player_health_changed(old_value, new_value)`
-- `player_died()`
-- `item_picked(item_resource)`
-- `update_health_ui(current_health, max_health)`
+---
 
-## 💡 Основные состояния
+## 📝 Конфиг [Игрока](../scripts/player/player-config.gd "Player resources: PlayerConfig")
 
-- **MoveState**
-- **JumpState**
-- **AttackState**
-- **DeathState**
+**Пример:**
+
+```gdscript
+extends Resource
+class_name PlayerConfig
+
+@export_category("Input")
+@export var mouse_sensitivity: float = 0.002
+
+@export_category("Screen")
+@export var max_degree: float = 45
+```
+
+<!-- Вместо `@export_category("...")`, возможно, нужно использовать `@export_group("...")` -->
+
+---
+
+## 📡 Ключевые сигналы (косвенная связь с [SignalBus](../scripts/global/signal-bus.gd "Singleton: SignalBus"))
+
+Финальный список ещё обсуждается. **Пока имеем следующие сигналы:**
+
+**Сигналы `HealthSystem`:** _(MUST HAVE)_
+
+- `signal player_health_changed(old_value, new_value)`
+- `signal player_damaged(damage, source)`
+- `signal player_died()` или `signal game_over()`
+- `signal item_picked(item_resource)`
+
+**Сигналы `InventorySystem`:** _(SHOULD HAVE)_
+
+- `signal item_picked_up(item_data)`
+- `signal weapon_used(weapon_data, player)`
+- `signal player_damaged(damage, source)`
+
+**Сигналы `SpotSystem`:** _(COULD HAVE)_
+
+- `signal enemy_spotted(enemy)` (нужен отдельный компонент - `SpotRange` (`Area3D`))
+
+**Сигналы `UISystem`:** _(COULD HAVE)_
+
+- `signal update_health_ui(current_health, max_health)`
+
+---
+
+## 😵‍💫 Состояния [Игрока](../scripts/player/player-state-machine.gd "Player: StateMachine")
+
+- [idle](../scripts/player/player-states/idle-state.gd "Состояние: бездействие")
+- [walk](../scripts/player/player-states/walk-state.gd "Состояние: ходьба")
+- [run](../scripts/player/player-states/run-state.gd "Состояние: бег")
+- [jump](../scripts/player/player-states/jump-state.gd "Состояние: прыжок")
+- [take_damage](../scripts/player/player-states/take-damage-state.gd "Состояние: получение урона") _(SHOULD HAVE)_
+- [death](../scripts/player/player-states/death-state.gd "Состояние: смерть") _(SHOULD HAVE)_
+
+---
+
+## 🎨 [Игрок](./design/player/player-design.md "Игрок: дизайн") в Blender
+
+Подробнее о 3Д модельке Игрока и анимациях: [Дизайн Игрока](./design/player/player-design.md "Игрок: дизайн")
 
 ---
 
 <div align="center">
-  <span>© 2025 <a href="https://github.com/KontsertKishlaka" targer="_blank">KontsertKishlaka</a></span>
+  <sub>© 2025 <a href="https://github.com/KontsertKishlaka" target="_blank" title="Кислакщинащина">KontsertKishlaka</a> - Smash the Creep</sub>
   <br>
-  <span><i>Slasher RPG — базовая спецификация персонажа</i></span>
+  <sup><i>“Базовая спецификация Игрока”</i></sup>
 </div>
