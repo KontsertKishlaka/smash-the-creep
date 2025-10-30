@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bt3jnpmq6oflw"]
+[gd_scene load_steps=17 format=3 uid="uid://bt3jnpmq6oflw"]
 
 [ext_resource type="Script" uid="uid://c8w8bow1gvipf" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
 [ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/texture/enemy/slime.glb" id="1_ves4f"]
 [ext_resource type="Script" uid="uid://dibibf6k74k8r" path="res://scripts/enemy/enemy-data.gd" id="2_a3p1x"]
 [ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/state/enemy-state-machine.gd" id="4_eh4rw"]
 [ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/state/patrol-state.gd" id="5_a3p1x"]
+[ext_resource type="Script" uid="uid://bcskqgpw8anmk" path="res://scripts/enemy/state/idle-state.gd" id="5_p3i1o"]
 [ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/state/chase-state.gd" id="6_45xnl"]
 [ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/state/attack-state.gd" id="7_68vad"]
 [ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/state/death-state.gd" id="8_p3i1o"]
@@ -64,6 +65,9 @@ debug_color = Color(1, 0.28627452, 0.23137255, 0.6509804)
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_eh4rw")
 initial_state = null
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("5_p3i1o")
 
 [node name="PatrolState" type="Node" parent="StateMachine"]
 script = ExtResource("5_a3p1x")

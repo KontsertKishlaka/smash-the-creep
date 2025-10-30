@@ -6,7 +6,8 @@ enum State {
 	ChaseState,
 	AttackState,
 	TakeDamageState,
-	DeathState
+	DeathState,
+	IdleState
 }
 
 enum DeathType {
@@ -23,6 +24,7 @@ static func get_state_name(value: int) -> String:
 		State.AttackState: return "AttackState"
 		State.TakeDamageState: return "TakeDamageState"
 		State.DeathState: return "DeathState"
+		State.IdleState: return "IdleState"
 		_: return "UNKNOWN"
 
 static func get_death_type_name(value: int) -> String:
