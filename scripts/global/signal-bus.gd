@@ -25,7 +25,7 @@ signal weapon_used(weapon_data: WeaponData, player: Player)
 
 # Сигналы для аудио
 signal play_sound(sound: AudioStream, position: Vector3)
-signal play_sound_3d(sound: AudioStream, position: Vector3)
+signal play_sound_3d(sound: AudioStream, position: Vector3, volume_db: float, bus: StringName)
 signal play_music(music: AudioStream)
 signal stop_music()
 signal toggle_music(enabled: bool)

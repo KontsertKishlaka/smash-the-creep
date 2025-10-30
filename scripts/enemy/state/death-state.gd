@@ -17,7 +17,6 @@ var _original_scale: Vector3
 @export var dissolve_speed: float = 2.0
 
 func enter(_params: Array = []):
-	
 	mesh = _find_mesh()
 	_original_scale = slime.scale
 	
@@ -29,7 +28,6 @@ func enter(_params: Array = []):
 	slime.set_collision_mask(0)
 	
 	_start_death_effects()
-	
 
 func physics_update(delta):
 	fade_timer += delta
@@ -65,7 +63,8 @@ func _update_explode_death(_delta: float):
 		else:
 			var collapse_progress = (progress - 0.3) / 0.7
 			var collapse_scale = 4.0 - collapse_progress * 3.8
-			slime.scale = _original_scale * clamp(collapse_scale, 0.1, 4.0)
+			collapse_scale = max(0.01, collapse_scale)  # Предотвращаем scale = 0
+			slime.scale = _original_scale * collapse_scale
 			
 			mesh.modulate.a = clamp(1.0 - collapse_progress * 3.0, 0, 1)
 
@@ -117,9 +116,7 @@ func _play_death_sound():
 	var random_sound = death_sounds[randi() % death_sounds.size()]
 	SignalBus.play_sound_3d.emit(
 		random_sound,
-		slime.global_position,
-		-3.0,
-		"SFX"
+		slime.global_position
 	)
 
 func _spawn_death_particles():
@@ -139,12 +136,9 @@ func _spawn_death_particles():
 			)
 
 func _start_explosion_effects():
-
 	SignalBus.play_sound_3d.emit(
 		#preload("res://sounds/explosion.wav"),
-		slime.global_position,
-		-1.0,
-		"SFX"
+		slime.global_position
 	)
 
 func _start_dissolve_effects():
@@ -155,7 +149,6 @@ func _start_dissolve_effects():
 	)
 
 func _finalize_death():
-	
 	if _death_type == ESE.DeathType.EXPLODE:
 		SignalBus.spawn_effect.emit(
 			#preload("res://effects/smoke_cloud.tscn"),

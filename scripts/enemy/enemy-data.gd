@@ -3,7 +3,7 @@ class_name EnemyData
 
 # --- Здоровье и защита ---
 @export_category("Health & Defense")
-@export_range(1, 1000, 1) var max_health: int = 50
+@export_range(1, 1000, 1) var max_health: int = 5
 @export_range(0.0, 5.0, 0.1) var invincibility_duration: float = 0.5
 
 # --- Настройки движения ---
