@@ -5,7 +5,7 @@ class_name DeathState
 var fade_timer: float = 0.0
 var mesh: MeshInstance3D = null
 
-func enter():
+func enter(_params: Array = []):
 	print("Slime в состоянии DeathState")
 
 	slime.set_physics_process(false)

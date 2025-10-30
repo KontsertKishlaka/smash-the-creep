@@ -19,14 +19,19 @@ func _ready():
 
 	change_state(initial_state)
 
-func change_state(new_state_enum: int):
+func change_state(new_state_enum: int, params: Array = []):
 	if current_state:
 		current_state.exit()
 
 	var state_name = ESE.get_state_name(new_state_enum)
 	if states.has(state_name):
 		current_state = states[state_name]
-		current_state.enter()
+		
+		# Передача параметров в состояние
+		if params.size() > 0:
+			current_state.enter(params)
+		else:
+			current_state.enter()
 	else:
 		printerr("State not found: ", state_name)
 

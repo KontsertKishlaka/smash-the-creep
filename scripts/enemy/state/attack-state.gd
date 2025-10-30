@@ -27,11 +27,22 @@ var current_attack: int = AttackMode.FLIP_ONLY
 @export var air_stretch_factor: float = 1.3
 @export var bounce_squash_factor: float = 0.85
 
-func enter():
+func enter(_params: Array = []):  # ДОБАВЛЯЕМ ПАРАМЕТР
 	if slime.player and is_instance_valid(slime.player):
 		target = slime.player
 	else:
 		target = null
+
+	original_scale = slime.scale
+	prep_timer = prep_duration
+	attacking_air = false
+	is_bouncing = false
+	post_attack_delay_timer = 0.0
+	attack_cooldown_timer = 0.0
+	flip_active = false
+	flip_remaining = 0.0
+
+	current_attack = randi() % 3
 
 	original_scale = slime.scale
 	prep_timer = prep_duration

@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt3jnpmq6oflw"]
+[gd_scene load_steps=16 format=3 uid="uid://bt3jnpmq6oflw"]
 
 [ext_resource type="Script" uid="uid://c8w8bow1gvipf" path="res://scripts/enemy/slime.gd" id="1_4wfld"]
-[ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/textures/enemy/slime.glb" id="1_ves4f"]
+[ext_resource type="PackedScene" uid="uid://dnyyijt4wwy2" path="res://assets/texture/enemy/slime.glb" id="1_ves4f"]
 [ext_resource type="Script" uid="uid://dibibf6k74k8r" path="res://scripts/enemy/enemy-data.gd" id="2_a3p1x"]
 [ext_resource type="Script" uid="uid://bjb8ekosdlkoj" path="res://scripts/enemy/state/enemy-state-machine.gd" id="4_eh4rw"]
 [ext_resource type="Script" uid="uid://di1uihaheufwg" path="res://scripts/enemy/state/patrol-state.gd" id="5_a3p1x"]
 [ext_resource type="Script" uid="uid://dvnj48d4plxmr" path="res://scripts/enemy/state/chase-state.gd" id="6_45xnl"]
 [ext_resource type="Script" uid="uid://xwj4covqgg3o" path="res://scripts/enemy/state/attack-state.gd" id="7_68vad"]
 [ext_resource type="Script" uid="uid://c07lccwrvjpvi" path="res://scripts/enemy/state/death-state.gd" id="8_p3i1o"]
+[ext_resource type="Script" uid="uid://bainx3h25pukb" path="res://scripts/enemy/state/take-damage-state.gd" id="9_68vad"]
 [ext_resource type="AudioStream" uid="uid://dhm7txio5rnt3" path="res://assets/audio/sfx/enemy/slimejump.mp3" id="10_68vad"]
 [ext_resource type="AudioStream" uid="uid://j1taqljilkod" path="res://assets/audio/sfx/enemy/slimeonfloor.mp3" id="11_p3i1o"]
 
@@ -62,6 +63,7 @@ debug_color = Color(1, 0.28627452, 0.23137255, 0.6509804)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("4_eh4rw")
+initial_state = null
 
 [node name="PatrolState" type="Node" parent="StateMachine"]
 script = ExtResource("5_a3p1x")
@@ -74,6 +76,9 @@ script = ExtResource("7_68vad")
 
 [node name="DeathState" type="Node" parent="StateMachine"]
 script = ExtResource("8_p3i1o")
+
+[node name="TakeDamdgeState" type="Node" parent="StateMachine"]
+script = ExtResource("9_68vad")
 
 [node name="LandSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_68vad")

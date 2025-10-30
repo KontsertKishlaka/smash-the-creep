@@ -3,7 +3,7 @@ class_name PatrolState
 
 @export var state_enum: int = EnemyStatesEnum.State.PatrolState
 
-func enter():
+func enter(_params: Array = []):
 	slime._set_new_patrol_target()
 	slime.jump_timer = 0.0
 

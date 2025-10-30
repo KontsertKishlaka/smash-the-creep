@@ -1,10 +1,10 @@
 extends Node
 class_name EnemyState
 
-var state_machine
-var slime
+var state_machine: EnemyStateMachine
+var slime: Slime
 
-func enter():
+func enter(_params: Array = []):
 	pass
 
 func exit():

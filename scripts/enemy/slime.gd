@@ -11,6 +11,8 @@ class_name Slime
 @onready var land_sound: AudioStreamPlayer3D = $LandSound
 @onready var jump_sound: AudioStreamPlayer3D = $JumpSound
 
+var health_system: HealthSystem
+
 @export var jump_stretch_factor: float = 1.3
 @export var land_squash_factor: float = 0.8
 @export var squash_lerp_speed: float = 0.15
@@ -40,17 +42,34 @@ func _ready():
 		printerr("Slime: EnemyData не назначен!")
 		return
 
+	health_system = HealthSystem.new(self, name, data.max_health)
+	
 	_set_new_patrol_target()
 	original_scale = scale
 
-func _physics_process(delta):
-	if not data or not player:
-		return
+	_connect_health_signals()
 
+func _connect_health_signals():
+	SignalBus.enemy_damaged.connect(_on_enemy_damaged)
+
+func _on_enemy_damaged(enemy: Node, _damage: int, source: Node):
+	if enemy == self and is_alive() and not is_invincible():
+		state_machine.change_state(EnemyStatesEnum.State.TakeDamageState, [source])
+
+func _process(delta: float):
+	if not data or is_dead:
+		return
+	
+	health_system.update(delta)
+	
 	test_damage_timer += delta
 	if test_damage_timer >= test_damage_interval:
 		test_damage_timer = 0.0
 		take_damage(test_damage_amount, self)
+
+func _physics_process(delta):
+	if not data or not player or is_dead:
+		return
 
 	var was_on_floor_before = is_on_floor()
 
@@ -112,11 +131,18 @@ func take_damage(amount: int, source: Node = null):
 	if is_dead:
 		return
 
-	var source_name: String = "неизвестно"
-	if source and source is Node:
-		source_name = source.name
+	health_system.take_damage(amount, source)
 
-	print("%s получил %d урона от %s" % [name, amount, source_name])
+func _on_death(_killer: Node = null):
+	if is_dead:
+		return
+	
+	is_dead = true
+	state_machine.change_state(EnemyStatesEnum.State.DeathState)
+	collision_layer = 0
+	collision_mask = 1
+	
+	_die_animation()
 
 func _die_animation():
 	is_dead = true
@@ -201,3 +227,15 @@ func _play_jump_sound():
 	if jump_sound and not jump_sound.playing:
 		jump_sound.pitch_scale = randf_range(0.9, 1.1)
 		jump_sound.play()
+
+func get_current_health() -> int:
+	return health_system.get_current_health()
+
+func get_max_health() -> int:
+	return health_system.get_max_health()
+
+func is_alive() -> bool:
+	return health_system.is_alive()
+
+func is_invincible() -> bool:
+	return health_system.is_invincible()
