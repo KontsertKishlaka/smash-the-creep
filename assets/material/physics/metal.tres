@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PhysicsMaterialResource" load_steps=4 format=3 uid="uid://bctocplx11vkk"]
+
+[ext_resource type="Script" uid="uid://1gjb463vbbvm" path="res://scripts/misc/material/physics-material-data.gd" id="1_gerpj"]
+[ext_resource type="PackedScene" uid="uid://w80vffp2pg5k" path="res://assets/vfx/wood-chips.tscn" id="1_so17x"]
+[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/sfx/nya.mp3" id="2_slakw"]
+
+[resource]
+script = ExtResource("1_gerpj")
+material_name = "metal"
+friction = 0.1
+bounciness = 0.1
+density_multiplier = 2.0
+impact_sounds = Array[AudioStream]([ExtResource("2_slakw")])
+slide_sounds = Array[AudioStream]([ExtResource("2_slakw")])
+hit_effect = ExtResource("1_so17x")
+hit_particle_color = Color(0.42365062, 0.42365065, 0.42365062, 1)
+metadata/_custom_type_script = "uid://1gjb463vbbvm"

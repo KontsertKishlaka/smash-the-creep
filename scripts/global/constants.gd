@@ -4,9 +4,16 @@ extends Node
 const DEFAULT_GRAVITY = 15.0
 #endregion
 
+#region Массы
+const MASS_PLAYER: float = 80.0
+const MASS_SLIME: float = 40.0
+const MASS_BOX: float = 20.0
+const MASS_BARREL: float = 60.0
+const MASS_ROCK: float = 120.0
+#endregion
+
 #region Cистема толкания
 const PUSH_FORCE_MULTIPLIER: float = 5.0
-const DEFAULT_CHARACTER_MASS: float = 80.0
 const MIN_MASS_RATIO: float = .25
 const PUSH_SOUND_THRESHOLD: float = 2.0
 #endregion

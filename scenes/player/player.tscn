@@ -297,7 +297,6 @@ script = ExtResource("11_fcs02")
 
 [node name="PushComponent" type="Node" parent="."]
 script = ExtResource("22_yj68g")
-pusher_type = "PLAYER"
 
 [node name="AudioComponent" type="Node3D" parent="."]
 script = ExtResource("12_fcs02")

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PhysicsMaterialResource" load_steps=4 format=3 uid="uid://c8mvnbk8t6plg"]
+
+[ext_resource type="PackedScene" uid="uid://w80vffp2pg5k" path="res://assets/vfx/wood-chips.tscn" id="1_2q8vu"]
+[ext_resource type="Script" uid="uid://1gjb463vbbvm" path="res://scripts/misc/material/physics-material-data.gd" id="1_d6o00"]
+[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/sfx/nya.mp3" id="2_tvoq1"]
+
+[resource]
+script = ExtResource("1_d6o00")
+material_name = "stone"
+friction = 0.6
+bounciness = 0.3
+density_multiplier = 1.5
+impact_sounds = Array[AudioStream]([ExtResource("2_tvoq1")])
+slide_sounds = Array[AudioStream]([ExtResource("2_tvoq1")])
+hit_effect = ExtResource("1_2q8vu")
+hit_particle_color = Color(0.45055306, 0.25106755, 0.016537437, 1)
+metadata/_custom_type_script = "uid://1gjb463vbbvm"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PhysicsMaterialResource" load_steps=4 format=3 uid="uid://q1a1xdfmssqt"]
+
+[ext_resource type="Script" uid="uid://1gjb463vbbvm" path="res://scripts/misc/material/physics-material-data.gd" id="1_mb8ib"]
+[ext_resource type="PackedScene" uid="uid://w80vffp2pg5k" path="res://assets/vfx/wood-chips.tscn" id="1_ux5ro"]
+[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/sfx/nya.mp3" id="2_e4fay"]
+
+[resource]
+script = ExtResource("1_mb8ib")
+impact_sounds = Array[AudioStream]([ExtResource("2_e4fay")])
+slide_sounds = Array[AudioStream]([ExtResource("2_e4fay")])
+hit_effect = ExtResource("1_ux5ro")
+hit_particle_color = Color(0.3550505, 0.30617842, 0.57497495, 1)
+metadata/_custom_type_script = "uid://1gjb463vbbvm"

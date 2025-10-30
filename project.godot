@@ -21,6 +21,7 @@ Constants="*res://scripts/global/constants.gd"
 SignalBus="*res://scripts/global/signal-bus.gd"
 AudioManager="*res://scripts/system/audio/audio-manager.gd"
 PhysicsAudioManager="*res://scripts/system/audio/physics-audio-system/physics-audio-manager.gd"
+PhysicsMaterialManager="*res://scripts/misc/material/physics-material-manager.gd"
 
 [display]
 
@@ -38,6 +39,7 @@ folder_colors={
 "res://assets/audio/sfx/enemy/": "blue",
 "res://assets/config/": "teal",
 "res://assets/material/": "green",
+"res://assets/material/physics/": "purple",
 "res://assets/texture/": "yellow",
 "res://assets/texture/enemy/": "blue",
 "res://assets/texture/env/": "teal",
@@ -54,8 +56,12 @@ folder_colors={
 "res://scripts/enemy/": "blue",
 "res://scripts/global/": "green",
 "res://scripts/misc/": "pink",
+"res://scripts/misc/destroy/": "red",
+"res://scripts/misc/item/": "orange",
+"res://scripts/misc/material/": "green",
 "res://scripts/player/": "red",
 "res://scripts/system/": "purple",
+"res://scripts/system/audio/": "red",
 "res://tileset/": "purple"
 }
 
