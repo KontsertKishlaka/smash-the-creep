@@ -18,6 +18,10 @@ var health_system: HealthSystem
 @export var squash_lerp_speed: float = 0.15
 @export var stretch_lerp_speed: float = 0.15
 
+# Улучшенная система скейла
+var land_animation_timer: float = 0.0
+var land_animation_duration: float = 0.3
+
 var jump_timer: float = 0.0
 var patrol_target: Vector3
 var was_on_floor: bool = true
@@ -80,6 +84,7 @@ func _physics_process(delta):
 	else:
 		if jumping:
 			just_landed = true
+			land_animation_timer = land_animation_duration  # Запускаем таймер анимации приземления
 		jumping = false
 		velocity.y = max(velocity.y, 0)
 
@@ -101,25 +106,45 @@ func _physics_process(delta):
 
 	was_on_floor = is_on_floor()
 
+	# УЛУЧШЕННАЯ СИСТЕМА СКЕЙЛА С ТАЙМЕРОМ
 	if jumping:
+		# В прыжке - вытягиваемся вверх
 		var target_scale = Vector3(
 			original_scale.x * 0.9,
 			original_scale.y * jump_stretch_factor,
 			original_scale.z * 0.9
 		)
 		scale = scale.lerp(target_scale, stretch_lerp_speed)
-	elif just_landed:
-		var target_scale = Vector3(
-			original_scale.x * 1.2,
-			original_scale.y * land_squash_factor,
-			original_scale.z * 1.2
-		)
-		scale = scale.lerp(target_scale, squash_lerp_speed)
-		if (scale - original_scale).length() < 0.01:
+	elif land_animation_timer > 0:
+		# Анимация приземления по таймеру
+		land_animation_timer -= delta
+		
+		var progress = 1.0 - (land_animation_timer / land_animation_duration)
+		
+		if progress < 0.5:
+			# Первая половина - сквош (приземление)
+			var squash_progress = progress * 2.0
+			var target_scale = Vector3(
+				original_scale.x * (1.0 + squash_progress * 0.2),
+				original_scale.y * (1.0 - squash_progress * 0.2),
+				original_scale.z * (1.0 + squash_progress * 0.2)
+			)
+			scale = target_scale
+		else:
+			# Вторая половина - восстановление
+			var restore_progress = (progress - 0.5) * 2.0
+			scale = scale.lerp(original_scale, restore_progress)
+		
+		if land_animation_timer <= 0:
+			scale = original_scale  # Гарантированно возвращаем оригинальный скейл
 			just_landed = false
-			scale = original_scale
 	else:
+		# Обычное состояние - поддерживаем оригинальный скейл
 		scale = scale.lerp(original_scale, squash_lerp_speed)
+		
+		# Дополнительная защита: принудительно сбрасываем к оригинальному скейлу если очень близко
+		if (scale - original_scale).length() < 0.005:
+			scale = original_scale
 
 func _rotate_toward(direction: Vector3, delta: float):
 	if direction.length() > 0.01:

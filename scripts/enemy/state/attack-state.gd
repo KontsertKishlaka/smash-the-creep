@@ -13,9 +13,13 @@ var target: Node3D = null
 var original_scale: Vector3
 var attack_target_position: Vector3
 
+# Улучшенная система атак
 var flip_active: bool = false
 var flip_remaining: float = 0.0
 var rot_axis: Vector3 = Vector3(1,0,0)
+var _attack_missed: bool = false
+var _max_attack_time: float = 3.0
+var _attack_timer: float = 0.0
 
 enum AttackMode { ROTATE_ONLY, ROTATE_FLIP, FLIP_ONLY }
 var current_attack: int = AttackMode.FLIP_ONLY
@@ -27,11 +31,17 @@ var current_attack: int = AttackMode.FLIP_ONLY
 @export var air_stretch_factor: float = 1.3
 @export var bounce_squash_factor: float = 0.85
 
-func enter(_params: Array = []):  # ДОБАВЛЯЕМ ПАРАМЕТР
+@export var prediction_time: float = 0.3
+@export var min_attack_distance: float = 1.0
+@export var max_attack_time: float = 3.0
+
+func enter(_params: Array = []):
 	if slime.player and is_instance_valid(slime.player):
 		target = slime.player
 	else:
 		target = null
+		state_machine.change_state(EnemyStatesEnum.State.ChaseState)
+		return
 
 	original_scale = slime.scale
 	prep_timer = prep_duration
@@ -41,22 +51,26 @@ func enter(_params: Array = []):  # ДОБАВЛЯЕМ ПАРАМЕТР
 	attack_cooldown_timer = 0.0
 	flip_active = false
 	flip_remaining = 0.0
+	_attack_missed = false
+	_attack_timer = 0.0
 
-	current_attack = randi() % 3
-
-	original_scale = slime.scale
-	prep_timer = prep_duration
-	attacking_air = false
-	is_bouncing = false
-	post_attack_delay_timer = 0.0
-	attack_cooldown_timer = 0.0
-	flip_active = false
-	flip_remaining = 0.0
-
-	current_attack = randi() % 3
+	var attack_choice = randf()
+	if attack_choice < 0.34:
+		current_attack = AttackMode.FLIP_ONLY
+	elif attack_choice < 0.33:
+		current_attack = AttackMode.ROTATE_FLIP
+	else:
+		current_attack = AttackMode.ROTATE_ONLY
 
 func physics_update(delta):
 	if not slime.data or not slime or not is_instance_valid(slime):
+		state_machine.change_state(EnemyStatesEnum.State.ChaseState)
+		return
+
+	_attack_timer += delta
+	
+	if _attack_timer >= _max_attack_time:
+		state_machine.change_state(EnemyStatesEnum.State.ChaseState)
 		return
 
 	if is_bouncing:
@@ -86,7 +100,7 @@ func physics_update(delta):
 		slime.look_at(target.global_position, Vector3.UP)
 
 		if prep_timer <= 0.0:
-			attack_target_position = Vector3(target.global_position.x, slime.global_position.y, target.global_position.z)
+			attack_target_position = _get_predicted_attack_position()
 			_request_attack_jump()
 			attacking_air = true
 		return
@@ -106,17 +120,42 @@ func physics_update(delta):
 		slime.rotation.y = lerp(slime.rotation.y, atan2(look_dir.x, look_dir.z), 0.1)
 		slime.rotation.z = 0
 
-		if (slime.global_position - attack_target_position).length() <= slime.data.attack_range:
+		var current_distance = (slime.global_position - attack_target_position).length()
+		var original_distance = (slime.global_position - target.global_position).length()
+		
+		if current_distance <= slime.data.attack_range or _attack_missed:
 			_perform_attack()
 			post_attack_delay_timer = 0.05
 			attacking_air = false
 			_start_bounce()
+		
+		if current_distance > original_distance * 1.5 and slime.velocity.y < 0:
+			_attack_missed = true
 		return
 
 	if post_attack_delay_timer > 0.0:
 		post_attack_delay_timer -= delta
 		slime.velocity.y -= slime.data.gravity * delta
 		return
+
+
+func _get_predicted_attack_position() -> Vector3:
+	if not target or not is_instance_valid(target):
+		return slime.global_position
+	
+	var player_velocity = Vector3.ZERO
+	if target is CharacterBody3D:
+		player_velocity = target.velocity
+	
+	var predicted_position = target.global_position + player_velocity * prediction_time
+	
+	var to_predicted = predicted_position - slime.global_position
+	var max_distance = slime.data.attack_range * 2.0
+	if to_predicted.length() > max_distance:
+		predicted_position = slime.global_position + to_predicted.normalized() * max_distance
+	
+	print("AttackState: предсказанная позиция атаки")
+	return Vector3(predicted_position.x, slime.global_position.y, predicted_position.z)
 
 func _request_attack_jump():
 	if not target or not is_instance_valid(target):
@@ -130,7 +169,6 @@ func _request_attack_jump():
 	slime.velocity.z = dir.z * slime.data.speed * 2.5
 	slime.velocity.y = slime.data.attack_jump_velocity * attack_jump_power
 
-	# выбор типа атаки
 	match current_attack:
 		AttackMode.ROTATE_ONLY:
 			flip_active = true
@@ -138,7 +176,7 @@ func _request_attack_jump():
 			rot_axis = Vector3(0, randf_range(-1.0,1.0), 0).normalized()
 		AttackMode.ROTATE_FLIP:
 			flip_active = true
-			flip_remaining = TAU
+			flip_remaining = TAU * 1.5
 			rot_axis = Vector3(1, randf_range(-0.3,0.3), 0).normalized()
 		AttackMode.FLIP_ONLY:
 			flip_active = true
@@ -149,8 +187,16 @@ func _perform_attack():
 	if not target or not is_instance_valid(target):
 		return
 
-	if target.has_method("take_damage"):
+	var distance_to_player = (target.global_position - slime.global_position).length()
+	var can_hit = distance_to_player <= slime.data.attack_range * 1.5
+	
+	if can_hit and target.has_method("take_damage"):
 		target.take_damage(slime.data.attack_damage, slime)
+		print("AttackState: попал по игроку! Урон: %d" % slime.data.attack_damage)
+		
+		SignalBus.enemy_attacked_player.emit(slime, target, slime.data.attack_damage)
+	else:
+		print("AttackState: игрок вне зоны поражения")
 
 	attack_cooldown_timer = slime.data.attack_cooldown
 
@@ -175,16 +221,13 @@ func _start_bounce():
 	match current_attack:
 		AttackMode.ROTATE_ONLY:
 			flip_active = true
-			flip_remaining = TAU
-			rot_axis = Vector3(0, randf_range(-1.0,1.0), 0).normalized()
+			flip_remaining = TAU * 0.5
 		AttackMode.ROTATE_FLIP:
 			flip_active = true
-			flip_remaining = TAU
-			rot_axis = Vector3(1, randf_range(-0.3,0.3), 0).normalized()
+			flip_remaining = TAU * 0.8
 		AttackMode.FLIP_ONLY:
 			flip_active = true
-			flip_remaining = TAU
-			rot_axis = Vector3(1,0,0)
+			flip_remaining = TAU * 0.5
 
 	if slime.land_sound:
 		slime.land_sound.pitch_scale = randf_range(0.9, 1.2)

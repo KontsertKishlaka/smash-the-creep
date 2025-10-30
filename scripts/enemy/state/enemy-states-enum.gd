@@ -9,6 +9,13 @@ enum State {
 	DeathState
 }
 
+enum DeathType {
+	DISSOLVE,
+	EXPLODE, 
+	SINK,
+	FADE
+}
+
 static func get_state_name(value: int) -> String:
 	match value:
 		State.PatrolState: return "PatrolState"
@@ -17,3 +24,11 @@ static func get_state_name(value: int) -> String:
 		State.TakeDamageState: return "TakeDamageState"
 		State.DeathState: return "DeathState"
 		_: return "UNKNOWN"
+
+static func get_death_type_name(value: int) -> String:
+	match value:
+		DeathType.DISSOLVE: return "DISSOLVE"
+		DeathType.EXPLODE: return "EXPLODE"
+		DeathType.SINK: return "SINK" 
+		DeathType.FADE: return "FADE"
+		_: return "UNKNOWN_DEATH_TYPE"
