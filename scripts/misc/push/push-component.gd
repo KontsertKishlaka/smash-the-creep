@@ -11,9 +11,6 @@ class_name PushComponent
 @export var enable_push_sounds: bool = true
 @export_range(0.1, 10.0, 0.1) var push_sound_threshold: float = Constants.PUSH_SOUND_THRESHOLD
 
-@export var _debug_enabled: bool = true
-
-# Ссылка на родительский CharacterBody3D
 var character_body: CharacterBody3D
 
 func _ready():
@@ -21,34 +18,21 @@ func _ready():
 	if not character_body:
 		push_error("❌ 'PushComponent' должен быть дочерним компонентом 'CharacterBody3D'")
 
-	if _debug_enabled:
-		print("[PushComponent] Initialized for: ", character_body.name)
-
 # Основной метод толкания - вызывается после move_and_slide()
 func push_rigid_bodies() -> void:
 	if not character_body:
 		return
 
 	var collision_count = character_body.get_slide_collision_count()
-	if _debug_enabled and collision_count > 0:
-		print("[PushComponent] Checking ", collision_count, " collisions")
 
 	var pushed_count = 0
 	for i in collision_count:
 		var collision := character_body.get_slide_collision(i)
 		var collider = collision.get_collider()
 
-		if _debug_enabled:
-			print("[PushComponent] Collision with: ", collider.name, " (Type: ", collider.get_class(), ")")
-
 		if collider is RigidBody3D:
-			if _debug_enabled:
-				print("[PushComponent] Found RigidBody3D: ", collider.name)
 			_handle_rigidbody_collision(collider, collision)
 			pushed_count += 1
-
-	if _debug_enabled and pushed_count > 0:
-		print("[PushComponent] Pushed ", pushed_count, " rigid bodies")
 
 func _handle_rigidbody_collision(rigidbody: RigidBody3D, collision: KinematicCollision3D) -> void:
 	# Вместо использования нормали коллизии, используем направление движения игрока
@@ -67,31 +51,19 @@ func _handle_rigidbody_collision(rigidbody: RigidBody3D, collision: KinematicCol
 
 	var push_dir = player_horizontal_velocity.normalized()
 
-	if _debug_enabled:
-		print("[PushComponent] Using push direction: ", push_dir)
-		print("[PushComponent] Player horizontal velocity: ", player_horizontal_velocity)
-
 	var velocity_diff = _calculate_velocity_difference(rigidbody, push_dir)
 
 	# Увеличим минимальную разницу скоростей
 	if velocity_diff <= 0.1:  # Ранее было 0.0
-		if _debug_enabled:
-			print("[PushComponent] Velocity difference too small (", velocity_diff, "), using minimum")
-		velocity_diff = 1.0  # Минимальная сила толчка
+		velocity_diff = 1.0   # Минимальная сила толчка
 
 	# Остальная логика без изменений...
 	var mass_ratio = _calculate_mass_ratio(rigidbody)
-	if _debug_enabled:
-		print("[PushComponent] Mass ratio: ", mass_ratio, " (character: ", character_mass, ", rigidbody: ", rigidbody.mass, ")")
 
 	if mass_ratio < min_mass_ratio:
-		if _debug_enabled:
-			print("[PushComponent] Mass ratio below minimum (", min_mass_ratio, "), skipping")
 		return
 
 	var final_force = _calculate_final_force(mass_ratio, velocity_diff, push_dir)
-	if _debug_enabled:
-		print("[PushComponent] Applying force: ", final_force, " (magnitude: ", final_force.length(), ")")
 
 	_apply_push_force(rigidbody, final_force, collision.get_position())
 	_emit_push_signals(rigidbody, final_force.length())
@@ -116,14 +88,6 @@ func _calculate_final_force(mass_ratio: float, velocity_diff: float, push_dir: V
 	horizontal_push = horizontal_push.normalized()
 
 	var force = horizontal_push * velocity_diff * mass_based_multiplier * force_multiplier
-
-	if _debug_enabled:
-		print("[PushComponent] Force calculation:")
-		print("[PushComponent]   Base velocity_diff: ", velocity_diff)
-		print("[PushComponent]   Mass ratio: ", mass_ratio)
-		print("[PushComponent]   Mass based multiplier: ", mass_based_multiplier)
-		print("[PushComponent]   Force multiplier: ", force_multiplier)
-		print("[PushComponent]   Final force: ", force, " (magnitude: ", force.length(), ")")
 
 	return force
 

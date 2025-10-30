@@ -102,11 +102,6 @@ func _on_attack_hit(area: Area3D):
 	var hit_layer = area.collision_layer
 	var target = area.get_parent()
 
-	# ДЕБАГ: Выведем информацию о столкновении
-	print("Атака попала в объект: ", target.name)
-	print("Слой объекта: ", hit_layer)
-	print("Ожидаемые слои: ENEMY=", Constants.LAYERS.ENEMY, ", DESTRUCTIBLE=", Constants.LAYERS.DESTRUCTIBLE)
-
 	# Проверяем битовую маску правильно
 	var is_enemy = (hit_layer & Constants.LAYERS.ENEMY) != 0
 	var is_destructible = (hit_layer & Constants.LAYERS.DESTRUCTIBLE) != 0

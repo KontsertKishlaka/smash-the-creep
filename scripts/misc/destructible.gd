@@ -27,7 +27,6 @@ func _ready():
 func _on_player_attacked(target: Node, damage: int):
 	# Проверяем, что атака направлена на этот объект
 	if target == self:
-		print("Сигнальное попадание в разрушаемый объект!")
 		_take_hit(damage)
 
 func _take_hit(damage: int = 1):
@@ -69,7 +68,7 @@ func _play_hit_flash():
 
 func _on_break():
 	# Логируем разрушение
-	print("Разрушаемый объект уничтожен!")
+	print("Разрушаемый объект уничтожен!\n")
 
 	# Отправляем сигналы
 	SignalBus.emit_signal("destructible_destroyed", self)
