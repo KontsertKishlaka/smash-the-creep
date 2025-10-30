@@ -1,19 +1,22 @@
 extends Node
 
-# Физические константы
-const DEFAULT_GRAVITY = 15.
+#region Физика
+const DEFAULT_GRAVITY = 15.0
+#endregion
 
-# Константы для системы толкания
-const PUSH_FORCE_MULTIPLIER = 5.
-const DEFAULT_CHARACTER_MASS = 80.
-const MIN_MASS_RATIO = .25
-const PUSH_SOUND_THRESHOLD = 2.  # Минимальная сила для воспроизведения звука
+#region Cистема толкания
+const PUSH_FORCE_MULTIPLIER: float = 5.0
+const DEFAULT_CHARACTER_MASS: float = 80.0
+const MIN_MASS_RATIO: float = .25
+const PUSH_SOUND_THRESHOLD: float = 2.0
+#endregion
 
-# Компоненты системы
-const PUSH_COMPONENT = "PushComponent"
+#region Компоненты
+const PUSH_COMPONENT: StringName = &"PushComponent"
+#endregion
 
-# Слои коллизий
-enum LAYERS {
+#region Слои коллизий
+enum COLLISION_LAYER {
 	PLAYER = 1,
 	PLAYER_ATTACK = 2,
 	ENEMY = 4,
@@ -23,8 +26,34 @@ enum LAYERS {
 	TRIGGER = 64,
 	ITEM = 128
 }
+#endregion
 
-# Группы
-const GROUP_PLAYER = "PLAYER"
-const GROUP_ENEMIES = "ENEMY"
-const GROUP_DESTRUCTIBLES = "DESTRUCTIBLE"
+#region Группы
+const GROUP_PLAYER: StringName = &"PLAYER"
+const GROUP_ENEMY: StringName = &"ENEMY"
+const GROUP_DESTRUCTIBLE: StringName = &"DESTRUCTIBLE"
+#endregion
+
+#region Состояния StateMachine
+const STATE_IDLE: StringName = &"IdleState"
+const STATE_WALK: StringName = &"WalkState"
+const STATE_RUN: StringName = &"RunState"
+const STATE_JUMP: StringName = &"JupmState"
+const STATE_FALL: StringName = &"FallState"
+const STATE_ATTACK: StringName = &"AttackState"
+const STATE_TAKE_DAMAGE: StringName = &"TakeDamageState"
+const STATE_DEATH: StringName = &"DeathState"
+#const STATE_PATROL: StringName = &"PatrolState"
+#endregion
+
+#region Анимации
+const ANIM_IDLE: StringName = &"idle"
+const ANIM_WALK: StringName = &"walk"
+const ANIM_RUN: StringName = &"run"
+const ANIM_JUMP: StringName = &"jump"
+const ANIM_FALL: StringName = &"fall"
+const ANIM_ATTACK_1: StringName = &"attack_1"
+const ANIM_ATTACK_2: StringName = &"attack_2"
+const ANIM_TAKE_DAMAGE: StringName = &"take_damage"
+const ANIM_DEATH: StringName = &"death"
+#endregion

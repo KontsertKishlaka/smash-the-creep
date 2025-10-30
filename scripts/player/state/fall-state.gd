@@ -30,17 +30,13 @@ func physics_process(delta: float) -> void:
 		audio_component.play_land()
 		_transition_to_ground_state()
 
-func post_physics_process(_delta: float) -> void:
-	if player.has_node(Constants.PUSH_COMPONENT):
-		player.get_node(Constants.PUSH_COMPONENT).push_rigid_bodies()
-
 func _transition_to_ground_state():
 	var input_dir = get_movement_input()
 
 	if input_dir.length() > 0:
 		if Input.is_action_pressed("sprint"):
-			state_machine.change_state(state_machine.get_node("RunState"))
+			state_machine.change_state(state_machine.get_node(str(Constants.STATE_RUN)))
 		else:
-			state_machine.change_state(state_machine.get_node("WalkState"))
+			state_machine.change_state(state_machine.get_node(str(Constants.STATE_WALK)))
 	else:
-		state_machine.change_state(state_machine.get_node("IdleState"))
+		state_machine.change_state(state_machine.get_node(str(Constants.STATE_IDLE)))

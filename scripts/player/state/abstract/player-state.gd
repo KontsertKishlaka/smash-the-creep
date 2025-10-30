@@ -21,7 +21,8 @@ func physics_process(_delta: float) -> void:
 	pass
 
 func post_physics_process(_delta: float) -> void:
-	pass
+	if player.has_node(str(Constants.PUSH_COMPONENT)):
+		player.get_node(str(Constants.PUSH_COMPONENT)).push_rigid_bodies()
 
 func handle_input(_event: InputEvent) -> void:
 	pass

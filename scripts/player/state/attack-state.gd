@@ -34,7 +34,7 @@ func enter() -> void:
 			hitbox.area_entered.connect(_on_attack_hit)
 
 	# Разрешаем комбо во второй половине анимации
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(.3).timeout
 	can_combo = true
 
 func physics_process(delta: float) -> void:
@@ -60,10 +60,6 @@ func physics_process(delta: float) -> void:
 	# Переход после завершения атаки
 	if attack_completed:
 		_transition_from_attack()
-
-func post_physics_process(_delta: float) -> void:
-	if player.has_node(Constants.PUSH_COMPONENT):
-		player.get_node(Constants.PUSH_COMPONENT).push_rigid_bodies()
 
 func exit() -> void:
 	if hitbox:
@@ -102,9 +98,9 @@ func _on_attack_hit(area: Area3D):
 	var hit_layer = area.collision_layer
 	var target = area.get_parent()
 
-	# Проверяем битовую маску правильно
-	var is_enemy = (hit_layer & Constants.LAYERS.ENEMY) != 0
-	var is_destructible = (hit_layer & Constants.LAYERS.DESTRUCTIBLE) != 0
+	# Проверяем битовую маску
+	var is_enemy = (hit_layer & Constants.COLLISION_LAYER.ENEMY) != 0
+	var is_destructible = (hit_layer & Constants.COLLISION_LAYER.DESTRUCTIBLE) != 0
 
 	if is_enemy or is_destructible:
 		print("\n✅ Попадание по цели: ", target.name)
@@ -118,17 +114,17 @@ func _on_attack_hit(area: Area3D):
 		elif target and target.has_method("_take_hit"):
 			target._take_hit(player.player_data.base_attack_damage)
 	else:
-		print("\n❌ Объект не является врагом или разрушаемым объектом")
+		print("❌ Объект не является врагом или разрушаемым объектом\n")
 
 func _transition_from_attack():
 	if not player.is_on_floor():
-		state_machine.change_state(state_machine.get_node("FallState"))
+		state_machine.change_state(state_machine.get_node(str(Constants.STATE_FALL)))
 	else:
 		var input_dir = get_movement_input()
 		if input_dir.length() > 0:
 			if Input.is_action_pressed("sprint"):
-				state_machine.change_state(state_machine.get_node("RunState"))
+				state_machine.change_state(state_machine.get_node(str(Constants.STATE_RUN)))
 			else:
-				state_machine.change_state(state_machine.get_node("WalkState"))
+				state_machine.change_state(state_machine.get_node(str(Constants.STATE_WALK)))
 		else:
-			state_machine.change_state(state_machine.get_node("IdleState"))
+			state_machine.change_state(state_machine.get_node(str(Constants.STATE_IDLE)))

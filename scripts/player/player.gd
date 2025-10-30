@@ -18,7 +18,7 @@ func _ready():
 
 func _setup_hitbox():
 	var hitbox = $Camera/PivotArm/Mesh/Hitbox
-	hitbox.collision_mask = Constants.LAYERS.ENEMY | Constants.LAYERS.DESTRUCTIBLE
+	hitbox.collision_mask = Constants.COLLISION_LAYER.ENEMY | Constants.COLLISION_LAYER.DESTRUCTIBLE
 	hitbox.monitoring = false
 
 # Добавляем обработку здоровья в процесс

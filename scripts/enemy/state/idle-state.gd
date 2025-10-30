@@ -97,7 +97,7 @@ func _has_direct_line_of_sight() -> bool:
 	var query = PhysicsRayQueryParameters3D.create(from, to)
 	query.exclude = [slime]
 	
-	query.collision_mask = Constants.LAYERS.WORLD
+	query.collision_mask = Constants.COLLISION_LAYER.WORLD
 	
 	var result = space_state.intersect_ray(query)
 	

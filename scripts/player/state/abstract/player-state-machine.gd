@@ -47,8 +47,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.physics_process(delta)
-
-	# Вызов пост-физической обработки после move_and_slide
 	if current_state:
 		current_state.post_physics_process(delta)
 

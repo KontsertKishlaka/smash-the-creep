@@ -64,7 +64,7 @@ func _get_push_sounds(pusher_type: String) -> Array[AudioStream]:
 
 	match pusher_type:
 		Constants.GROUP_PLAYER: return config.player_push_sounds
-		Constants.GROUP_ENEMIES: return config.enemy_push_sounds
+		Constants.GROUP_ENEMY: return config.enemy_push_sounds
 		_: return config.default_push_sounds
 
 func _get_impact_sounds(material_type: String) -> Array[AudioStream]:
