@@ -51,6 +51,10 @@ func physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	player.move_and_slide()
 
+func post_physics_process(_delta: float) -> void:
+	if player.has_node(Constants.PUSH_COMPONENT):
+		player.get_node(Constants.PUSH_COMPONENT).push_rigid_bodies()
+
 func _setup_footstep_timer() -> void:
 	if footstep_timer == null:
 		footstep_timer = Timer.new()

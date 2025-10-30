@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PhysicsAudioConfig" load_steps=4 format=3 uid="uid://d86oq0c6knr2"]
+
+[ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/sfx/nya.mp3" id="1_ht2pd"]
+[ext_resource type="AudioStream" uid="uid://bsba2q2u5yagw" path="res://assets/audio/sfx/player/attack/arm_attack_2_sound.mp3" id="2_j6awe"]
+[ext_resource type="Script" uid="uid://uihqkacigx44" path="res://scripts/system/audio/physics-audio-system/physics-audio-config.gd" id="3_kc3hr"]
+
+[resource]
+script = ExtResource("3_kc3hr")
+player_push_sounds = Array[AudioStream]([ExtResource("1_ht2pd")])
+enemy_push_sounds = Array[AudioStream]([ExtResource("1_ht2pd")])
+default_push_sounds = Array[AudioStream]([ExtResource("1_ht2pd")])
+wood_impact_sounds = Array[AudioStream]([ExtResource("2_j6awe")])
+metal_impact_sounds = Array[AudioStream]([ExtResource("2_j6awe")])
+stone_impact_sounds = Array[AudioStream]([ExtResource("2_j6awe")])
+min_push_volume = -24.0
+max_push_volume = -18.0

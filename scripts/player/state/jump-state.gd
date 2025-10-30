@@ -38,3 +38,7 @@ func physics_process(delta: float) -> void:
 	# Переход в падение
 	if player.velocity.y <= 0:
 		state_machine.change_state(state_machine.get_node("FallState"))
+
+func post_physics_process(_delta: float) -> void:
+	if player.has_node(Constants.PUSH_COMPONENT):
+		player.get_node(Constants.PUSH_COMPONENT).push_rigid_bodies()

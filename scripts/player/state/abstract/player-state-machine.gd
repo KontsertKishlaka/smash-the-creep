@@ -48,6 +48,10 @@ func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.physics_process(delta)
 
+	# Вызов пост-физической обработки после move_and_slide
+	if current_state:
+		current_state.post_physics_process(delta)
+
 func _input(event: InputEvent) -> void:
 	if current_state:
 		current_state.handle_input(event)

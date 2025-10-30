@@ -1,9 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://bvhxbhtembogm"]
+[gd_scene load_steps=37 format=3 uid="uid://bvhxbhtembogm"]
 
 [ext_resource type="Script" uid="uid://7jmmf0t47vaw" path="res://scripts/player/player.gd" id="1_dovo2"]
-[ext_resource type="Texture2D" uid="uid://6en7nbqgguu5" path="res://assets/textures/env/main/env-texture.jpg" id="2_75vfm"]
+[ext_resource type="Texture2D" uid="uid://6en7nbqgguu5" path="res://assets/texture/env/main/env-texture.jpg" id="2_75vfm"]
 [ext_resource type="Script" uid="uid://cmmu85uwvhmqh" path="res://scripts/player/player-config.gd" id="3_0owmy"]
-[ext_resource type="Script" uid="uid://cx1a1yulq6nx3" path="res://scripts/player/state/player-state-machine.gd" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://cx1a1yulq6nx3" path="res://scripts/player/state/abstract/player-state-machine.gd" id="3_gmlin"]
 [ext_resource type="Script" uid="uid://b7hcib1fo1d54" path="res://scripts/player/player-data.gd" id="4_75vfm"]
 [ext_resource type="Script" uid="uid://c3v2vtgy4wphe" path="res://scripts/player/state/idle-state.gd" id="5_0owmy"]
 [ext_resource type="Script" uid="uid://dnq45g2phutc" path="res://scripts/player/state/walk-state.gd" id="7_je7p5"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://b0oo48yfxeum8" path="res://assets/audio/sfx/player/jump/jump_sound.mp3" id="18_cnsyf"]
 [ext_resource type="AudioStream" uid="uid://camc1g4yc02na" path="res://assets/audio/sfx/player/land/land_sound.mp3" id="19_007i1"]
 [ext_resource type="AudioStream" uid="uid://bsba2q2u5yagw" path="res://assets/audio/sfx/player/attack/arm_attack_2_sound.mp3" id="19_yj68g"]
+[ext_resource type="Script" uid="uid://cisc2wsrr58dh" path="res://scripts/misc/push/push-component.gd" id="22_yj68g"]
 
 [sub_resource type="Resource" id="Resource_fcs02"]
 script = ExtResource("4_75vfm")
@@ -221,8 +222,9 @@ _data = {
 &"idle": SubResource("Animation_qek5x")
 }
 
-[node name="Player" type="CharacterBody3D"]
-collision_mask = 32
+[node name="Player" type="CharacterBody3D" groups=["PLAYER"]]
+collision_mask = 124
+platform_on_leave = 2
 script = ExtResource("1_dovo2")
 player_data = SubResource("Resource_fcs02")
 player_config = SubResource("Resource_myrg7")
@@ -304,3 +306,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_je7p5")
 }
 autoplay = "idle"
+
+[node name="PushComponent" type="Node3D" parent="."]
+script = ExtResource("22_yj68g")

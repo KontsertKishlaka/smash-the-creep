@@ -14,20 +14,9 @@ var health_system: HealthSystem
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	setup_hitbox()
-	setup_health_system()
+	_setup_hitbox()
 
-func setup_health_system():
-	# Создаем HealthSystem для игрока
-	var max_health = player_data.max_health if player_data else 100
-	health_system = HealthSystem.new(self, "Player", max_health)
-	
-	# Подключаем сигналы
-	SignalBus.health_changed.connect(_on_health_changed)
-	SignalBus.invincibility_started.connect(_on_invincibility_started)
-	SignalBus.invincibility_ended.connect(_on_invincibility_ended)
-
-func setup_hitbox():
+func _setup_hitbox():
 	var hitbox = $Camera/PivotArm/Mesh/Hitbox
 	hitbox.collision_mask = Constants.LAYERS.ENEMY | Constants.LAYERS.DESTRUCTIBLE
 	hitbox.monitoring = false

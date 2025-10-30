@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Constants="*res://scripts/global/constants.gd"
 SignalBus="*res://scripts/global/signal-bus.gd"
 AudioManager="*res://scripts/system/audio/audio-manager.gd"
+PhysicsAudioManager="*res://scripts/system/audio/physics-audio-system/physics-audio-manager.gd"
 
 [display]
 
@@ -34,6 +35,8 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://assets/": "orange",
 "res://assets/audio/": "red",
+"res://assets/audio/sfx/enemy/": "blue",
+"res://assets/config/": "teal",
 "res://assets/material/": "green",
 "res://assets/texture/": "yellow",
 "res://assets/texture/enemy/": "blue",
@@ -60,6 +63,7 @@ folder_colors={
 
 DESTRUCTIBLE=""
 ENEMY=""
+PLAYER=""
 
 [input]
 

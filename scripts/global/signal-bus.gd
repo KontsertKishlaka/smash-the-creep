@@ -15,6 +15,13 @@ signal health_changed(entity: Node, current_health: int, max_health: int)
 signal invincibility_started(entity: Node, duration: float)
 signal invincibility_ended(entity: Node)
 
+# Сигналы взаимодействия с физическими объектами
+signal rigidbody_pushed(rigidbody: RigidBody3D, pusher: Node, force: Vector3)
+signal rigidbody_collision(collider: RigidBody3D, character: CharacterBody3D, force: float)
+# Сигналы звуков взаимодействия с физическими объектами
+signal push_sound_played(position: Vector3, force: float, pusher_type: String)
+signal rigidbody_impact_sound(position: Vector3, impact_force: float, material_type: String)
+
 # Сигналы разрушаемых объектов
 signal destructible_damaged(entity: Node, damage: int, current_health: int, max_health: int)
 signal destructible_destroyed(entity: Node)

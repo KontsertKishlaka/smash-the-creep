@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chijmni77rvxx"]
+
+[ext_resource type="Script" uid="uid://cisc2wsrr58dh" path="res://scripts/misc/push/push-component.gd" id="1_aljdt"]
+
+[node name="PushComponent" type="Node"]
+script = ExtResource("1_aljdt")

@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=4 uid="uid://g3oggeq5xbun"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://c70nmhkwoagbj" path="res://material/physics/wood-phys-mat.tres" id="1_7hirc"]
+[ext_resource type="PhysicsMaterial" uid="uid://bbxq8do1u0233" path="res://assets/material/physics/stone-phys-mat.tres" id="1_7hirc"]
 [ext_resource type="Script" uid="uid://gtfksshd8yl0" path="res://scripts/misc/destructible.gd" id="1_eswdi"]
 [ext_resource type="PackedScene" uid="uid://w80vffp2pg5k" path="res://assets/vfx/wood-chips.tscn" id="2_7hirc"]
 [ext_resource type="AudioStream" uid="uid://ogiffrc33fhe" path="res://assets/audio/sfx/nya.mp3" id="3_86mwp"]
-[ext_resource type="Texture2D" uid="uid://ddnhh0u8nxp40" path="res://assets/textures/env/prop/wood-box/wood-box_0.jpg" id="4_a7sbj"]
-[ext_resource type="Texture2D" uid="uid://sagxvf3ffb2s" path="res://assets/textures/env/prop/wood-box/wood-box_1.png" id="5_7sf3x"]
-[ext_resource type="Texture2D" uid="uid://bea627rhoe6pw" path="res://assets/textures/env/prop/wood-box/wood-box_2.png" id="6_ww08l"]
+[ext_resource type="Texture2D" uid="uid://ddnhh0u8nxp40" path="res://assets/texture/env/prop/wood-box/wood-box_0.jpg" id="4_a7sbj"]
+[ext_resource type="Texture2D" uid="uid://sagxvf3ffb2s" path="res://assets/texture/env/prop/wood-box/wood-box_1.png" id="5_7sf3x"]
+[ext_resource type="Texture2D" uid="uid://bea627rhoe6pw" path="res://assets/texture/env/prop/wood-box/wood-box_2.png" id="6_ww08l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hs8b2"]
-size = Vector3(0.85, 0.85, 0.85)
+size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6tea"]
 resource_name = "DefaultMaterial"

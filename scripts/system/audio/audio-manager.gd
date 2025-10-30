@@ -17,17 +17,14 @@ var _current_music: AudioStream
 var _music_volume: float = -6.0  # Комфортная громкость музыки по умолчанию
 
 func _ready() -> void:
-	# Проверяем, что шины существуют
-	_verify_audio_buses()
+	_verify_audio_buses()  # Проверяем, что шины существуют
 
-	# Инициализируем системы
-	_setup_music_player()
-	_setup_sfx_pool()
+	_setup_music_player()  # Инициализируем систему музыки
+	_setup_sfx_pool()	   # Инициализируем sfx-пулл
 
-	# Подписываемся на сигналы
-	_connect_signals()
+	_connect_signals()	   # Подписываемся на сигналы
 
-	print("AudioManager MVP initialized")
+	print("🌿 AudioManager инициализирован")
 
 # Публичные методы для прямого доступа (опционально)
 func play_sound_3d(sound: AudioStream, position: Vector3, volume_db: float = 0.0) -> void:

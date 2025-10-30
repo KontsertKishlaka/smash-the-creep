@@ -30,6 +30,10 @@ func physics_process(delta: float) -> void:
 		audio_component.play_land()
 		_transition_to_ground_state()
 
+func post_physics_process(_delta: float) -> void:
+	if player.has_node(Constants.PUSH_COMPONENT):
+		player.get_node(Constants.PUSH_COMPONENT).push_rigid_bodies()
+
 func _transition_to_ground_state():
 	var input_dir = get_movement_input()
 

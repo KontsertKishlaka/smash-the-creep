@@ -8,8 +8,8 @@ var attack_completed: bool = false
 var can_combo: bool = false
 var combo_queued: bool = false
 
-# Вынесем замедление атаки в конфиг
-var attack_slowdown: float = 0.85
+# Замедление атаки
+var attack_slowdown: float = .85
 
 func enter() -> void:
 	current_attack = 1
@@ -36,6 +36,34 @@ func enter() -> void:
 	# Разрешаем комбо во второй половине анимации
 	await get_tree().create_timer(0.3).timeout
 	can_combo = true
+
+func physics_process(delta: float) -> void:
+	# Ограниченное движение во время атаки
+	var input_dir = get_movement_input()
+	var camera_relative_dir = player.get_camera_relative_direction(input_dir)
+	var move_speed = player.player_data.walk_speed * attack_slowdown
+
+	var target_velocity = camera_relative_dir * move_speed
+	var current_velocity = Vector2(player.velocity.x, player.velocity.z)
+	var new_velocity = current_velocity.lerp(Vector2(target_velocity.x, target_velocity.z), 8 * delta)
+
+	player.velocity.x = new_velocity.x
+	player.velocity.z = new_velocity.y
+
+	_apply_gravity(delta)
+	player.move_and_slide()
+
+	# Проверяем ввод для комбо (используем is_action_pressed для зажатия)
+	if can_combo and Input.is_action_pressed("attack"):
+		combo_queued = true
+
+	# Переход после завершения атаки
+	if attack_completed:
+		_transition_from_attack()
+
+func post_physics_process(_delta: float) -> void:
+	if player.has_node(Constants.PUSH_COMPONENT):
+		player.get_node(Constants.PUSH_COMPONENT).push_rigid_bodies()
 
 func exit() -> void:
 	if hitbox:
@@ -69,30 +97,6 @@ func _play_attack_animation():
 	else:
 		# Если анимации нет, сразу завершаем
 		attack_completed = true
-
-func physics_process(delta: float) -> void:
-	# Ограниченное движение во время атаки
-	var input_dir = get_movement_input()
-	var camera_relative_dir = player.get_camera_relative_direction(input_dir)
-	var move_speed = player.player_data.walk_speed * attack_slowdown
-
-	var target_velocity = camera_relative_dir * move_speed
-	var current_velocity = Vector2(player.velocity.x, player.velocity.z)
-	var new_velocity = current_velocity.lerp(Vector2(target_velocity.x, target_velocity.z), 8 * delta)
-
-	player.velocity.x = new_velocity.x
-	player.velocity.z = new_velocity.y
-
-	_apply_gravity(delta)
-	player.move_and_slide()
-
-	# Проверяем ввод для комбо (используем is_action_pressed для зажатия)
-	if can_combo and Input.is_action_pressed("attack"):
-		combo_queued = true
-
-	# Переход после завершения атаки
-	if attack_completed:
-		_transition_from_attack()
 
 func _on_attack_hit(area: Area3D):
 	var hit_layer = area.collision_layer
