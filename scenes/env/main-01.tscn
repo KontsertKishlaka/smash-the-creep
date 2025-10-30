@@ -75,18 +75,14 @@ spot_range = 15.973487
 [node name="WoodChest" parent="." instance=ExtResource("7_wf423")]
 transform = Transform3D(-1.57361e-08, 0, 0.36, 0, 0.36, 0, -0.36, 0, -1.57361e-08, 5, 0, 0)
 
-[node name="Crate" parent="." instance=ExtResource("6_csbld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.665208, 0, 0)
+[node name="Crate1" parent="." instance=ExtResource("6_csbld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9638464, 0, 0)
+mass = 50.0
 
 [node name="Crate2" parent="." instance=ExtResource("6_csbld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.665208, 1.479783, 0)
-
-[node name="Crate3" parent="." instance=ExtResource("6_csbld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312912, 2.7665553, 5.197644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312912, 2.7665553, 3.6157546)
+mass = 20.0
 
 [node name="Slime" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_4s7hv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3581713, -18.080145)
 player = NodePath("../Player")
-
-[node name="Crate4" parent="." instance=ExtResource("6_csbld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.001755)

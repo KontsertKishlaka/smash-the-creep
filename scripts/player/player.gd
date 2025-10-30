@@ -83,7 +83,7 @@ func _on_death(_killer: Node = null):
 	SignalBus.game_over.emit()
 	# state_machine.change_state("DeathState")
 	# show_game_over_screen()
-	
+
 # Вспомогательные методы для доступа к состоянию здоровья
 func get_current_health() -> int:
 	return health_system.get_current_health() if health_system else 0

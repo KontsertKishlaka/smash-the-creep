@@ -8,13 +8,13 @@ class_name AudioComponent
 @export var land_sound: AudioStream
 
 @export_category("Volume Settings")
-@export_range(-24.0, 6.0) var footstep_volume_db: float = -8.
-@export_range(-24.0, 6.0) var attack_volume_db: float = -8.
-@export_range(-24.0, 6.0) var movement_volume_db: float = -8.
+@export_range(-24.0, 6.0) var footstep_volume_db: float = -14.
+@export_range(-24.0, 6.0) var attack_volume_db: float = -14.
+@export_range(-24.0, 6.0) var movement_volume_db: float = -14.
 
 @export_category("Push Sounds")
 @export var push_sounds: Array[AudioStream]
-@export_range(-24.0, 6.0) var push_volume_db: float = -10.
+@export_range(-24.0, 6.0) var push_volume_db: float = -16.
 
 # Публичный API
 func play_sound(sound: AudioStream, volume_db: float = 0.) -> void:
